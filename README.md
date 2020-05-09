@@ -2,5 +2,5 @@
 
 ## https://opentexts.world/
 
-The web application powering the [OpenTexts.world](https://opentexts.world/) 
+The web application powering the [OpenTexts.World](https://opentexts.world/) 
 site.
