@@ -7,7 +7,7 @@ class Home extends BaseController
             $data['title'] = "Home";
             
             echo view('templates/header', $data); 
-            echo view('welcome_message');
+            echo view('home');
             echo view('templates/footer');    
 	}
 
