@@ -16,8 +16,16 @@
                 }
             }
 
+            // Result count
+            if ($resultcount == 0) {
+                ?><p>There were <?= esc($resultcount); ?> records found</p><?php  
+            } else if ($resultcount == 1) {
+                ?><p>There was <?= esc($resultcount); ?> record found:</p><?php 
+            } else {
+                ?><p>There were <?= esc($resultcount); ?> records found:</p><?php
+            }
+            
             // Results
-            ?><p>There were <?= esc($resultcount); ?> records found:</p><?php
             foreach ($results as $document) {
                 ?><p>
                     <?php if (!empty($document->url)) {?>
