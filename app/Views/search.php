@@ -41,7 +41,11 @@
                     <?php } else { ?>
                         <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                     <?php } ?>
-                    (<?= esc($document->creator); ?>)<br />
+                    <?php if (!empty($document->creator)) {?>
+                        (<?= esc($document->creator); ?>)<br />
+                    <?php } else { ?>
+                        <i>(Creator not listed)</i><br />
+                    <?php } ?>    
                     Source: <?= esc($document->collection); ?> 
                 </p><?php
             }
