@@ -32,6 +32,7 @@ class Search extends Controller
             //$query->createFilterQuery('collection')->setQuery('collection_facet:'.$collection);
             $filterQuery = $query->createFilterQuery('fq1')->setQuery('collection_facet:"' . $collection . '"');
             $query->addFilterQuery($filterQuery);
+            $data['collection'] = $collection;
         }
           
         // Get the facetset component

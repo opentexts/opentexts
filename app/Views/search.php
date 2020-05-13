@@ -13,7 +13,11 @@
             // Collection facet counts
             foreach ($collectionfacet as $value => $count) {
                 if ($count > 0) {
-                    ?><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> [<?= esc($count); ?>]<br/><?php
+                    ?><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> [<?= esc($count); ?>] <?php
+                        if (!empty($collection)) {
+                            ?><a href="/search/?q=<?= esc($q); ?>">(remove)</a><?php 
+                        }
+                    ?><br/><?php
                 }
             }
         ?>
