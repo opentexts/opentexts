@@ -2,59 +2,52 @@
 
 use CodeIgniter\Controller;
 
+helper('form');
+
 class Search extends Controller
 {
     public function index()
     {
-        $data['title'] = "Solarium";
+        $data['title'] = "Search";
         
         echo view('templates/header', $data); 
-        echo view('search');
         
         $config = config('Solr');        
         
-        // TODO Make much more robust
-        $query = $this->request->uri->getQuery();
-        $q = substr($query, 2);
+        // TODO Make much more robust (if is_empty($q)) etc
+        $q = $_GET['q'];
+        $data['q'] = $q;
         
-        // create a client instance
+        // Create a client instance
         $client = new \Solarium\Client($config->solarium);
 
-        // get a select query instance
+        // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
-
-        // get the facetset component
+        
+        
+        // Was a collection facet selected?
+        if (!empty($_GET['collection'])) {
+            $collection = $_GET['collection'];
+            //$query->createFilterQuery('collection')->setQuery('collection_facet:'.$collection);
+            $filterQuery = $query->createFilterQuery('fq1')->setQuery('collection_facet:"' . $collection . '"');
+            $query->addFilterQuery($filterQuery);
+        }
+          
+        // Get the facetset component
         $facetSet = $query->getFacetSet();
 
-        // create a facet field instance and set options
-        $facetSet->createFacetField('collection_facet')->setField('collection_facet');
+        // Create a facet field instance and set options
+        $facetSet->createFacetField('collf')->setField('collection_facet');
 
-        // this executes the query and returns the result
+        // executes the query and returns the result
         $resultset = $client->select($query);
 
-        // display the total number of documents found by solr
-        echo 'NumFound: '.$resultset->getNumFound();
+        $data['resultcount'] = $resultset->getNumFound();
+        $data['collectionfacet'] = $resultset->getFacetSet()->getFacet('collf');
+        $data['results'] = $resultset;
 
-        // display facet counts
-        echo '<hr/>Facet counts for field "collection_facet":<br/>';
-        $facet = $resultset->getFacetSet()->getFacet('collection_facet');
-        foreach ($facet as $value => $count) {
-            echo $value . ' [' . $count . ']<br/>';
-        }
-
-        // show documents using the resultset iterator
-        foreach ($resultset as $document) {
-
-            echo '<hr/><table>';
-            echo '<tr><th>id</th><td>' . $document->id . '</td></tr>';
-            echo '<tr><th>name</th><td>' . $document->title . '</td></tr>';
-            echo '<tr><th>creator</th><td>' . $document->creator . '</td></tr>';
-            echo '<tr><th>collection</th><td>' . $document->collection . '</td></tr>';
-            echo '<tr><th>link</th><td><a href="' . $document->url . '">' . $document->url . '</a></td></tr>';
-            echo '</table>';
-        }
-
+        echo view('search', $data);
         echo view('templates/footer');
     }
 
