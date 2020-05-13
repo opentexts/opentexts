@@ -8,6 +8,7 @@
             </p>    
         </form>
 
+        <p style="background-color:#f2f2f2;">
         <?php
             // Collection facet counts
             foreach ($collectionfacet as $value => $count) {
@@ -15,7 +16,10 @@
                     ?><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> [<?= esc($count); ?>]<br/><?php
                 }
             }
-
+        ?>
+        </p>
+        
+        <?php
             // Result count
             if ($resultcount == 0) {
                 ?><p>There were <?= esc($resultcount); ?> records found</p><?php  
