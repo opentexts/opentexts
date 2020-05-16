@@ -15,12 +15,7 @@
 
     <div class="menu">
         <ul>
-                <li class="logo"><a href="/" target="_blank">
-                        <!--<img height="44" 
-                             title="OpenTexts.World Logo"
-                             alt="Visit CodeIgniter.com official website!"
-                             src="/images/otw-logo.jpg">-->
-                    </a>
+            <li class="logo"><b><a href="/">OpenTexts.World</a></b>
                 </li>
                 <li class="menu-toggle">
                     <button onclick="toggleMenu();">&#9776;</button>
@@ -33,8 +28,10 @@
         </ul>
     </div>
 
-    <div class="hero">
-        <h1>OpenTexts.World</h1>
-        <h2>Opening up a world of digitised texts</h2>
-    </div>
+    <?php if (!empty($hero)) { ?>
+        <div class="hero">
+            <h1>OpenTexts.World</h1>
+            <h2>Opening up a world of digitised texts</h2>
+        </div>
+    <?php } ?>
 </header>
