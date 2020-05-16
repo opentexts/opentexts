@@ -25,7 +25,9 @@ class Search extends Controller
         $query = $client->createSelect();
         $query->setQuery($q);
         
-        
+        // Generate the URL without pagination details
+        $url = '/search/?q=' . $q;
+             
         // Was a collection facet selected?
         if (!empty($_GET['collection'])) {
             $collection = $_GET['collection'];
@@ -33,7 +35,15 @@ class Search extends Controller
             $filterQuery = $query->createFilterQuery('fq1')->setQuery('collection_facet:"' . $collection . '"');
             $query->addFilterQuery($filterQuery);
             $data['collection'] = $collection;
+            $url = $url . '&collection=' . $collection;
         }
+        
+        // Where to start and end the query (pagination)
+        $start = 0;
+        if (!empty($_GET['start'])) {
+               $start = esc($_GET['start']);
+        }
+        $query->setStart($start);
           
         // Get the facetset component
         $facetSet = $query->getFacetSet();
@@ -44,10 +54,13 @@ class Search extends Controller
         // executes the query and returns the result
         $resultset = $client->select($query);
 
+        // Send the parameters to the view
         $data['resultcount'] = $resultset->getNumFound();
         $data['collectionfacet'] = $resultset->getFacetSet()->getFacet('collf');
         $data['results'] = $resultset;
-
+        $data['start'] = $start;
+        $data['url'] = $url;
+                        
         echo view('search', $data);
         echo view('templates/footer');
     }
