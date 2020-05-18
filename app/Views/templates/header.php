@@ -1,37 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>OpenTexts.world: <?= esc($title); ?></title>
 	<meta name="description" content="Search, discover, and download open digitised texts and books">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/otw-base.css">
 </head>
+
 <body>
 
-<!-- HEADER: MENU + HERO SECTION -->
-<header>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">OpenTexts.World</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="menu">
-        <ul>
-            <li class="logo"><b><a href="/">OpenTexts.World</a></b>
-                </li>
-                <li class="menu-toggle">
-                    <button onclick="toggleMenu();">&#9776;</button>
-                </li>
-                <li class="menu-item hidden"><a href="/">Home</a></li>
-                <li class="menu-item hidden"><a href="/support/">Support</a></li>
-                <li class="menu-item hidden"><a href="/sources/">Sources</a></li>
-                <li class="menu-item hidden"><a href="/contribute/">Contribute</a>
-                </li>
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/support">Support</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/sources">Sources</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/contribute">Contribute</a>
+          </li>
         </ul>
-    </div>
-
-    <?php if (!empty($hero)) { ?>
-        <div class="hero">
-            <h1>OpenTexts.World</h1>
-            <h2>Opening up a world of digitised texts</h2>
-        </div>
-    <?php } ?>
-</header>
+      </div>
+    </nav>

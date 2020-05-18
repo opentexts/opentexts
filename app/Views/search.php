@@ -1,6 +1,5 @@
-<!-- CONTENT -->
-<section>
-    <h1>Search results</h1>
+<main role="main" class="container">
+    <h1 class="mt-5">Search Results</h1>
 
     <form action="search" method="GET">
         <p align="center">        
@@ -9,6 +8,7 @@
     </form>
 
     <p style="background-color:#f2f2f2;">
+        <b>Source:</b><br />
         <?php
             // Collection facet counts
             foreach ($collectionfacet as $value => $count) {
@@ -46,7 +46,10 @@
                 <?php } else { ?>
                     <i>(Creator not listed)</i><br />
                 <?php } ?>    
-                Source: <?= esc($document->collection); ?> 
+                Source: <?= esc($document->collection); ?> <br />
+                <?php if (!empty($document->url)) {?>
+                    <a href='<?= esc($document->url); ?>'><?= esc($document->url); ?></a>
+                <?php } ?>
             </p><?php
         }
     ?>
@@ -73,4 +76,4 @@
         }
     ?>
         
-</section>
+</main>
