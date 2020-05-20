@@ -7,6 +7,34 @@
         </p>    
     </form>
 
+    
+    <div class="row">
+       
+        <div class="col-md-4">
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Source</h3>
+                </div>
+                <div class="panel-body">   
+                <?php
+                    // Collection facet counts
+                    foreach ($collectionfacet as $value => $count) {
+                        if ($count > 0) {
+                            ?><p><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> <span class="badge" style="float: right;"><span class="badge badge-pill badge-primary"><?= esc($count); ?></span> <?php
+                                if (!empty($collection)) {
+                                    ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-danger">Remove</a><?php 
+                                }
+                            ?></span></p><?php
+                        }
+                    }
+                ?>
+                </div>
+            </div>
+        
+        </div>
+        <div class="col-md-8">
+            
     <?php
         // Result count
         if ($resultcount == 0) {
@@ -17,22 +45,6 @@
             ?><div class="alert alert-success">There were <?= esc($resultcount); ?> records found:</div><?php
         }
     ?>
-    
-    <div class="alert alert-secondary">
-        <b>Source:</b><br />
-        <?php
-            // Collection facet counts
-            foreach ($collectionfacet as $value => $count) {
-                if ($count > 0) {
-                    ?><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> <span class="badge badge-pill badge-primary"><?= esc($count); ?></span> <?php
-                        if (!empty($collection)) {
-                            ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-danger">Remove</a><?php 
-                        }
-                    ?><br/><?php
-                }
-            }
-        ?>
-    </div>
 
     <?php
         // Results
@@ -98,5 +110,5 @@
             <?php
         }
     ?>
-        
+        </div>   
 </main>
