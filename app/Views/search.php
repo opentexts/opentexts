@@ -1,6 +1,6 @@
 <main role="main" class="container">
     <h1 class="mt-5">Search Results</h1>
-
+ 
     <form action="search" method="GET">
         <p align="center">        
             <input type="text" name="q" value="<?= esc($q); ?>" /> <button type=button">Search</button>
@@ -12,24 +12,31 @@
        
         <div class="col-md-4">
             
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Source</h3>
+            <div class="card">
+                <div class="card-header">
+                    Source
                 </div>
-                <div class="panel-body">   
+                <ul class="list-group list-group-flush">   
                 <?php
                     // Collection facet counts
                     foreach ($collectionfacet as $value => $count) {
                         if ($count > 0) {
-                            ?><p><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> <span style="float: right;"><span class="badge badge-pill badge-primary"><?= esc($count); ?></span> <?php
+                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a>
+                                <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
                                 if (!empty($collection)) {
-                                    ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-danger">Remove</a><?php 
+                                    ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-pill badge-danger">Remove</a><?php 
                                 }
-                            ?></span></p><?php
+                            ?></li>
+                                <?php
+                        } else {
+                            ?><li class="list-group-item"><?= esc($value); ?>
+                                <span class="badge badge-pill badge-secondary" style="float: right"><?= esc($count); ?></span> <?php
+                            ?></li>
+                                <?php
                         }
                     }
                 ?>
-                </div>
+                </ul>
             </div>
         
         </div>
