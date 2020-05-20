@@ -6,14 +6,13 @@
             <input type="text" name="q" value="<?= esc($q); ?>" /> <button type=button">Search</button>
         </p>    
     </form>
-
     
     <div class="row">
        
         <div class="col-md-4">
             
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-info text-white">
                     Source
                 </div>
                 <ul class="list-group list-group-flush">   
@@ -45,11 +44,11 @@
     <?php
         // Result count
         if ($resultcount == 0) {
-            ?><div class="alert alert-success">There were <?= esc($resultcount); ?> records found</div><?php  
+            ?><div class="alert alert-warning">There were <?= esc($resultcount); ?> records found</div><?php  
         } else if ($resultcount == 1) {
-            ?><div class="alert alert-success">There was <?= esc($resultcount); ?> record found:</div><?php 
+            ?><div class="alert alert-info">There was <?= esc($resultcount); ?> record found:</div><?php 
         } else {
-            ?><div class="alert alert-success">There were <?= esc($resultcount); ?> records found:</div><?php
+            ?><div class="alert alert-info">There were <?= esc($resultcount); ?> records found:</div><?php
         }
     ?>
 
