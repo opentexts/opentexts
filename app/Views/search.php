@@ -21,7 +21,7 @@
                     // Collection facet counts
                     foreach ($collectionfacet as $value => $count) {
                         if ($count > 0) {
-                            ?><p><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> <span class="badge" style="float: right;"><span class="badge badge-pill badge-primary"><?= esc($count); ?></span> <?php
+                            ?><p><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a> <span style="float: right;"><span class="badge badge-pill badge-primary"><?= esc($count); ?></span> <?php
                                 if (!empty($collection)) {
                                     ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-danger">Remove</a><?php 
                                 }
