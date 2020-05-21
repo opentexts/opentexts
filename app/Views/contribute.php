@@ -7,7 +7,7 @@
     </p>
     
     <p>
-        The draft requirements for files is CSV with the following fields:
+        The draft requirements for files is <a href="https://en.wikipedia.org/wiki/Comma-separated_values" taret=_blank">CSV</a> with the following fields:
     </p>
     
     <table class="table table-striped">
