@@ -45,7 +45,7 @@
                 <td>idLocal</td>
                 <td>Local identifier</td>
                 <td>MANDATORY</td>
-                <td>Yes</td>
+                <td>No</td>
                 <td>
                     ID from the local system - so each library can look up their 
                     local system if there’s a query 
