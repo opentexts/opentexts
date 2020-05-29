@@ -69,73 +69,71 @@ public class NationalLibraryofScotland {
                     System.out.println(" - Processing header");
                     header = true;
                 } else {
-                    for (String value : record) {
-                        organisation = "National Library of Scotland";
-                        
-                        idLocal = record.get(1);
-                        
-                        title = record.get(2);
-                        if (title.endsWith("=")) title = title.substring(0, title.length() - 1);
-                        if (title.endsWith(":")) title = title.substring(0, title.length() - 1);
-                        if (title.endsWith("/")) title = title.substring(0, title.length() - 1);
-                        title = title.strip();
-                                
-                        // Select the last URL if there are multiple
-                        urlMain = record.get(3);
-                        if (urlMain.contains("|")) {
-                            String[] values = urlMain.split("\\|");
-                            //System.out.println(values[0] + " - " + values[1]);
-                            urlMain = values[values.length - 1].strip();
-                        }
-                        
-                        // Select the first year if there are multiple
-                        year = record.get(4);
-                        if (year.contains("|")) {
-                            String[] values = year.split("\\|");
-                            year = values[0].strip();
-                        }
-                    
-                        publisher = record.get(5);    
-                    
-                        creator = record.get(6);
-                        
-                        topic = record.get(7);
-                        
-                        description = record.get(8);
-                        
-                        // Select the last URL if there are multiple
-                        urlPDF = record.get(9);
-                        if (urlPDF.contains("|")) {
-                            String[] values = urlPDF.split("\\|");
-                            urlPDF = values[values.length - 1].strip();
-                        }
-                        
-                        // Select the last URL if there are multiple
-                        urlOther = record.get(10);
-                        if (urlOther.contains("|")) {
-                            String[] values = urlOther.split("\\|");
-                            urlOther = values[values.length - 1].strip();
-                        }
-                        
-                        // Select the last URL if there are multiple
-                        urlIIIF = record.get(11);
-                        if (urlIIIF.contains("|")) {
-                            String[] values = urlIIIF.split("\\|");
-                            urlIIIF = values[values.length - 1].strip();
-                        }
-                        
-                        placeOfPublication = record.get(12);
-                        
-                        // Select the first licence if there are multiple
-                        licence = record.get(13);
-                        if (licence.contains("|")) {
-                            String[] values = licence.split("\\|");
-                            licence = values[0].strip();
-                        }
-                        
-                        idOther = record.get(14);
+                    organisation = "National Library of Scotland";
+
+                    idLocal = record.get(1);
+
+                    title = record.get(2);
+                    if (title.endsWith("=")) title = title.substring(0, title.length() - 1);
+                    if (title.endsWith(":")) title = title.substring(0, title.length() - 1);
+                    if (title.endsWith("/")) title = title.substring(0, title.length() - 1);
+                    title = title.strip();
+
+                    // Select the last URL if there are multiple
+                    urlMain = record.get(3);
+                    if (urlMain.contains("|")) {
+                        String[] values = urlMain.split("\\|");
+                        //System.out.println(values[0] + " - " + values[1]);
+                        urlMain = values[values.length - 1].strip();
                     }
-                
+
+                    // Select the first year if there are multiple
+                    year = record.get(4);
+                    if (year.contains("|")) {
+                        String[] values = year.split("\\|");
+                        year = values[0].strip();
+                    }
+
+                    publisher = record.get(5);    
+
+                    creator = record.get(6);
+
+                    topic = record.get(7);
+
+                    description = record.get(8);
+
+                    // Select the last URL if there are multiple
+                    urlPDF = record.get(9);
+                    if (urlPDF.contains("|")) {
+                        String[] values = urlPDF.split("\\|");
+                        urlPDF = values[values.length - 1].strip();
+                    }
+
+                    // Select the last URL if there are multiple
+                    urlOther = record.get(10);
+                    if (urlOther.contains("|")) {
+                        String[] values = urlOther.split("\\|");
+                        urlOther = values[values.length - 1].strip();
+                    }
+
+                    // Select the last URL if there are multiple
+                    urlIIIF = record.get(11);
+                    if (urlIIIF.contains("|")) {
+                        String[] values = urlIIIF.split("\\|");
+                        urlIIIF = values[values.length - 1].strip();
+                    }
+
+                    placeOfPublication = record.get(12);
+
+                    // Select the first licence if there are multiple
+                    licence = record.get(13);
+                    if (licence.contains("|")) {
+                        String[] values = licence.split("\\|");
+                        licence = values[0].strip();
+                    }
+
+                    idOther = record.get(14);
+
                     //System.out.println(idLocal);
                     csvPrinter.printRecord(Arrays.asList(organisation, idLocal, title,
                                                          urlMain, year, publisher,
