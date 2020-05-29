@@ -14,6 +14,7 @@ import java.util.Arrays;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
+import world.opentexts.validate.Validator;
 
 /**
  * A manipulation tool to convert NLS data feeds into the OpenTexts.World CSV format
@@ -145,8 +146,12 @@ public class NationalLibraryofScotland {
             }
             System.out.println("Writing file: " + outFilename);
             csvPrinter.flush();
-        } catch (Exception e) {
+            csvPrinter.close();
             
+            // Run the validator
+            Validator v = new Validator(outFilename);
+        } catch (Exception e) {
+            System.err.println("ERROR - " + e.getMessage());
         }
     }
 }
