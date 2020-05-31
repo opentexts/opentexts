@@ -29,10 +29,12 @@ public class Validator {
         boolean header = true;
         ArrayList<String> headings = new ArrayList<String>();
         String org = null;
-        int lineCounter = 1;
+        int lineCounter = 0;
         
         // Process each line
         for (CSVRecord record : CSVFormat.DEFAULT.parse(in)) {
+            lineCounter++;            
+            
             // First, skip the header if needed
             if (header) {
                 header = false;
@@ -150,7 +152,6 @@ public class Validator {
                     }
                 }
             }
-            lineCounter++;
         }
         
         // Report success!
