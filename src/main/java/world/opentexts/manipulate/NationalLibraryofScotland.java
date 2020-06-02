@@ -54,14 +54,16 @@ public class NationalLibraryofScotland {
                                                     "urlIIIF",
                                                     "placeOfPublication",
                                                     "licence",
-                                                    "idOther"));
+                                                    "idOther",
+                                                    "catLink"));
             
             // Setup some variables
             boolean header = false;
             int lineCounter = 1;
             String organisation = "", idLocal = "", title = "", urlMain = "", year = "",
                    publisher = "", creator = "", topic = "", description = "", urlPDF = "", 
-                   urlOther = "", urlIIIF = "", placeOfPublication = "", licence = "", idOther = "";
+                   urlOther = "", urlIIIF = "", placeOfPublication = "", licence = "", idOther = "",
+                   catLink = "";
  
             // Process each line
             for (CSVRecord record : CSVFormat.DEFAULT.parse(in)) {
@@ -134,12 +136,15 @@ public class NationalLibraryofScotland {
 
                     idOther = record.get(14);
 
-                    //System.out.println(idLocal);
+                    // Generate the catalogue link
+                    catLink = "https://search.nls.uk/primo-explore/search?vid=44NLS_VU1&query=any,contains," + idLocal;
+                    
                     csvPrinter.printRecord(Arrays.asList(organisation, idLocal, title,
                                                          urlMain, year, publisher,
                                                          creator, topic, description,
                                                          urlPDF, urlOther, urlIIIF,
-                                                         placeOfPublication, licence, idOther));
+                                                         placeOfPublication, licence, idOther,
+                                                         catLink));
                 }
             }
             System.out.println("Writing file: " + outFilename);

@@ -58,14 +58,16 @@ public class BodleianMARCXML {
                                                     "urlIIIF",
                                                     "placeOfPublication",
                                                     "licence",
-                                                    "idOther"));
+                                                    "idOther",
+                                                    "catLink"));
             
             // Setup some variables
             boolean header = false;
             int lineCounter = 1;
             String organisation = "", idLocal = "", title = "", urlMain = "", year = "",
                    publisher = "", creator = "", topic = "", description = "", urlPDF = "", 
-                   urlOther = "", urlIIIF = "", placeOfPublication = "", licence = "", idOther = "";
+                   urlOther = "", urlIIIF = "", placeOfPublication = "", licence = "", idOther = "",
+                   catLink = "";
  
             CSVParser csvParser = new CSVParser(in, CSVFormat.DEFAULT
                     .withHeader("RecordID", "DateAdded", "DateChanged", "Author", "Title", "CopyrightDate", 
@@ -172,13 +174,17 @@ public class BodleianMARCXML {
                     licence = "";
 
                     idOther = "";
+                    
+                    // Generate the catalogue link
+                    catLink = "http://solo.bodleian.ox.ac.uk/permalink/f/89vilt/oxfaleph" + idLocal ;
 
                     //System.out.println(idLocal);
                     csvPrinter.printRecord(Arrays.asList(organisation, idLocal, title,
                                                          urlMain, year, publisher,
                                                          creator, topic, description,
                                                          urlPDF, urlOther, urlIIIF,
-                                                         placeOfPublication, licence, idOther));
+                                                         placeOfPublication, licence, idOther,
+                                                         catLink));
                 }
             }
             System.out.println("Writing file: " + outFilename);
