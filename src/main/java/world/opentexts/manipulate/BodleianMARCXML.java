@@ -8,7 +8,6 @@ package world.opentexts.manipulate;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -73,8 +72,8 @@ public class BodleianMARCXML {
                                 "Barcode", "Classification", "MainEntry", "Custom1", "Custom2", "Custom3", "Custom4", 
                                 "Custom5", "ImportErrors", "ValidationErrors", "TagNumber", "Ind1", "Ind2", 
                                 "ControlData", "Sort", "LDR", "001", "003", "005", "008", "010", "029", "035", 
-                                "040", "042", "050", "092", "100", "245", "260", "300", "310", "362", "500", 
-                                "515", "550", "610", "700", "651", "856", "710", "780", "785")
+                                "040", "042", "050", "092", "246", "100", "264", "245", "260", "336", "300", "310", "337", "338", "362", "500", 
+                                "515", "550", "610", "700", "600", "651", "856", "710", "780", "785")
                     .withIgnoreHeaderCase()
                     .withTrim());
             
@@ -90,6 +89,7 @@ public class BodleianMARCXML {
 
                     //"$aThe works of Mr. Thomas Brown, in prose and verse :$bserious, moral, and comical /$cTo which is prefix'd, A character of Mr. Tho. Brown and his writings, by James Drake"
                     title = record.get("245");
+                    System.out.println("TITLE = " + title);
                     title = title.replaceAll("\\$", "d0llar");
                     title = title.substring(7);
                     if (title.contains("d0llarb")) {
@@ -104,16 +104,27 @@ public class BodleianMARCXML {
                     urlMain = record.get("856");
                     urlMain = urlMain.replaceAll("\\$", "d0llar");
                     urlMain = urlMain.substring(urlMain.indexOf("d0llaru") + 7);
-                    urlMain = urlMain.substring(0, urlMain.indexOf("d0llar"));
+                    if (urlMain.contains("d0llar")) {
+                        urlMain = urlMain.substring(0, urlMain.indexOf("d0llar"));
+                    }
                     
                     // Select the first year if there are multiple
                     year = record.get("CopyrightDate");
 
                     // Publisher 260 $b
                     publisher = record.get("260");
-                    publisher = publisher.replaceAll("\\$", "d0llar");
-                    publisher = publisher.substring(publisher.indexOf("d0llarb") + 7);
-                    publisher = publisher.substring(0, publisher.indexOf(",d0llar")).strip();
+                    if (!"".equals(publisher)) {
+                        publisher = publisher.replaceAll("\\$", "d0llar");
+                        publisher = publisher.substring(publisher.indexOf("d0llarb") + 7);
+                        publisher = publisher.substring(0, publisher.indexOf(",d0llar")).strip();
+                    }
+                    String twoSixFour = record.get("264");
+                    if (!"".equals(twoSixFour)) {
+                        twoSixFour = twoSixFour.replaceAll("\\$", "d0llar");
+                        twoSixFour = twoSixFour.substring(twoSixFour.indexOf("d0llarb") + 7);
+                        twoSixFour = twoSixFour.substring(0, twoSixFour.indexOf(",d0llarc"));
+                        publisher = publisher + twoSixFour.replaceAll("d0llarc", "").strip();   
+                    }
 
                     creator = record.get("100");
                     if (!"".equals(creator)) {
@@ -144,9 +155,18 @@ public class BodleianMARCXML {
                     urlIIIF = "";
 
                     placeOfPublication = record.get("260");    
-                    placeOfPublication = placeOfPublication.replaceAll("\\$", "d0llar");
-                    placeOfPublication = placeOfPublication.substring(placeOfPublication.indexOf("d0llara") + 7);
-                    placeOfPublication = placeOfPublication.substring(0, placeOfPublication.indexOf(" :d0llarb")).strip();
+                    if (!"".equals(placeOfPublication)) {
+                        placeOfPublication = placeOfPublication.replaceAll("\\$", "d0llar");
+                        placeOfPublication = placeOfPublication.substring(placeOfPublication.indexOf("d0llara") + 7);
+                        placeOfPublication = placeOfPublication.substring(0, placeOfPublication.indexOf(" :d0llarb")).strip();
+                    }
+                    twoSixFour = record.get("264");
+                    if (!"".equals(twoSixFour)) {
+                        twoSixFour = twoSixFour.replaceAll("\\$", "d0llar");
+                        twoSixFour = twoSixFour.substring(twoSixFour.indexOf("d0llara") + 7);
+                        twoSixFour = twoSixFour.substring(0, twoSixFour.indexOf(":d0llarb"));
+                        placeOfPublication = placeOfPublication + twoSixFour.replaceAll("d0llarc", "").strip();   
+                    }
 
                     // Select the first licence if there are multiple
                     licence = "";
