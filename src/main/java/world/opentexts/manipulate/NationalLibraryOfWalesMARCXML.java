@@ -190,7 +190,7 @@ public class NationalLibraryOfWalesMARCXML {
                     idOther = "";
                     
                     // Generate the catalogue link
-                    catLink = "https://discover.library.wales/primo-explore/search?vid=44WHELF_NLW_NUI&query=any,contains," + idLocal ;
+                    catLink = "https://id.llyfrgell.cymru/" + idLocal ;
 
                     //System.out.println(idLocal);
                     csvPrinter.printRecord(Arrays.asList(organisation, idLocal, title,
