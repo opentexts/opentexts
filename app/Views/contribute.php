@@ -183,6 +183,14 @@
                 <td>Yes</td>
                 <td>Other identifiers such as DOIs</td>
             </tr>
+            <tr>
+                <th scope="row">16</th>
+                <td>catLink</td>
+                <td>A link directly to the item's catalogue record</td>
+                <td>Optional</td>
+                <td>No</td>
+                <td>A link to the item in your catalogue or discovery system</td>
+            </tr>
         </tbody>
     </table>
     
