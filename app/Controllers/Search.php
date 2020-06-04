@@ -28,14 +28,14 @@ class Search extends Controller
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
              
-        // Was a collection facet selected?
-        if (!empty($_GET['collection'])) {
-            $collection = $_GET['collection'];
+        // Was an organisation facet selected?
+        if (!empty($_GET['organisation'])) {
+            $organisation = $_GET['organisation'];
             //$query->createFilterQuery('collection')->setQuery('collection_facet:'.$collection);
-            $filterQuery = $query->createFilterQuery('fq1')->setQuery('collection_facet:"' . $collection . '"');
+            $filterQuery = $query->createFilterQuery('fq1')->setQuery('organisation_facet:"' . $organisation . '"');
             $query->addFilterQuery($filterQuery);
-            $data['collection'] = $collection;
-            $url = $url . '&collection=' . $collection;
+            $data['organisation'] = $organisation;
+            $url = $url . '&organisation=' . $organisation;
         }
         
         // Where to start and end the query (pagination)
@@ -49,14 +49,14 @@ class Search extends Controller
         $facetSet = $query->getFacetSet();
 
         // Create a facet field instance and set options
-        $facetSet->createFacetField('collf')->setField('collection_facet');
+        $facetSet->createFacetField('orgf')->setField('organisation_facet');
 
         // executes the query and returns the result
         $resultset = $client->select($query);
 
         // Send the parameters to the view
         $data['resultcount'] = $resultset->getNumFound();
-        $data['collectionfacet'] = $resultset->getFacetSet()->getFacet('collf');
+        $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['results'] = $resultset;
         $data['start'] = $start;
         $data['url'] = $url;

@@ -17,12 +17,12 @@
                 </div>
                 <ul class="list-group list-group-flush">   
                 <?php
-                    // Collection facet counts
-                    foreach ($collectionfacet as $value => $count) {
+                    // Organisation facet counts
+                    foreach ($organisationfacet as $value => $count) {
                         if ($count > 0) {
-                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&collection=<?= esc($value); ?>"><?= esc($value); ?></a>
+                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?>"><?= esc($value); ?></a>
                                 <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
-                                if (!empty($collection)) {
+                                if (!empty($organisation)) {
                                     ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-pill badge-danger">Remove</a><?php 
                                 }
                             ?></li>
@@ -56,17 +56,17 @@
         // Results
         foreach ($results as $document) {
             ?><p>
-                <?php if (!empty($document->url)) {?>
-                    <b><a href='<?= esc($document->url); ?>'><?= esc($document->title); ?></a></b>
+                <?php if (!empty($document->urlMain)) {?>
+                    <b><a href='<?= esc($document->urlMain); ?>'><?= esc($document->title); ?></a></b>
                 <?php } else { ?>
                     <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                 <?php } ?>
-                <?php if (!empty($document->creator)) {?>
-                    (<?= esc($document->creator); ?>)<br />
+                <?php if (!empty($document->creator[0])) {?>
+                    (<?= esc($document->creator[0]); ?>)<br />
                 <?php } else { ?>
                     <i>(Creator not listed)</i><br />
                 <?php } ?>    
-                Source: <?= esc($document->collection); ?> <br />
+                Source: <?= esc($document->organisation); ?> <br />
                 <?php if (!empty($document->url)) {?>
                     <a href='<?= esc($document->url); ?>'><?= esc($document->url); ?></a>
                 <?php } ?>
