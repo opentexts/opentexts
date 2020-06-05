@@ -190,6 +190,14 @@
                 <td>Optional</td>
                 <td>No</td>
                 <td>A link to the item in your catalogue or discovery system</td>
+			</tr>
+			<tr>
+                <th scope="row">17</th>
+                <td>language</td>
+                <td>language of the resource</td>
+                <td>Optional</td>
+                <td>No</td>
+                <td>Found in MARC 008 position 35-37 and 041. Codes list <a href="https://www.loc.gov/marc/languages/">here</a></td>
             </tr>
         </tbody>
     </table>
