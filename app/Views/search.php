@@ -61,14 +61,37 @@
                 <?php } else { ?>
                     <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                 <?php } ?>
-                <?php if (!empty($document->creator[0])) {?>
-                    (<?= esc($document->creator[0]); ?>)<br />
+                <br />
+                <?php if (!empty($document->creator[0])) {
+                    foreach ($document->creator as $creator) { ?>
+                        <?= esc($creator . ","); ?>
+                    <?php } ?>
                 <?php } else { ?>
-                    <i>(Creator not listed)</i><br />
-                <?php } ?>    
-                Source: <?= esc($document->organisation); ?> <br />
-                <?php if (!empty($document->url)) {?>
-                    <a href='<?= esc($document->url); ?>'><?= esc($document->url); ?></a>
+                    <i>Creator not listed, </i>
+                <?php } ?>
+                <?php if (!empty($document->year)) {?>
+                    <?= esc($document->year); ?>
+                <?php } ?>
+                <?php if (!empty($document->publisher[0])) { ?> ( <?php
+                    foreach ($document->publisher as $publisher) {?>
+                    <?= esc($publisher); ?>:
+                <?php }?>)<?php } ?>
+                <?php if (!empty($document->placeOfPublication[0])) { ?> ( <?php
+                    foreach ($document->placeOfPublication as $placeOfPublication) {?>
+                    <?= esc($placeOfPublication); ?>:
+                <?php }?>)<?php } ?>
+                <br />
+                <?php if (!empty($document->topic[0])) {
+                    foreach ($document->topic as $topic) {?>
+                    <span class="badge badge-light">Topic: <?= esc($topic); ?></span>
+                <?php }?><br /><?php } ?>
+                <?php if (!empty($document->description[0])) {
+                    foreach ($document->description as $description) {?>
+                    <span class="badge badge-light">Description: <?= esc($description); ?></span>
+                <?php }?><br /><?php } ?>
+                <span class="badge badge-primary">Source: <?= esc($document->organisation); ?></span>
+                <?php if (!empty($document->catLink)) {?>
+                    <a href='<?= esc($document->catLink); ?>' class="badge badge-info">Link: Original catalogue record (ID: <?= esc($document->idLocal); ?>)</a><br />
                 <?php } ?>
             </p><?php
         }
