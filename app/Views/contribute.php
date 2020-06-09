@@ -29,7 +29,7 @@
                 <td>MANDATORY</td>
                 <td>No</td>
                 <td>
-                    So we know which organisation “owns” the metadata and content - 
+                    So we know which organisation "owns" the metadata and content - 
                     this info might be displayed in a facet or in the full record display</br>
                     </br>
                     Wellcome Library</br>
@@ -58,7 +58,7 @@
                 <td>MANDATORY</td>
                 <td>No</td>
                 <td>
-                    For example MARC 245 $a or DC:TITLE
+                    For example MARC 245 $a $b or DC:TITLE
                 </td>
             </tr>
             <tr>
