@@ -13,10 +13,7 @@
 	<h2>Tab-separated format</h2>
     <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">tab-separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
 
-    <p>
-        Repeatable fields must be separated with a '|' pipe.
-    </p>
-    </p>
+    <p>Repeatable fields must be separated with a '|' pipe.</p>
     
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -205,8 +202,4 @@
             </tr>
         </tbody>
     </table>
-    
-    <p>
-        Repeatable fields are separated with a '|' pipe.
-    </p>
 </main>
