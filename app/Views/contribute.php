@@ -1,13 +1,22 @@
 <main role="main" class="container">
     <h1 class="mt-5">Contribute data</h1>
     <p class="lead">
-        If you want to contribute data email 
+        If you would like to contribute data to be included in OpenTexts.World, please email 
         <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">stuart.lewis@nls.uk and gill.hamilton@nls.uk</a>
         for details.
     </p>
+	<h2>Formats accepted</h2>
+	<p>We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or <a href<a href="https://en.wikipedia.org/wiki/Tab-separated_values" title="tab-separated value at Wikipedia">TSV</a> (tab-separated) files in the format</a> below.</p>
+
+<p>If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> as we may be able to process and integrate it. We love a challenge!</p>
     
+	<h2>Tab-separated format</h2>
+    <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">tab-separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
+
     <p>
-        The draft requirements for files is <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target=_blank">CSV</a> with the following fields:
+        Repeatable fields must be separated with a '|' pipe.
+    </p>
+	
     </p>
     
     <table class="table table-striped">
@@ -48,7 +57,7 @@
                 <td>No</td>
                 <td>
                     ID from the local system - so each library can look up their 
-                    local system if there’s a query 
+                    local system if there's a query 
                 </td>
             </tr>
             <tr>
@@ -58,7 +67,7 @@
                 <td>MANDATORY</td>
                 <td>No</td>
                 <td>
-                    For example MARC 245 $a $b or DC:TITLE
+                    For example <a href="https://www.loc.gov/marc/bibliographic/concise/bd245.html">MARC 245 $a $b</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/title">DC terms:title</a>
                 </td>
             </tr>
             <tr>
@@ -69,8 +78,7 @@
                 <td>No</td>
                 <td>
                     The URL that is most appropriate for a user to follow to get direct/immediate access to the
-                    content. (Might be in MARC 856 or DC. This will likely be a ‘landing page’ containing metadata
-                    and the item.
+                    content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
                 </td>
             </tr>
             <tr>
@@ -80,8 +88,8 @@
                 <td>DESIRABLE</td>
                 <td>No</td>
                 <td>
-                    Ideally a numeric (like what we see in MARC 008 rather than 
-                    MARC 260$c - e.g. preferred to 1884 vs ca.1884). May be in DC:DATE
+                    Ideally numeric <a href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
+                    MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
                 </td>
             </tr>
             <tr>
@@ -91,7 +99,7 @@
                 <td>DESIRABLE</td>
                 <td>Yes</td>
                 <td>
-                    Found in MARC 260$b or DC:PUBLISHER
+                    May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $b</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher">DC terms:publisher</a>
                 </td>
             </tr>
             <tr>
@@ -101,9 +109,7 @@
                 <td>DESIRABLE</td>
                 <td>Yes</td>
                 <td>
-                    Author, editor, creator, organisation - any named person/organisation 
-                    involved in the creation of the work. May be in MARC 1xx, 7xx and 
-                    DC:CREATOR, DC:CONTRIBUTOR
+                    Author, editor, creator, organisation - any named person/organisation involved in the creation of the work. May be in MARC <a href="https://www.loc.gov/marc/bibliographic/bd1xx.html">1xx</a>, <a href="https://www.loc.gov/marc/bibliographic/bd70x75x.html">7xx</a> and <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">DC terms:creator</a>, <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/contributor">DC terms:contributor</a>
                 </td>
             </tr>
             <tr>
@@ -112,8 +118,7 @@
                 <td>Subject or topic</td>
                 <td>DESIRABLE</td>
                 <td>Yes</td>
-                <td>
-                    Might be in MARC 6xx fields, and DC:SUBJECT
+                <td>May be in <a href="https://www.loc.gov/marc/bibliographic/bd6xx.html">MARC 6xx</a>, and <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject">DC terms:subject</a>
                 </td>
             </tr>
             <tr>
@@ -123,7 +128,7 @@
                 <td>DESIRABLE</td>
                 <td>Yes</td>
                 <td>
-                    Description about the content. Might be in MARC 500?? Or DC:DESCRIPTION
+                    Description about the content. May be in <a href="https://www.loc.gov/marc/bibliographic/bd5xx.html">MARC 5xx</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description">DC terms:description</a>
                 </td>
             </tr>
             <tr>
@@ -133,17 +138,17 @@
                 <td>OPTIONAL</td>
                 <td>No</td>
                 <td>
-                    If you've got a PDF version of the item
+                    If there is a PDF version of the item
                 </td>
             </tr>
             <tr>
                 <th scope="row">11</th>
                 <td>urlOther</td>
-                <td>URL of other userful version(s)</td>
+                <td>URL of other useful version(s)</td>
                 <td>OPTIONAL</td>
                 <td>Yes</td>
                 <td>
-                    If you’ve got other URLs of the content that may be useful - perhaps 
+                    If there are other URLs for the content that may be useful - perhaps 
                     Google Books URL, or link to the catalogue record of the original
                 </td>
             </tr>
@@ -161,7 +166,7 @@
                 <td>Place of publication</td>
                 <td>OPTIONAL</td>
                 <td>Yes</td>
-                <td>Found in 260$a in MARC</td>
+                <td>May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
             </tr>
             <tr>
                 <th scope="row">14</th>
@@ -170,7 +175,7 @@
                 <td>OPTIONAL</td>
                 <td>No</td>
                 <td>
-                    Might be in MARC 540 or DC:RIGHTS<br/>
+                    May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd540.html">MARC 540</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/rights">DC terms:rights</a><br/>
                     <br/>
                     For example CC-BY
                 </td>
@@ -187,7 +192,7 @@
                 <th scope="row">16</th>
                 <td>catLink</td>
                 <td>A link directly to the item's catalogue record</td>
-                <td>Optional</td>
+                <td>OPTIONAL</td>
                 <td>No</td>
                 <td>A link to the item in your catalogue or discovery system</td>
 			</tr>
@@ -195,9 +200,9 @@
                 <th scope="row">17</th>
                 <td>language</td>
                 <td>language of the resource</td>
-                <td>Optional</td>
+                <td>OPTIONAL</td>
                 <td>No</td>
-                <td>Found in MARC 008 position 35-37 and 041. Codes list <a href="https://www.loc.gov/marc/languages/">here</a></td>
+                <td>May be in MARC 008 position 35-37 and/or  MARC 041.<a href="https://www.loc.gov/marc/languages/">[code list]</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.</td>
             </tr>
         </tbody>
     </table>
