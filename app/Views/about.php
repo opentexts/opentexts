@@ -7,7 +7,7 @@
 
 <p>Can't find the book at that library? Then you need to move onto the collection of the next library and repeat.</p>
 
-<p>Repeat ....</p>
+<p>Repeat.</p>
 
 <p>REPEAT!</p>
 
