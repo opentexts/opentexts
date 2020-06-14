@@ -16,28 +16,27 @@
     <p ccID="1318">
         Repeatable fields must be separated with a '|' pipe.
     </p>
-	
     </p>
     
-    <table ccID="1418" class="table table-striped">
-        <thead ccID="1463" class="thead-dark">
-            <tr ccID="1503">
-                <th ccID="1525" scope=col">Column</th>
-                <th ccID="1569" scope=col">Heading</th>
-                <th ccID="1614" scope=col">Content</th>
-                <th ccID="1659" scope=col">Requirement</th>
-                <th ccID="1708" scope=col">Repeatable</th>
-                <th ccID="1756" scope=col">Notes</th>
+    <table ccID="1415" class="table table-striped">
+        <thead ccID="1460" class="thead-dark">
+            <tr ccID="1500">
+                <th ccID="1522" scope=col">Column</th>
+                <th ccID="1566" scope=col">Heading</th>
+                <th ccID="1611" scope=col">Content</th>
+                <th ccID="1656" scope=col">Requirement</th>
+                <th ccID="1705" scope=col">Repeatable</th>
+                <th ccID="1753" scope=col">Notes</th>
             </tr>
         </thead>
-        <tbody ccID="1828">
-            <tr ccID="1849">
-                <th ccID="1871" scope="row">1</th>
-                <td ccID="1911">organisation</td>
-                <td ccID="1950">Unique name of provider</td>
-                <td ccID="2000">MANDATORY</td>
-                <td ccID="2036">No</td>
-                <td ccID="2065">
+        <tbody ccID="1825">
+            <tr ccID="1846">
+                <th ccID="1868" scope="row">1</th>
+                <td ccID="1908">organisation</td>
+                <td ccID="1947">Unique name of provider</td>
+                <td ccID="1997">MANDATORY</td>
+                <td ccID="2033">No</td>
+                <td ccID="2062">
                     So we know which organisation "owns" the metadata and content - 
                     this info might be displayed in a facet or in the full record display</br>
                     </br>
@@ -49,165 +48,165 @@
                     Trinity College, Dublin</br>
                     The British Library</td>
             </tr>
-            <tr ccID="2654">
-                <th ccID="2676" scope="row">2</th>
-                <td ccID="2716">idLocal</td>
-                <td ccID="2750">Local identifier</td>
-                <td ccID="2793">MANDATORY</td>
-                <td ccID="2829">No</td>
-                <td ccID="2858">
+            <tr ccID="2651">
+                <th ccID="2673" scope="row">2</th>
+                <td ccID="2713">idLocal</td>
+                <td ccID="2747">Local identifier</td>
+                <td ccID="2790">MANDATORY</td>
+                <td ccID="2826">No</td>
+                <td ccID="2855">
                     ID from the local system - so each library can look up their 
                     local system if there's a query 
                 </td>
             </tr>
-            <tr ccID="3055">
-                <th ccID="3077" scope="row">3</th>
-                <td ccID="3117">title</td>
-                <td ccID="3149">Title of the work</td>
-                <td ccID="3193">MANDATORY</td>
-                <td ccID="3229">No</td>
-                <td ccID="3258">
-                    For example <a ccID="3296" href="https://www.loc.gov/marc/bibliographic/concise/bd245.html">MARC 245 $a $b</a> or <a ccID="3386" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/title">DC terms:title</a>
+            <tr ccID="3052">
+                <th ccID="3074" scope="row">3</th>
+                <td ccID="3114">title</td>
+                <td ccID="3146">Title of the work</td>
+                <td ccID="3190">MANDATORY</td>
+                <td ccID="3226">No</td>
+                <td ccID="3255">
+                    For example <a ccID="3293" href="https://www.loc.gov/marc/bibliographic/concise/bd245.html">MARC 245 $a $b</a> or <a ccID="3383" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/title">DC terms:title</a>
                 </td>
             </tr>
-            <tr ccID="3567">
-                <th ccID="3589" scope="row">4</th>
-                <td ccID="3629">urlMain</td>
-                <td ccID="3663">URL to access the item</td>
-                <td ccID="3712">MANDATORY</td>
-                <td ccID="3748">No</td>
-                <td ccID="3777">
+            <tr ccID="3564">
+                <th ccID="3586" scope="row">4</th>
+                <td ccID="3626">urlMain</td>
+                <td ccID="3660">URL to access the item</td>
+                <td ccID="3709">MANDATORY</td>
+                <td ccID="3745">No</td>
+                <td ccID="3774">
                     The URL that is most appropriate for a user to follow to get direct/immediate access to the
-                    content. May be in <a ccID="3935" href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or <a ccID="4019" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
+                    content. May be in <a ccID="3932" href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or <a ccID="4016" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
                 </td>
             </tr>
-            <tr ccID="4304">
-                <th ccID="4326" scope="row">5</th>
-                <td ccID="4366">year</td>
-                <td ccID="4397">Year of publication</td>
-                <td ccID="4443">DESIRABLE</td>
-                <td ccID="4479">No</td>
-                <td ccID="4508">
-                    Ideally numeric <a ccID="4550" href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
-                    MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a ccID="4740" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
+            <tr ccID="4301">
+                <th ccID="4323" scope="row">5</th>
+                <td ccID="4363">year</td>
+                <td ccID="4394">Year of publication</td>
+                <td ccID="4440">DESIRABLE</td>
+                <td ccID="4476">No</td>
+                <td ccID="4505">
+                    Ideally numeric <a ccID="4547" href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
+                    MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a ccID="4737" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
                 </td>
             </tr>
-            <tr ccID="4919">
-                <th ccID="4941" scope="row">6</th>
-                <td ccID="4981">publisher</td>
-                <td ccID="5017">Publisher</td>
-                <td ccID="5053">DESIRABLE</td>
-                <td ccID="5089">Yes</td>
-                <td ccID="5119">
-                    May be in <a ccID="5155" href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $b</a> or <a ccID="5242" href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a ccID="5321" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher">DC terms:publisher</a>
+            <tr ccID="4916">
+                <th ccID="4938" scope="row">6</th>
+                <td ccID="4978">publisher</td>
+                <td ccID="5014">Publisher</td>
+                <td ccID="5050">DESIRABLE</td>
+                <td ccID="5086">Yes</td>
+                <td ccID="5116">
+                    May be in <a ccID="5152" href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $b</a> or <a ccID="5239" href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a ccID="5318" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher">DC terms:publisher</a>
                 </td>
             </tr>
-            <tr ccID="5510">
-                <th ccID="5532" scope="row">7</th>
-                <td ccID="5572">creator</td>
-                <td ccID="5606">Creator</td>
-                <td ccID="5640">DESIRABLE</td>
-                <td ccID="5676">Yes</td>
-                <td ccID="5706">
-                    Author, editor, creator, organisation - any named person/organisation involved in the creation of the work. May be in MARC <a ccID="5855" href="https://www.loc.gov/marc/bibliographic/bd1xx.html">1xx</a>, <a ccID="5924" href="https://www.loc.gov/marc/bibliographic/bd70x75x.html">7xx</a> and <a ccID="5999" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">DC terms:creator</a>, <a ccID="6130" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/contributor">DC terms:contributor</a>
+            <tr ccID="5507">
+                <th ccID="5529" scope="row">7</th>
+                <td ccID="5569">creator</td>
+                <td ccID="5603">Creator</td>
+                <td ccID="5637">DESIRABLE</td>
+                <td ccID="5673">Yes</td>
+                <td ccID="5703">
+                    Author, editor, creator, organisation - any named person/organisation involved in the creation of the work. May be in MARC <a ccID="5852" href="https://www.loc.gov/marc/bibliographic/bd1xx.html">1xx</a>, <a ccID="5921" href="https://www.loc.gov/marc/bibliographic/bd70x75x.html">7xx</a> and <a ccID="5996" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">DC terms:creator</a>, <a ccID="6127" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/contributor">DC terms:contributor</a>
                 </td>
             </tr>
-            <tr ccID="6323">
-                <th ccID="6345" scope="row">8</th>
-                <td ccID="6385">topic</td>
-                <td ccID="6417">Subject or topic</td>
-                <td ccID="6460">DESIRABLE</td>
-                <td ccID="6496">Yes</td>
-                <td ccID="6526">May be in <a ccID="6540" href="https://www.loc.gov/marc/bibliographic/bd6xx.html">MARC 6xx</a>, and <a ccID="6618" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject">DC terms:subject</a>
+            <tr ccID="6320">
+                <th ccID="6342" scope="row">8</th>
+                <td ccID="6382">topic</td>
+                <td ccID="6414">Subject or topic</td>
+                <td ccID="6457">DESIRABLE</td>
+                <td ccID="6493">Yes</td>
+                <td ccID="6523">May be in <a ccID="6537" href="https://www.loc.gov/marc/bibliographic/bd6xx.html">MARC 6xx</a>, and <a ccID="6615" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject">DC terms:subject</a>
                 </td>
             </tr>
-            <tr ccID="6803">
-                <th ccID="6825" scope="row">9</th>
-                <td ccID="6865">description</td>
-                <td ccID="6903">Description</td>
-                <td ccID="6941">DESIRABLE</td>
-                <td ccID="6977">Yes</td>
-                <td ccID="7007">
-                    Description about the content. May be in <a ccID="7074" href="https://www.loc.gov/marc/bibliographic/bd5xx.html">MARC 5xx</a> or <a ccID="7150" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description">DC terms:description</a>
+            <tr ccID="6800">
+                <th ccID="6822" scope="row">9</th>
+                <td ccID="6862">description</td>
+                <td ccID="6900">Description</td>
+                <td ccID="6938">DESIRABLE</td>
+                <td ccID="6974">Yes</td>
+                <td ccID="7004">
+                    Description about the content. May be in <a ccID="7071" href="https://www.loc.gov/marc/bibliographic/bd5xx.html">MARC 5xx</a> or <a ccID="7147" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description">DC terms:description</a>
                 </td>
             </tr>
-            <tr ccID="7343">
-                <th ccID="7365" scope="row">10</th>
-                <td ccID="7406">urlPDF</td>
-                <td ccID="7439">URL of a PDF</td>
-                <td ccID="7478">OPTIONAL</td>
-                <td ccID="7513">No</td>
-                <td ccID="7542">
+            <tr ccID="7340">
+                <th ccID="7362" scope="row">10</th>
+                <td ccID="7403">urlPDF</td>
+                <td ccID="7436">URL of a PDF</td>
+                <td ccID="7475">OPTIONAL</td>
+                <td ccID="7510">No</td>
+                <td ccID="7539">
                     If there is a PDF version of the item
                 </td>
             </tr>
-            <tr ccID="7661">
-                <th ccID="7683" scope="row">11</th>
-                <td ccID="7724">urlOther</td>
-                <td ccID="7759">URL of other useful version(s)</td>
-                <td ccID="7816">OPTIONAL</td>
-                <td ccID="7851">Yes</td>
-                <td ccID="7881">
+            <tr ccID="7658">
+                <th ccID="7680" scope="row">11</th>
+                <td ccID="7721">urlOther</td>
+                <td ccID="7756">URL of other useful version(s)</td>
+                <td ccID="7813">OPTIONAL</td>
+                <td ccID="7848">Yes</td>
+                <td ccID="7878">
                     If there are other URLs for the content that may be useful - perhaps 
                     Google Books URL, or link to the catalogue record of the original
                 </td>
             </tr>
-            <tr ccID="8119">
-                <th ccID="8141" scope="row">12</th>
-                <td ccID="8182">urlIIIF</td>
-                <td ccID="8216">URL to a IIIF manifest</td>
-                <td ccID="8265">OPTIONAL</td>
-                <td ccID="8300">No</td>
-                <td ccID="8329">URL to a IIIF manifest</td>
+            <tr ccID="8116">
+                <th ccID="8138" scope="row">12</th>
+                <td ccID="8179">urlIIIF</td>
+                <td ccID="8213">URL to a IIIF manifest</td>
+                <td ccID="8262">OPTIONAL</td>
+                <td ccID="8297">No</td>
+                <td ccID="8326">URL to a IIIF manifest</td>
             </tr>
-            <tr ccID="8393">
-                <th ccID="8415" scope="row">13</th>
-                <td ccID="8456">placeOfPublication</td>
-                <td ccID="8501">Place of publication</td>
-                <td ccID="8548">OPTIONAL</td>
-                <td ccID="8583">Yes</td>
-                <td ccID="8613">May be in <a ccID="8627" href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a ccID="8714" href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a ccID="8793" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
+            <tr ccID="8390">
+                <th ccID="8412" scope="row">13</th>
+                <td ccID="8453">placeOfPublication</td>
+                <td ccID="8498">Place of publication</td>
+                <td ccID="8545">OPTIONAL</td>
+                <td ccID="8580">Yes</td>
+                <td ccID="8610">May be in <a ccID="8624" href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a ccID="8711" href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a ccID="8790" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
             </tr>
-            <tr ccID="8962">
-                <th ccID="8984" scope="row">14</th>
-                <td ccID="9025">licence</td>
-                <td ccID="9059">Licence of the material</td>
-                <td ccID="9109">OPTIONAL</td>
-                <td ccID="9144">No</td>
-                <td ccID="9173">
-                    May be in <a ccID="9209" href="https://www.loc.gov/marc/bibliographic/concise/bd540.html">MARC 540</a> or <a ccID="9293" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/rights">DC terms:rights</a><br ccID="9420"/>
-                    <br ccID="9447"/>
+            <tr ccID="8959">
+                <th ccID="8981" scope="row">14</th>
+                <td ccID="9022">licence</td>
+                <td ccID="9056">Licence of the material</td>
+                <td ccID="9106">OPTIONAL</td>
+                <td ccID="9141">No</td>
+                <td ccID="9170">
+                    May be in <a ccID="9206" href="https://www.loc.gov/marc/bibliographic/concise/bd540.html">MARC 540</a> or <a ccID="9290" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/rights">DC terms:rights</a><br ccID="9417"/>
+                    <br ccID="9444"/>
                     For example CC-BY
                 </td>
             </tr>
-            <tr ccID="9547">
-                <th ccID="9569" scope="row">15</th>
-                <td ccID="9610">idOther</td>
-                <td ccID="9644">Other local or external ids</td>
-                <td ccID="9698">OPTIONAL</td>
-                <td ccID="9733">Yes</td>
-                <td ccID="9763">Other identifiers such as DOIs</td>
+            <tr ccID="9544">
+                <th ccID="9566" scope="row">15</th>
+                <td ccID="9607">idOther</td>
+                <td ccID="9641">Other local or external ids</td>
+                <td ccID="9695">OPTIONAL</td>
+                <td ccID="9730">Yes</td>
+                <td ccID="9760">Other identifiers such as DOIs</td>
             </tr>
-            <tr ccID="9835">
-                <th ccID="9857" scope="row">16</th>
-                <td ccID="9898">catLink</td>
-                <td ccID="9932">A link directly to the item's catalogue record</td>
-                <td ccID="10005">OPTIONAL</td>
-                <td ccID="10040">No</td>
-                <td ccID="10069">A link to the item in your catalogue or discovery system</td>
+            <tr ccID="9832">
+                <th ccID="9854" scope="row">16</th>
+                <td ccID="9895">catLink</td>
+                <td ccID="9929">A link directly to the item's catalogue record</td>
+                <td ccID="10002">OPTIONAL</td>
+                <td ccID="10037">No</td>
+                <td ccID="10066">A link to the item in your catalogue or discovery system</td>
 			</tr>
-			<tr ccID="10149">
-                <th ccID="10171" scope="row">17</th>
-                <td ccID="10212">language</td>
-                <td ccID="10247">language of the resource</td>
-                <td ccID="10298">OPTIONAL</td>
-                <td ccID="10333">No</td>
-                <td ccID="10362">May be in MARC 008 position 35-37 and/or  MARC 041.<a ccID="10417" href="https://www.loc.gov/marc/languages/">[code list]</a> or <a ccID="10482" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.</td>
+			<tr ccID="10146">
+                <th ccID="10168" scope="row">17</th>
+                <td ccID="10209">language</td>
+                <td ccID="10244">language of the resource</td>
+                <td ccID="10295">OPTIONAL</td>
+                <td ccID="10330">No</td>
+                <td ccID="10359">May be in MARC 008 position 35-37 and/or  MARC 041.<a ccID="10414" href="https://www.loc.gov/marc/languages/">[code list]</a> or <a ccID="10479" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.</td>
             </tr>
         </tbody>
     </table>
     
-    <p ccID="10682">
+    <p ccID="10679">
         Repeatable fields are separated with a '|' pipe.
     </p>
 </main>

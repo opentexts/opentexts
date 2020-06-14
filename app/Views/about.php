@@ -13,7 +13,7 @@
 
 <h2>The opportunity</h2>
 
-<p>During the COVID-19 pandemic of 2020, staff at National Library of Scotland learned that school teachers were trying to source digital texts to help support their students during lockdown. Understanding the challenge that teachers were facing, staff in the Library's Digital Department decided to develop <a href="https://OpenTexts.World/" title="OpenTexts.World service">OpenTexts.World</a>. 
+<p>During the COVID-19 pandemic of 2020, staff at National Library of Scotland learned that school teachers were trying to source digital texts to help support their students during lockdown. Understanding the challenge that teachers were facing, staff in the Library's Digital Department decided to develop <a href="https://OpenTexts.World/" title="OpenTexts.World service">OpenTexts.World</a>.</p>
 
 <h2>The service</h2>
 <p>OpenTexts.World brings together, in a single search, the digitized collections of several <a href="/sources" title="contributors">major UK libraries</a>. A simple search interface, retrieves brief information about digitized books and other texts, and provides users with links to  resources.</p>
@@ -21,8 +21,7 @@
 <p>The service is based on research undertaken by the Global Digitized Data Network, an Anglo-American research collaboration, funded by the <a href="https://ahrc.ukri.org/" title="AHRC">Arts and Humanities Research Council</a>.</p>
 
 <h2>The data</h2>
-Metadata from contributing libraries is cleansed and processed into a common format. The data is then integrated into the <a href="https://en.wikipedia.org/wiki/Apache_Solr" title="info about Apache Solr">Solr search platform</a> and made discoverable via the OpenText.World service.
+<p>Metadata from contributing libraries is cleansed and processed into a common format. The data is then integrated into the <a href="https://en.wikipedia.org/wiki/Apache_Solr" title="info about Apache Solr">Solr search platform</a> and made discoverable via the OpenText.World service.</p>
 
 <p>Metadata may be in <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a> or <a href="/contribute" title="TSV information">TSV</a> (tab separated) format. Tools for processing other data formats are in development.</p>
-
 </main>

@@ -16,7 +16,6 @@
     <p>
         Repeatable fields must be separated with a '|' pipe.
     </p>
-	
     </p>
     
     <table class="table table-striped">
