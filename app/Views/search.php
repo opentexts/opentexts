@@ -64,7 +64,7 @@
                 <br />
                 <?php if (!empty($document->creator[0])) {
                     foreach ($document->creator as $creator) { ?>
-                        <?= esc($creator . ","); ?>
+                        <?= esc($creator); ?>
                     <?php } ?>
                 <?php } else { ?>
                     <i>Creator not listed, </i>
@@ -72,14 +72,14 @@
                 <?php if (!empty($document->year)) {?>
                     <?= esc($document->year); ?>
                 <?php } ?>
-                <?php if (!empty($document->publisher[0])) { ?> ( <?php
-                    foreach ($document->publisher as $publisher) {?>
-                    <?= esc($publisher); ?>:
-                <?php }?>)<?php } ?>
-                <?php if (!empty($document->placeOfPublication[0])) { ?> ( <?php
-                    foreach ($document->placeOfPublication as $placeOfPublication) {?>
-                    <?= esc($placeOfPublication); ?>:
-                <?php }?>)<?php } ?>
+                <?php if (!empty($document->publisher[0])) { ?> (<?php
+                    foreach ($document->publisher as $publisher) {
+                        print($publisher); 
+                }?>)<?php } ?>
+                <?php if (!empty($document->placeOfPublication[0])) { ?> (<?php
+                    foreach ($document->placeOfPublication as $placeOfPublication) {
+                        print($placeOfPublication);
+                }?>)<?php } ?>
                 <br />
                 <?php if (!empty($document->topic[0])) {
                     foreach ($document->topic as $topic) {?>

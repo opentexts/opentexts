@@ -10,7 +10,7 @@ class Solr extends BaseConfig
                 'host' => 'gdd.zone',
                 'port' => 8983,
                 'path' => '/',
-                'core' => 'otww'
+                'core' => 'otw'
             )
         )
     );
