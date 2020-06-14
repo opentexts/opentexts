@@ -1,6 +1,6 @@
 <main role="main" class="container">
     <h1 class="mt-5">Sources</h1>
-    <p class="lead">OpenTexts.World currently searches digitised content from the following libraries:</p>
+    <p class="lead">OpenTexts.World currently searches digitized content from the following libraries:</p>
     <ul>
         <li><a href="https://www.nls.uk/" target="_blank">National Library of Scotland</a></li>
         <li><a href="https://library.wales/" target="_blank">National Library of Wales</a></li>
