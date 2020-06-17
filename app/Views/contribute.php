@@ -6,12 +6,15 @@
         for details.
     </p>
 	<h2>Formats accepted</h2>
-	<p>We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or <a href<a href="https://en.wikipedia.org/wiki/Tab-separated_values" title="tab-separated value at Wikipedia">TSV</a> (tab-separated) files in the format</a> below.</p>
+	<p>
+            We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
+            <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
+            <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format</a> below.</p>
 
 <p>If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> as we may be able to process and integrate it. We love a challenge!</p>
     
-	<h2>Tab-separated format</h2>
-    <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">tab-separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
+    <h2>Comma-separated format</h2>
+    <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
 
     <p>Repeatable fields must be separated with a '|' pipe.</p>
     
