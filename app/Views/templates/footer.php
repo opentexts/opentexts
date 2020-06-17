@@ -15,10 +15,10 @@
                   <li><a class="text-muted" href="/support">Support</a></li>
               </div>
               <div class="col-6 col-md">
-                <h5>About</h5>
+                <h5>The site</h5>
                 <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="/about">About</a></li>
                   <li><a class="text-muted" href="/team">Team</a></li>
-                  <li><a class="text-muted" href="/history">History</a></li>
                 </ul>
               </div>
             </div>

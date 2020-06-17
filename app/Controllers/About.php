@@ -2,14 +2,14 @@
 
 use CodeIgniter\Controller;
 
-class History extends Controller
+class About extends Controller
 {
     public function index()
     {
-        $data['title'] = "Team";
+        $data['title'] = "About";
         
         echo view('templates/header', $data); 
-        echo view('history');
+        echo view('about');
         echo view('templates/footer');
     }
 
