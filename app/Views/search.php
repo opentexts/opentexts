@@ -20,19 +20,46 @@
                     // Organisation facet counts
                     foreach ($organisationfacet as $value => $count) {
                         if ($count > 0) {
-                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?>"><?= esc($value); ?></a>
+                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?><?php 
+                                    if (!empty($language)) { echo "&language=" . $language; }
+                                ?>"><?= esc($value); ?></a>
                                 <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
                                 if (!empty($organisation)) {
-                                    ?><a href="/search/?q=<?= esc($q); ?>" class="badge badge-pill badge-danger">Remove</a><?php 
+                                    ?><a href="/search/?q=<?= esc($q); ?><?php 
+                                    if (!empty($language)) { echo "&language=" . $language; }
+                                ?>" class="badge badge-pill badge-danger">Remove</a><?php 
                                 }
                             ?></li>
                                 <?php
-                        } else {
-                            ?><li class="list-group-item"><?= esc($value); ?>
-                                <span class="badge badge-pill badge-secondary" style="float: right"><?= esc($count); ?></span> <?php
+                        } 
+                    }
+                ?>
+                </ul>
+            </div>
+            
+            <p/>
+            
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Language
+                </div>
+                <ul class="list-group list-group-flush">   
+                <?php
+                    // Language facet counts
+                    foreach ($languagefacet as $value => $count) {
+                        if ($count > 0) {
+                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&language=<?= esc($value); ?><?php 
+                                    if (!empty($organisation)) { echo "&organisation=" . $organisation; }
+                                ?>"><?= esc($value); ?></a>
+                                <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
+                                if (!empty($language)) {
+                                    ?><a href="/search/?q=<?= esc($q); ?><?php 
+                                    if (!empty($organisation)) { echo "&organisation=" . $organisation; }
+                                ?>" class="badge badge-pill badge-danger">Remove</a><?php 
+                                }
                             ?></li>
                                 <?php
-                        }
+                        } 
                     }
                 ?>
                 </ul>

@@ -30,12 +30,22 @@ class Search extends Controller
              
         // Was an organisation facet selected?
         if (!empty($_GET['organisation'])) {
-            $organisation = $_GET['organisation'];
-            //$query->createFilterQuery('collection')->setQuery('collection_facet:'.$collection);
-            $filterQuery = $query->createFilterQuery('fq1')->setQuery('organisation_facet:"' . $organisation . '"');
+            $organisation = esc($_GET['organisation']);
+            $data['selectedorganisation'] = $organisation;
+            $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"');
             $query->addFilterQuery($filterQuery);
             $data['organisation'] = $organisation;
             $url = $url . '&organisation=' . $organisation;
+        }
+        
+        // Was a language facet selected?
+        if (!empty($_GET['language'])) {
+            $language = esc($_GET['language']);
+            $data['selectedlanguage'] = $language;
+            $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"');
+            $query->addFilterQuery($filterQuery);
+            $data['language'] = $language;
+            $url = $url . '&language=' . $language;
         }
         
         // Where to start and end the query (pagination)
@@ -48,8 +58,9 @@ class Search extends Controller
         // Get the facetset component
         $facetSet = $query->getFacetSet();
 
-        // Create a facet field instance and set options
+        // Create facet field instances
         $facetSet->createFacetField('orgf')->setField('organisation_facet');
+        $facetSet->createFacetField('langf')->setField('language_facet');
 
         // executes the query and returns the result
         $resultset = $client->select($query);
@@ -57,6 +68,7 @@ class Search extends Controller
         // Send the parameters to the view
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
+        $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['results'] = $resultset;
         $data['start'] = $start;
         $data['url'] = $url;
