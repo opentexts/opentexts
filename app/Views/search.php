@@ -46,8 +46,11 @@
                 <ul class="list-group list-group-flush">   
                 <?php
                     // Language facet counts
+                    $langcount = 0;
                     foreach ($languagefacet as $value => $count) {
                         if ($count > 0) {
+                            $langcount++;
+                            if ($langcount > 10) { ?> <div class="collapse multi-collapse" id="langcollapse"> <?php }
                             ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&language=<?= esc($value); ?><?php 
                                     if (!empty($organisation)) { echo "&organisation=" . $organisation; }
                                 ?>"><?= esc($value); ?></a>
@@ -58,11 +61,17 @@
                                 ?>" class="badge badge-pill badge-danger">Remove</a><?php 
                                 }
                             ?></li>
-                                <?php
+                            <?php
+                        if ($langcount > 10) { ?> </div> <?php }
                         } 
                     }
                 ?>
                 </ul>
+                <?php 
+                    if ($langcount > 10) { ?> 
+                        <button class="btn-info" data-toggle="collapse" href="#langcollapse" role="button" aria-expanded="false" aria-controls="langcollapse">Show / hide all</button>
+                    <?php }
+                ?>
             </div>
         
         </div>
