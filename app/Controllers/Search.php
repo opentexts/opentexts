@@ -15,9 +15,12 @@ class Search extends Controller
         $config = config('Solr');        
         
         // TODO Make much more robust (if is_empty($q)) etc
-        $q = $_GET['q'];
+        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
         $data['q'] = $q;
-        
+        if ((empty($q)) || ($q == "")) { 
+            $q = "*";
+        }
+                
         // Create a client instance
         $client = new \Solarium\Client($config->solarium);
 
@@ -29,8 +32,8 @@ class Search extends Controller
         $url = '/search/?q=' . $q;
              
         // Was an organisation facet selected?
-        if (!empty($_GET['organisation'])) {
-            $organisation = esc($_GET['organisation']);
+        $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
             $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"');
             $query->addFilterQuery($filterQuery);
@@ -39,8 +42,8 @@ class Search extends Controller
         }
         
         // Was a language facet selected?
-        if (!empty($_GET['language'])) {
-            $language = esc($_GET['language']);
+        $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($language)) {
             $data['selectedlanguage'] = $language;
             $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"');
             $query->addFilterQuery($filterQuery);
@@ -51,7 +54,7 @@ class Search extends Controller
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
-               $start = esc($_GET['start']);
+            $start = filter_input(INPUT_GET, 'start', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         $query->setStart($start);
           
