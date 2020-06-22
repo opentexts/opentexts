@@ -126,6 +126,7 @@
                     <span class="badge badge-light">Description: <?= esc($description); ?></span>
                 <?php }?><br /><?php } ?>
                 <span class="badge badge-primary">Source: <?= esc($document->organisation); ?></span>
+                <span class="badge badge-dark">Language: <?= esc($document->language); ?></span>
                 <?php if (!empty($document->catLink)) {?>
                     <a href='<?= esc($document->catLink); ?>' class="badge badge-info">Link: Original catalogue record (ID: <?= esc($document->idLocal); ?>)</a><br />
                 <?php } ?>
