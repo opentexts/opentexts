@@ -97,6 +97,15 @@
                 <?php } else { ?>
                     <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                 <?php } ?>
+                <?php if (!empty($document->urlPDF)) {?>
+                    <a href='<?= esc($document->urlPDF); ?>'><img src="/images/pdf.png" height="18" /></a>
+                <?php } ?>
+                <?php if (!empty($document->urlIIIF)) {?>
+                    <a href='<?= esc($document->urlIIIF); ?>'><img src="/images/logo-iiif-34x30.png" height="18" /></a>
+                <?php } ?>
+                <?php if (!empty($document->urlOther)) {?>
+                    <a href='<?= esc($document->urlOther[0]); ?>'><img src="/images/txt.png" height="18" /></a>
+                <?php } ?>
                 <br />
                 <?php if (!empty($document->creator[0])) {
                     foreach ($document->creator as $creator) { ?>
