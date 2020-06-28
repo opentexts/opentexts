@@ -6,31 +6,8 @@
         <a href="https://gddnetwork.arts.gla.ac.uk/index.php/about-us/" title="link to GDD Network">GDD Network</a>.
     </p>
 
-    <h2>The problem</h2>
     <p>
-        Want to find a particular digitised book for your research,  homework or just to read? Well, you'll need to search the collections 
-        of many libraries. First, find where the library stores information about its digitised collections on its website, then search for the book you want.
-    </p>
-
-    <p>
-        Can't find the book at that library? Then you need to move onto the collection of the next library and repeat.
-    </p>
-
-    <p>Repeat.</p>
-
-    <p>REPEAT!</p>
-
-    <h2>The opportunity</h2>
-
-    <p>
-        During the COVID-19 pandemic of 2020, staff at National Library of Scotland knew that teacher and lecturers would be trying to source 
-        digital texts to help support their students during lock down. Understanding the challenge that teachers were facing, staff in the Library's 
-        Digital Department decided to develop <a href="https://OpenTexts.World/" title="OpenTexts.World service">OpenTexts.World</a>.
-    </p>
-
-    <h2>The service</h2>
-    <p>
-        OpenTexts.World brings together, in a single search, the digitised collections of several <a href="/sources" title="contributors">major UK libraries</a>. 
+        OpenTexts.World brings together, in a single search, the digitised collections of several major UK libraries. 
         A simple search interface, retrieves brief information about digitised books and other texts, and provides users with links to  resources.
     </p>
 
@@ -38,16 +15,31 @@
         The service is based on research undertaken by the Global Digitised Data Network, an Anglo-American research collaboration, funded by the 
         <a href="https://ahrc.ukri.org/" title="AHRC">Arts and Humanities Research Council</a>.
     </p>
-
-    <h2>The data</h2>
-    <p>
-        Metadata from contributing libraries is cleansed and processed into a common format. The data is then integrated into the 
-        <a href="https://en.wikipedia.org/wiki/Apache_Solr" title="info about Apache Solr">Solr search platform</a> and made discoverable 
-        via the OpenTexts.World service.
-    </p>
-
-    <p>
-        Metadata may be in <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a> or <a href="/contribute" title="CSV information">CSV</a> 
-        (comma separated) format. Tools for processing other data formats are in development.
-    </p>
+ 
+    <h2 class="mt-5">Sources</h2>
+    <p class="lead">OpenTexts.World currently searches digitized content from the following libraries:</p>
+    <ul>
+        <li><a href="https://www.nls.uk/" target="_blank">National Library of Scotland</a></li>
+        <li><a href="https://library.wales/" target="_blank">National Library of Wales</a></li>
+        <li><a href="https://www.bodleian.ox.ac.uk/" target="_blank">Bodleian Libraries, University of Oxford</a></li>
+	<!--<li><a href="https://www.lib.cam.ac.uk/" target="_blank">Cambridge University Library</a></li>
+        <li><a href="https://www.bl.uk/" target="_blank">The British Library</a></li>-->
+        <li><a href="https://wellcomecollection.org/" target="_blank">The Wellcome Collection</a></li>
+        <li>You? Learn how to <a href="/contribute">contribute</a></li>
+    </ul>
+        
+    <h2 class="mt-5">Project Team</h2>
+    <p class="lead">People responsible for this site:</p>
+    <ul>
+        <li>Stuart Lewis (National Library of Scotland)</li>
+        <li>Gill Hamilton (National Library of Scotland)</li>
+        <li>We've been grateful for assistance from the <a href="https://www.scottishtecharmy.org/" target="_blank">Scottish Tech Army</a>, including:
+            <ul>
+                <li>Design: Sarah Semark (<a href="https://octopusthink.com/" target="_blank">Octopus Design</a>)</li>
+                <li>Data: Ali King</li>
+                <li>Project Management: Alec Davis</li>
+            </ul>
+        <li>Lots of others...</li>
+        <li>You? Please get in touch!</li>
+    </ul>
 </main>
