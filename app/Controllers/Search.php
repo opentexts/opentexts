@@ -65,13 +65,19 @@ class Search extends Controller
         $facetSet->createFacetField('orgf')->setField('organisation_facet');
         $facetSet->createFacetField('langf')->setField('language_facet');
 
-        // executes the query and returns the result
+        $hl = $query->getHighlighting();
+        $hl->setFields('title, creator, year, publisher, placeOfPublication');
+        $hl->setSimplePrefix('<b><mark>');
+        $hl->setSimplePostfix('</mark></b>');
+        
+        // Execute the query and returns the result
         $resultset = $client->select($query);
 
         // Send the parameters to the view
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
+        $data['highlighted'] = $resultset->getHighlighting();
         $data['results'] = $resultset;
         $data['start'] = $start;
         $data['url'] = $url;
