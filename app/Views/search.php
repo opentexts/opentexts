@@ -13,12 +13,14 @@
             
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Source
+                    Library
                 </div>
                 <ul class="list-group list-group-flush">   
                 <?php
                     // Organisation facet counts
-                    foreach ($organisationfacet as $value => $count) {
+                    $facetarray = $organisationfacet->getValues(); 
+                    ksort($facetarray);
+                    foreach ($facetarray as $value => $count) {
                         if ($count > 0) {
                             ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?><?php 
                                     if (!empty($language)) { echo "&language=" . $language; }
