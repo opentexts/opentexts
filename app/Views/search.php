@@ -95,7 +95,7 @@
         foreach ($results as $document) {
             ?><p>
                 <?php if (!empty($document->urlMain)) {?>
-                    <b><a href='<?= esc($document->urlMain); ?>'><?= esc($document->title); ?></a></b>
+                <div class="lead"><a href='<?= esc($document->urlMain); ?>'><?= str_ireplace($q, "<b>" . $q . "</b>", $document->title); ?></a>
                 <?php } else { ?>
                     <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                 <?php } ?>
@@ -108,7 +108,7 @@
                 <?php if (!empty($document->urlOther)) {?>
                     <a href='<?= esc($document->urlOther[0]); ?>'><img src="/images/txt.png" height="18" /></a>
                 <?php } ?>
-                <br />
+                </div>
                 <?php if (!empty($document->creator[0])) {
                     foreach ($document->creator as $creator) { ?>
                         <?= esc($creator); ?>
@@ -130,6 +130,9 @@
                 <br />
                 <span class="badge badge-primary">Source: <?= esc($document->organisation); ?></span>
                 <span class="badge badge-dark">Language: <?= esc($document->language); ?></span>
+                <?php if (!empty($document->licence)) {?>
+                    <a href='<?= esc($document->licence); ?>' class="badge badge-success">Licence: <?= esc($document->licence); ?></a><br />
+                <?php } ?>
                 <?php if (!empty($document->catLink)) {?>
                     <a href='<?= esc($document->catLink); ?>' class="badge badge-info">Link: Original catalogue record (ID: <?= esc($document->idLocal); ?>)</a><br />
                 <?php } ?>
