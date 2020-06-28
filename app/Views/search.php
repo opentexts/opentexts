@@ -3,7 +3,7 @@
  
     <form action="search" method="GET">
         <p align="center">        
-            <input type="text" name="q" value="<?= esc($q); ?>" /> <button type=button">Search</button>
+            <input type="text" name="q" value="<?= $q; ?>" /> <button type=button">Search</button>
         </p>    
     </form>
     
@@ -93,9 +93,38 @@
     <?php
         // Results
         foreach ($results as $document) {
+            // Process highlighting
+            $title = $document->title;
+            $creators = $document->creator;
+            $publishers = $document->publisher;
+            $placesOfPublication = $document->placeOfPublication;
+            $highlightedDoc = $highlighted->getResult($document->id);
+            if ($highlightedDoc) {
+                foreach ($highlightedDoc as $field => $highlight) {
+                    if ($field == "title") $title = $highlight[0];
+                    if ($field == "creator") {
+                        $creators = array();
+                        foreach ($highlight as $each) {
+                            array_push($creators, $each);
+                        }
+                    }
+                    if ($field == "publisher") {
+                        $publishers = array();
+                        foreach ($highlight as $each) {
+                            array_push($publishers, $each);
+                        }
+                    }
+                    if ($field == "placeOfPublication") {
+                        $placesOfPublication = array();
+                        foreach ($highlight as $each) {
+                            array_push($placesOfPublication, $each);
+                        }
+                    }
+                }
+            }
             ?><p>
                 <?php if (!empty($document->urlMain)) {?>
-                <div class="lead"><a href='<?= esc($document->urlMain); ?>'><?= str_ireplace($q, "<b>" . $q . "</b>", $document->title); ?></a>
+                <div class="lead"><a href='<?= esc($document->urlMain); ?>'><?=  $title; ?></a>
                 <?php } else { ?>
                     <b><?= esc($document->title); ?></b> <font color="red">(No URL provided)</font>
                 <?php } ?>
@@ -110,8 +139,8 @@
                 <?php } ?>
                 </div>
                 <?php if (!empty($document->creator[0])) {
-                    foreach ($document->creator as $creator) { ?>
-                        <?= esc($creator); ?>
+                    foreach ($creators as $creator) { ?>
+                        <?= $creator; ?>
                     <?php } ?>
                 <?php } else { ?>
                     <i>Creator not listed, </i>
@@ -120,11 +149,11 @@
                     <?= esc($document->year); ?>
                 <?php } ?>
                 <?php if (!empty($document->publisher[0])) { ?> (<?php
-                    foreach ($document->publisher as $publisher) {
+                    foreach ($publishers as $publisher) {
                         print($publisher); 
                 }?>)<?php } ?>
                 <?php if (!empty($document->placeOfPublication[0])) { ?> (<?php
-                    foreach ($document->placeOfPublication as $placeOfPublication) {
+                    foreach ($placesOfPublication as $placeOfPublication) {
                         print($placeOfPublication);
                 }?>)<?php } ?>
                 <br />
