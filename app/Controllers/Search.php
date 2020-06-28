@@ -66,7 +66,7 @@ class Search extends Controller
         $facetSet->createFacetField('langf')->setField('language_facet');
 
         $hl = $query->getHighlighting();
-        $hl->setFields('title, creator, year, publisher, year, placeOfPublication');
+        $hl->setFields('title, creator, year, publisher, placeOfPublication');
         $hl->setSimplePrefix('<b><mark>');
         $hl->setSimplePostfix('</mark></b>');
         
