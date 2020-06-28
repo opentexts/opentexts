@@ -128,14 +128,6 @@
                         print($placeOfPublication);
                 }?>)<?php } ?>
                 <br />
-                <?php if (!empty($document->topic[0])) {
-                    foreach ($document->topic as $topic) {?>
-                    <span class="badge badge-light">Topic: <?= esc($topic); ?></span>
-                <?php }?><br /><?php } ?>
-                <?php if (!empty($document->description[0])) {
-                    foreach ($document->description as $description) {?>
-                    <span class="badge badge-light">Description: <?= esc($description); ?></span>
-                <?php }?><br /><?php } ?>
                 <span class="badge badge-primary">Source: <?= esc($document->organisation); ?></span>
                 <span class="badge badge-dark">Language: <?= esc($document->language); ?></span>
                 <?php if (!empty($document->catLink)) {?>
