@@ -1,11 +1,5 @@
 <main role="main" class="container">
     <h1 class="mt-5">Search Results</h1>
- 
-    <form action="search" method="GET">
-        <p align="center">        
-            <input type="text" name="q" value="<?= $q; ?>" /> <button type=button">Search</button>
-        </p>    
-    </form>
     
     <div class="row">
        
