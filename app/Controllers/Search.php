@@ -10,8 +10,6 @@ class Search extends Controller
     {
         $data['title'] = "Search";
         
-        echo view('templates/header', $data); 
-        
         $config = config('Solr');        
         
         // TODO Make much more robust (if is_empty($q)) etc
@@ -20,7 +18,9 @@ class Search extends Controller
         if ((empty($q)) || ($q == "")) { 
             $q = "*";
         }
-                
+        
+        echo view('templates/header-search', $data); 
+        
         // Create a client instance
         $client = new \Solarium\Client($config->solarium);
 
