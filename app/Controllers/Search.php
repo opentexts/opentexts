@@ -33,6 +33,8 @@ class Search extends Controller
              
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
+        // Quick fix for organisations containing a 's (such as Queen's University Belfast)
+        $organisation = str_replace("&#39;s", "'s", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
             $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"');
