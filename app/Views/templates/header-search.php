@@ -23,18 +23,18 @@
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark justify-content-between">
       <a class="navbar-brand" href="/">OpenTexts.World</a>
 
-      <form action="search" method="GET" class="form-inline">
-        <div class="input-group justify-content-center">
-            <input type="text" class="form-control" name="q" value="<?= $q; ?>" /> 
-            &nbsp;<button type=button" class="btn btn-outline-light">Search</button>
-        </div>
-      </form>  
-      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarright" aria-controls="navbarright" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarsright">
+      <form action="search" method="GET" class="form-inline">
+        <div class="input-group justify-content-center">
+            <input type="text" class="form-control" size="50" name="q" value="<?= $q; ?>" /> 
+            &nbsp;<button type=button" class="btn btn-outline-light">Search</button>
+        </div>
+      </form>  
+      
+      <div class="collapse navbar-collapse" id="navbarright">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="/home">Home</a>
