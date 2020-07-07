@@ -14,6 +14,8 @@ class Search extends Controller
         
         // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        // Quick fix for double quotes around searches
+        $q = str_replace("&#34;", '"', $q);
         $data['q'] = $q;
         if ((empty($q)) || ($q == "")) { 
             $q = "*";

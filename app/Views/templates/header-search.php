@@ -29,7 +29,7 @@
       
       <form action="search" method="GET" class="form-inline">
         <div class="input-group justify-content-center">
-            <input type="text" class="form-control" size="50" name="q" value="<?= $q; ?>" /> 
+            <input type="text" class="form-control" size="50" name="q" value="<?= esc($q); ?>" /> 
             &nbsp;<button type=button" class="btn btn-outline-light">Search</button>
         </div>
       </form>  
