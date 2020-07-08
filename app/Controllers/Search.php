@@ -14,9 +14,18 @@ class Search extends Controller
         
         // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        
         // Quick fix for double quotes around searches
         $q = str_replace("&#34;", '"', $q);
         $data['q'] = $q;
+        
+        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
+        $q = str_replace(":", '\:', $q);
+        $q = str_replace("[", '\[', $q);
+        $q = str_replace("]", '\]', $q);
+        $q = str_replace("{", '\{', $q);
+        $q = str_replace("}", '\}', $q);
+        
         if ((empty($q)) || ($q == "")) { 
             $q = "*";
         }
