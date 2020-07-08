@@ -19,8 +19,12 @@ class Search extends Controller
         $q = str_replace("&#34;", '"', $q);
         $data['q'] = $q;
         
-        // Fix colons - only add fixes here for solr, not for HTML (see a few lines above)
+        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
         $q = str_replace(":", '\:', $q);
+        $q = str_replace("[", '\[', $q);
+        $q = str_replace("]", '\]', $q);
+        $q = str_replace("{", '\{', $q);
+        $q = str_replace("}", '\}', $q);
         
         if ((empty($q)) || ($q == "")) { 
             $q = "*";
