@@ -94,11 +94,63 @@ class Search extends Controller
         $data['results'] = $resultset;
         $data['start'] = $start;
         $data['url'] = $url;
+        $data['exporturl'] = "/search/export/" . substr($url, 8);
                         
         echo view('search', $data);
         echo view('templates/footer');
     }
-
-    //--------------------------------------------------------------------
-
+    
+    public function export() 
+    {
+        $config = config('Solr');        
+        
+        // TODO Make much more robust (if is_empty($q)) etc
+        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        // Quick fix for double quotes around searches
+        $q = str_replace("&#34;", '"', $q);
+        
+        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
+        $q = str_replace(":", '\:', $q);
+        $q = str_replace("[", '\[', $q);
+        $q = str_replace("]", '\]', $q);
+        $q = str_replace("{", '\{', $q);
+        $q = str_replace("}", '\}', $q);
+        
+        // Generate the solr search URL
+        $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
+               ":" . $config->solarium['endpoint']['localhost']['port'] .
+               $config->solarium['endpoint']['localhost']['path'] .
+               "solr/" . $config->solarium['endpoint']['localhost']['core'] .
+               "/select?q=" . $q;
+        
+        // Was an organisation facet selected?
+        $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
+        // Quick fix for organisations containing a 's (such as Queen's University Belfast)
+        $organisation = str_replace("&#39;s", "'s", $organisation);
+        if (!empty($organisation)) {
+            $url = $url . '&fq=organisation_facet:"' . urlencode($organisation) . '"';
+        }
+        
+        // Was a language facet selected?
+        $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($language)) {
+            
+            $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        }
+        
+        // We want a CSV
+        $url = $url . "&wt=csv";
+        
+        // Only export standard fields
+        $url = $url . "&fl=organisation,idLocal,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlOther,urlIIIF,placeOfPublication,licence,idOther,catLink,language";
+        
+        // Limit to 5,000 rows for now
+        $url = $url . "&rows=5000";
+        
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=data.csv');
+        $fp = fopen($url, 'rb');
+        fpassthru($fp);
+    }
 }

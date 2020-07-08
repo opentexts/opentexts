@@ -91,9 +91,15 @@
                 </p>    
             <?php  
         } else if ($resultcount == 1) {
-            ?><div class="alert alert-info">There was 1 record found:</div><?php 
+            ?><div class="alert alert-info">
+                There was 1 record found:
+                <div class="float-right"><a href="<?= esc($exporturl) ?>" rel=“nofollow”>Export results <img src="/images/export.png" height="18px" /></a></div>
+            </div><?php 
         } else {
-            ?><div class="alert alert-info">There were <?= esc($resultcount); ?> records found:</div><?php
+            ?><div class="alert alert-info">
+                There were <?= esc($resultcount); ?> records found:
+                <div class="float-right"><a href="<?= esc($exporturl) ?>" rel=“nofollow”>Export results <img src="/images/export.png" height="18px" /></a></div>
+            </div><?php
         }
     ?>
 
