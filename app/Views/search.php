@@ -19,7 +19,7 @@
                             ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?><?php 
                                     if (!empty($language)) { echo "&language=" . $language; }
                                 ?>"><?= esc($value); ?></a>
-                                <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
+                                <span class="badge badge-pill badge-primary" style="float: right"><?= number_format($count); ?></span> <?php
                                 if (!empty($organisation)) {
                                     ?><a href="/search/?q=<?= esc($q); ?><?php 
                                     if (!empty($language)) { echo "&language=" . $language; }
@@ -50,7 +50,7 @@
                             ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&language=<?= esc($value); ?><?php 
                                     if (!empty($organisation)) { echo "&organisation=" . $organisation; }
                                 ?>"><?= esc($value); ?></a>
-                                <span class="badge badge-pill badge-primary" style="float: right"><?= esc($count); ?></span> <?php
+                                <span class="badge badge-pill badge-primary" style="float: right"><?= number_format($count); ?></span> <?php
                                 if (!empty($language)) {
                                     ?><a href="/search/?q=<?= esc($q); ?><?php 
                                     if (!empty($organisation)) { echo "&organisation=" . $organisation; }
@@ -97,7 +97,7 @@
             </div><?php 
         } else {
             ?><div class="alert alert-info">
-                There were <?= esc($resultcount); ?> records found:
+                There were <?= number_format($resultcount); ?> records found:
                 <div class="float-right"><a href="<?= esc($exporturl) ?>" rel=“nofollow”>Export results <img src="/images/export.png" height="18px" /></a></div>
             </div><?php
         }
