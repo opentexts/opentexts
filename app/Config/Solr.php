@@ -7,7 +7,7 @@ class Solr extends BaseConfig
     public $solarium = array(
         'endpoint' => array(
             'localhost' => array(
-                'host' => 'gdd.zone',
+                'host' => 'opentexts.world',
                 'port' => 8983,
                 'path' => '/',
                 'core' => 'otw'
