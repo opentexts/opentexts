@@ -18,13 +18,13 @@ site.
 * Install the PHP composer dependencies:
     * `composer install`
 
-### Configure the web server environment ###
+### Step two: Configure the web server environment ###
 * Copy the file env to .env in the root directory.
     * While developing, it is useful to edit .env to include `CI_ENVIRONMENT = development` in order to see error messages
 * Configure the Apache `DocumentRoot` to point to the public folder of the cloned githuib repository, not the top-level folder
 * Configure Apache to allow mod_rewrite
 
-### Request access to the solr index ###
+### Step three: Request access to the solr index ###
 Email Stuart with your IP address (or range) to be added to the solr firewall
 
 ## Edit the application ##
