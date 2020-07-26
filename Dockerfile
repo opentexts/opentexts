@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 
 ENV OS_LOCALE="en_US.UTF-8"
 RUN apt-get update && apt-get install -y locales && locale-gen ${OS_LOCALE}
@@ -12,6 +12,8 @@ ENV APACHE_CONF_DIR=/etc/apache2 \
     PHP_DATA_DIR=/var/lib/php
 
 COPY . /var/www/
+RUN	chown www-data:www-data /var/www/writable -Rf
+RUN	chmod 755 /var/www/writable -R
 COPY entrypoint.sh /sbin/entrypoint.sh
 
 RUN	\

@@ -34,5 +34,5 @@ The main code to edit to change the user interface are all located in `https://g
 
 ```bash
 docker build . --tag opentexts/opentexts
-docker run --rm opentexts/opentexts -p=8080:80
+docker run --rm -p=8080:80 opentexts/opentexts
 ```
