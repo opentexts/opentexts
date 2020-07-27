@@ -20,6 +20,6 @@
         <?php endif; ?>
 </head>
 
-<body>
+<body class="container bg-navy">
 
 <?php include('navigation-primary.php'); ?>
