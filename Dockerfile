@@ -11,9 +11,6 @@ ENV APACHE_CONF_DIR=/etc/apache2 \
     PHP_CONF_DIR=/etc/php/ \
     PHP_DATA_DIR=/var/lib/php
 
-COPY . /var/www/
-RUN	chown www-data:www-data /var/www/writable -Rf
-RUN	chmod 755 /var/www/writable -R
 COPY entrypoint.sh /sbin/entrypoint.sh
 
 RUN	\
@@ -41,11 +38,11 @@ COPY ./docker-configs/apache2.conf ${APACHE_CONF_DIR}/apache2.conf
 COPY ./docker-configs/app.conf ${APACHE_CONF_DIR}/sites-enabled/app.conf
 COPY ./docker-configs/php.ini  ${PHP_CONF_DIR}/apache2/conf.d/custom.ini
 
-WORKDIR /var/www
+RUN mkdir -p /var/www
 
-RUN composer install
+WORKDIR /var/www
 
 EXPOSE 80 443
 
-# By default, simply start apache.
+# By default, start apache.
 CMD ["/sbin/entrypoint.sh"]

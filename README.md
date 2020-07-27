@@ -30,7 +30,13 @@ Email Stuart with your IP address (or range) to be added to the solr firewall
 ## Edit the application ##
 The main code to edit to change the user interface are all located in `https://github.com/opentexts/opentexts/tree/main/app/Views`
 
-## Run using Docker ##
+## Using Docker ##
+
+```bash
+docker-compose --env-file /dev/null -d
+```
+
+### Build Docker Image ###
 
 ```bash
 docker build . --tag opentexts/opentexts
