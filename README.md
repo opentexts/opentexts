@@ -2,7 +2,7 @@
 
 ## https://opentexts.world/
 
-The web application powering the [OpenTexts.World](https://opentexts.world/) 
+The web application powering the [OpenTexts.World](https://opentexts.world/)
 site.
 
 ## Installation instructions ##
@@ -29,3 +29,16 @@ Email Stuart with your IP address (or range) to be added to the solr firewall
 
 ## Edit the application ##
 The main code to edit to change the user interface are all located in `https://github.com/opentexts/opentexts/tree/main/app/Views`
+
+## Using Docker ##
+
+```bash
+docker-compose --env-file /dev/null -d
+```
+
+### Build Docker Image ###
+
+```bash
+docker build . --tag opentexts/opentexts
+docker run --rm -p=8080:80 opentexts/opentexts
+```
