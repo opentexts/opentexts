@@ -2,7 +2,7 @@
 
 ## https://opentexts.world/
 
-The web application powering the [OpenTexts.World](https://opentexts.world/) 
+The web application powering the [OpenTexts.World](https://opentexts.world/)
 site.
 
 ## Installation instructions ##
@@ -29,3 +29,9 @@ Email Stuart with your IP address (or range) to be added to the solr firewall
 
 ## Edit the application ##
 The main code to edit to change the user interface are all located in `https://github.com/opentexts/opentexts/tree/main/app/Views`
+
+## Webpack ##
+
+This project uses Tailwind CSS. Run `npm install` to get all the npm modules you need to build the CSS, then `npm start` to run the development server.
+
+Run `npm run build` to build the production CSS. Right now it is not checked in to the app; this could change in the future.
