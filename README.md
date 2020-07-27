@@ -42,3 +42,9 @@ docker-compose --env-file /dev/null up -d
 docker build . --tag opentexts/opentexts
 docker run --rm -p=8080:80 opentexts/opentexts
 ```
+
+## Webpack ##
+
+This project uses Tailwind CSS. Run `npm install` to get all the npm modules you need to build the CSS, then `npm start` to run the development server.
+
+Run `npm run build` to build the production CSS. Right now it is not checked in to the app; this could change in the future.

@@ -1,0 +1,42 @@
+{
+  "name": "opentexts",
+  "version": "1.0.0",
+  "description": "OpenTexts web application",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --mode production",
+    "start": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentexts/opentexts.git"
+  },
+  "author": "",
+  "license": "N/A",
+  "bugs": {
+    "url": "https://github.com/opentexts/opentexts/issues"
+  },
+  "homepage": "https://github.com/opentexts/opentexts#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "autoprefixer": "^9.8.5",
+    "css-loader": "^4.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "node-sass-glob-importer": "^5.3.2",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "remove-files-webpack-plugin": "^1.4.3",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-livereload-plugin": "^2.3.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.5.2"
+  }
+}
