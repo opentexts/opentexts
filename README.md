@@ -33,7 +33,7 @@ The main code to edit to change the user interface are all located in `https://g
 ## Using Docker ##
 
 ```bash
-docker-compose --env-file /dev/null -d
+docker-compose --env-file /dev/null up -d
 ```
 
 ### Build Docker Image ###
