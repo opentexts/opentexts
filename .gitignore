@@ -129,3 +129,7 @@ nb-configuration.xml
 
 # Node / npm
 node_modules
+
+# Build files
+public/css/app.css
+public/css/app.css.map
