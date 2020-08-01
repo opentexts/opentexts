@@ -20,6 +20,4 @@
         <?php endif; ?>
 </head>
 
-<body class="container mx-auto bg-navy">
-
-<?php include('navigation-primary.php'); ?>
+<body class=" mx-auto bg-navy">

@@ -8,9 +8,10 @@ class Support extends Controller
     {
         $data['title'] = "Support";
         
-        echo view('templates/header', $data); 
+        echo view('templates/site-header', $data); 
+        echo view('templates/navigation-primary', $data);
         echo view('support');
-        echo view('templates/footer');
+        echo view('templates/site-footer');
     }
 
     //--------------------------------------------------------------------

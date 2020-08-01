@@ -1,11 +1,11 @@
-<main role="main" class="container">
+<main role="main" class="container bg-white w-screen max-w-none">
     <h1 class="mt-5">Search Results</h1>
     
     <div class="row">
        
         <div class="col-md-4">
             
-            <div class="card">
+            <div class="card" style="display: none">
                 <div class="card-header bg-info text-white">
                     Library
                 </div>
@@ -32,10 +32,8 @@
                 ?>
                 </ul>
             </div>
-            
-            <p/>
-            
-            <div class="card">
+                        
+            <div class="card" style="display: none">
                 <div class="card-header bg-info text-white">
                     Language
                 </div>
