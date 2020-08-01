@@ -1,105 +1,15 @@
 <main role="main" class="container bg-white w-screen max-w-none">
-    <h1 class="mt-5">Search Results</h1>
-    
-    <div class="row">
-       
-        <div class="col-md-4">
-            
-            <div class="card" style="display: none">
-                <div class="card-header bg-info text-white">
-                    Library
-                </div>
-                <ul class="list-group list-group-flush">   
-                <?php
-                    // Organisation facet counts
-                    $facetarray = $organisationfacet->getValues(); 
-                    ksort($facetarray);
-                    foreach ($facetarray as $value => $count) {
-                        if ($count > 0) {
-                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&organisation=<?= esc($value); ?><?php 
-                                    if (!empty($language)) { echo "&language=" . $language; }
-                                ?>"><?= esc($value); ?></a>
-                                <span class="badge badge-pill badge-primary" style="float: right"><?= number_format($count); ?></span> <?php
-                                if (!empty($organisation)) {
-                                    ?><a href="/search/?q=<?= esc($q); ?><?php 
-                                    if (!empty($language)) { echo "&language=" . $language; }
-                                ?>" class="badge badge-pill badge-danger">Remove</a><?php 
-                                }
-                            ?></li>
-                                <?php
-                        } 
-                    }
-                ?>
-                </ul>
-            </div>
-                        
-            <div class="card" style="display: none">
-                <div class="card-header bg-info text-white">
-                    Language
-                </div>
-                <ul class="list-group list-group-flush">   
-                <?php
-                    // Language facet counts
-                    $langcount = 0;
-                    foreach ($languagefacet as $value => $count) {
-                        if ($count > 0) {
-                            $langcount++;
-                            if ($langcount > 10) { ?> <div class="collapse multi-collapse" id="langcollapse"> <?php }
-                            ?><li class="list-group-item"><a href="/search/?q=<?= esc($q); ?>&language=<?= esc($value); ?><?php 
-                                    if (!empty($organisation)) { echo "&organisation=" . $organisation; }
-                                ?>"><?= esc($value); ?></a>
-                                <span class="badge badge-pill badge-primary" style="float: right"><?= number_format($count); ?></span> <?php
-                                if (!empty($language)) {
-                                    ?><a href="/search/?q=<?= esc($q); ?><?php 
-                                    if (!empty($organisation)) { echo "&organisation=" . $organisation; }
-                                ?>" class="badge badge-pill badge-danger">Remove</a><?php 
-                                }
-                            ?></li>
-                            <?php
-                        if ($langcount > 10) { ?> </div> <?php }
-                        } 
-                    }
-                ?>
-                </ul>
-                <?php 
-                    if ($langcount > 10) { ?> 
-                        <button class="btn-info" data-toggle="collapse" href="#langcollapse" role="button" aria-expanded="false" aria-controls="langcollapse">Show / hide all</button>
-                    <?php }
-                ?>
-            </div>
-        
-        </div>
-        <div class="col-md-8">
+
+    <h1 class="sr-only">Search results for <?php echo(esc($q)); ?></h2>
             
     <?php
-        // Result count
         if ($resultcount == 0) {
-            ?>
-                <p class="lead">
-                    No results found for <b><?= esc($q); ?></b>
-                </p>
-                <p>
-                    Suggestions:<br />
-                    <ul>
-                        <li>Make sure all words are spelled correctly.</li>
-                        <li>Try different keywords.</li>
-                        <li>Try more general keywords.</li>
-                        <li>Try fewer keywords.</li>
-                    </ul>
-                </p>    
-            <?php  
-        } else if ($resultcount == 1) {
-            ?><div class="alert alert-info">
-                There was 1 record found:
-                <div class="float-right"><a href="<?= esc($exporturl) ?>" rel=“nofollow”>Export results <img src="/images/export.png" height="18px" /></a></div>
-            </div><?php 
-        } else {
-            ?><div class="alert alert-info">
-                There were <?= number_format($resultcount); ?> records found:
-                <div class="float-right"><a href="<?= esc($exporturl) ?>" rel=“nofollow”>Export results <img src="/images/export.png" height="18px" /></a></div>
-            </div><?php
-        }
+            include('templates/no-results.php');
+        } 
     ?>
+        
+        
+        
 
     <?php
         // Results
@@ -180,47 +90,6 @@
         }
     ?>
 
-    <?php
-        // Do we ened pagination?
-        if ($resultcount > 10) {
-            ?>
-        
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-            
-            <?php
-            // Do we need to show first page jump link
-            if ($start > 10) {
-                ?><li class="page-item"><a class="page-link" href='<?= $url; ?>'>
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span></a>
-                  </li><?php
-            }
-
-            // Do we need to show previous page link?
-            if ($start >= 10) {
-                ?><li class="page-item"><a class="page-link" href='<?= $url . '&start=' . ($start - 10); ?>'>&lt; Previous page</a></li><?php
-            }
-
-            // Do we need to show next page link?
-            if ($resultcount > $start + 10) {
-                ?><li class="page-item"><a class="page-link" href='<?= $url . '&start=' . ($start + 10); ?>'>Next page &gt;</a></li><?php
-            }
-
-            // Do we need to show a last page jump link
-            if ($start < ($resultcount - 10)) {
-                ?><li class="page-item"><a class="page-link" href='<?= $url . '&start=' . (floor($resultcount / 10) * 10); ?>'>
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Last</span></a>
-                  </li><?php
-            }
-            ?>
-                
-                </ul>
-            </nav>    
-                
-            <?php
-        }
-    ?>
+        <?php include('templates/search-footer.php'); ?>
         </div>   
 </main>

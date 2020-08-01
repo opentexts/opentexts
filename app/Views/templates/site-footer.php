@@ -1,9 +1,3 @@
-        <footer>
-
-        </footer>
-                
-       
-        
         <script type="text/javascript">
             window.doorbellOptions = {
                 "id": "11688",
