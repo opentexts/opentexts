@@ -6,9 +6,10 @@ class Home extends BaseController
 	{
             $data['title'] = "Home";
             $data['hero'] = True;
-            echo view('templates/header', $data); 
+            echo view('templates/site-header', $data); 
+            echo view('templates/navigation-primary', $data);
             echo view('home');
-            echo view('templates/footer');    
+            echo view('templates/site-footer');    
 	}
 
 	//--------------------------------------------------------------------

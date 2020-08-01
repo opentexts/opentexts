@@ -30,7 +30,8 @@ class Search extends Controller
             $q = "*";
         }
         
-        echo view('templates/header-search', $data); 
+        echo view('templates/site-header', $data); 
+        echo view('templates/search-header', $data);
         
         // Create a client instance
         $client = new \Solarium\Client($config->solarium);
@@ -80,8 +81,8 @@ class Search extends Controller
 
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
-        $hl->setSimplePrefix('<b><mark>');
-        $hl->setSimplePostfix('</mark></b>');
+        $hl->setSimplePrefix('<em class="bg-offWhite text-current not-italic">');
+        $hl->setSimplePostfix('</em>');
         
         // Execute the query and returns the result
         $resultset = $client->select($query);
@@ -97,7 +98,7 @@ class Search extends Controller
         $data['exporturl'] = "/search/export/" . substr($url, 8);
                         
         echo view('search', $data);
-        echo view('templates/footer');
+        echo view('templates/site-footer');
     }
     
     public function export() 

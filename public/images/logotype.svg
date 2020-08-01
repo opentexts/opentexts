@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="364px" height="88px" viewBox="0 0 364 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logotype</title>
+    <g id="wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-weight="300">
+        <g id="front-page" transform="translate(-202.000000, -305.000000)">
+            <g id="Group" transform="translate(161.000000, 288.000000)">
+                <text id="OPEN-TEXTS" font-family="ProximaSoft-Thin, Proxima Soft" font-size="58" letter-spacing="2" fill="#0080AB">
+                    <tspan x="47.736" y="57">OPEN TEXTS</tspan>
+                </text>
+                <text id="Opening-up-a-world-o" font-family="ProximaSoft-Light, Proxima Soft" font-size="24" letter-spacing="-0.45" fill="#F5F8FA">
+                    <tspan x="40.953" y="100">Opening up a </tspan>
+                    <tspan x="183.255" y="100" font-family="ProximaSoft-Regular, Proxima Soft" font-weight="normal">world </tspan> 
+                    <tspan x="246.469" y="100"> of digitised texts</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

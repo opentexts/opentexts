@@ -1,50 +1,43 @@
-# OpenTexts web application
+# OpenTexts
 
-## https://opentexts.world/
+[OpenTexts](https://opentexts.world/) is an experimental service that provides free & open access to the digitised text collections of UK libraries.
 
-The web application powering the [OpenTexts.World](https://opentexts.world/)
-site.
+## Running the site locally
 
-## Installation instructions ##
-### Prerequisites: ###
- * [PHP](https://www.php.net/downloads.php) (a modern version such as 7.4)
- * A web server that works with PHP (e.g. [Apache](https://httpd.apache.org/download.cgi))
- * The [PHP Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) dependency manager
-    * OpenTexts.World uses the [CodeIgniter](https://codeigniter.com/) MVC framework and the [Solarium](https://solarium.readthedocs.io/en/stable/) [Solr](https://lucene.apache.org/solr/) library but these are installed automatically via Composer
+### Clone the repo & initalise Docker
 
-### Step one: Download code and install dependencies ###
-* Clone the github repository:
-    * `git clone https://github.com/opentexts/opentexts.git`
-* Install the PHP composer dependencies:
-    * `composer install`
+Clone the github repository:
+`git clone https://github.com/opentexts/opentexts.git`
 
-### Step two: Configure the web server environment ###
-* Copy the file env to .env in the root directory.
-    * While developing, it is useful to edit .env to include `CI_ENVIRONMENT = development` in order to see error messages
-* Configure the Apache `DocumentRoot` to point to the public folder of the cloned githuib repository, not the top-level folder
-* Configure Apache to allow mod_rewrite
-
-### Step three: Request access to the solr index ###
-Email Stuart with your IP address (or range) to be added to the solr firewall
-
-## Edit the application ##
-The main code to edit to change the user interface are all located in `https://github.com/opentexts/opentexts/tree/main/app/Views`
-
-## Using Docker ##
+Initialise Docker:
 
 ```bash
 docker-compose --env-file /dev/null up -d
 ```
 
-### Build Docker Image ###
+### Configure your local environment
 
-```bash
-docker build . --tag opentexts/opentexts
-docker run --rm -p=8080:80 opentexts/opentexts
-```
+Save a copy of `env` as `.env` in your root directory.
 
-## Webpack ##
+Uncomment line 17 to show error messages:
+`CI_ENVIRONMENT = development`
 
-This project uses Tailwind CSS. Run `npm install` to get all the npm modules you need to build the CSS, then `npm start` to run the development server.
+### Request access to the Solr index
 
-Run `npm run build` to build the production CSS. Right now it is not checked in to the app; this could change in the future.
+Email Stuart (@stuartlewis) with your IP address (or range) to be added to the Solr firewall. This will allow you to see results when running a search.
+
+### Install dependencies and start webpack
+
+Run `npm install` to get all the npm modules you need to build the CSS, then `npm start` to run the development server.
+
+Your local environment will be available at <http://localhost:8080/>
+
+### Start editing 🥳
+
+This project uses [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework for rapidly building UIs. This means that most of the "design" work will happen right in next to your code.
+
+User interface templates can be found in `https://github.com/opentexts/opentexts/tree/main/app/Views`
+
+## Running a production build
+
+Run `npm run build` to build the production CSS. Currently production CSS isn't checked into the app but this may change in the future.
