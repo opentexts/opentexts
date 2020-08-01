@@ -17,6 +17,11 @@ class Search extends Controller
         
         // Quick fix for double quotes around searches
         $q = str_replace("&#34;", '"', $q);
+        
+        // Quick fix if there is an odd number of double quotes
+        if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
+        
+        // Store the query
         $data['q'] = $q;
         
         // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
