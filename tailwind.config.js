@@ -21,7 +21,8 @@ module.exports = {
       darkCyan: '#0080AB',
       red: '#00345C',
       offWhite: '#F5F8FA',
-      white: '#F5F8FA',
+      highlight: '#F0F5F7',
+      white: '#FFFFFF',
       slate: '#4A6370',
       cobalt: '#00345C',
       navy_alt: '#002643', // maybe nix this entirely

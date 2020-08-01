@@ -81,8 +81,8 @@ class Search extends Controller
 
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
-        $hl->setSimplePrefix('<b><mark>');
-        $hl->setSimplePostfix('</mark></b>');
+        $hl->setSimplePrefix('<em class="bg-offWhite text-current not-italic">');
+        $hl->setSimplePostfix('</em>');
         
         // Execute the query and returns the result
         $resultset = $client->select($query);
