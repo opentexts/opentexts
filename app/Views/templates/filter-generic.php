@@ -1,11 +1,11 @@
 <?php
 use Solarium\Component\Result\Facet\FacetResultInterface;
-function render_facetset(string $label, string $key, ?string $currentValue,  FacetResultInterface $facet)
+function render_facetset(string $label, string $key, ?string $currentValue, string $defaultValue, FacetResultInterface $facet)
 {
     $facetarray = $facet->getValues();
     ?>
     <div tabindex="0" class="card-header bg-info inline-block outline-none cursor-pointer p-y-2 mr-4" style="color: #333;">
-        <?= $label; ?>
+        <?= $currentValue != null ? $currentValue : $label; ?>
         <input type="hidden" name="<?=$key?>" value="<?= $currentValue ?>"/>
     <div class="rounded-md absolute filter-dropdown overflow-y-auto" style="background-color: #DDD;">
         <ul class="list-group list-group-flush p-l-1 p-y-1">
@@ -14,8 +14,8 @@ function render_facetset(string $label, string $key, ?string $currentValue,  Fac
             if($currentValue != null)
             {
                 ?>
-                <li class="p-1" onclick="this.closest('form').<?=$key?>.value =''; this.closest('form').submit()">
-                    <span class="badge badge-pill badge-danger">All libraries</span>
+                <li class="p-1" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
+                    <span class="badge badge-pill badge-danger"><?= $defaultValue ?></span>
                 </li>
                 <?php
             }
