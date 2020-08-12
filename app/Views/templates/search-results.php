@@ -1,4 +1,22 @@
-<div class="card">
+<?php
+/** @var string $title */
+/** @var string $q */
+/** @var integer $resultcount */
+/** @var Solarium\Component\Result\Facet\FacetResultInterface $organisationfacet */
+/** @var Solarium\Component\Result\Facet\FacetResultInterface $languagefacet */
+/** @var Solarium\Component\Result\Highlighting\Highlighting $highlighted */
+/** @var  Solarium\Core\Query\Result\ResultInterface|Solarium\QueryType\Select\Result\Result $results */
+/** @var  string $selectedorganisation */
+/** @var  string $organisation */
+/** @var  string $selectedlanguage */
+/** @var  string $language */
+/** @var  integer $start */
+/** @var  integer $count */
+/** @var  integer $lastpage */
+/** @var  string $url */
+/** @var  string $exporturl */
+?>
+<div class="container mx-auto max-w-xl mb-8">
     <form>
         <input type="hidden" name="q" value="<?= $q ?>"/>
         <?php
