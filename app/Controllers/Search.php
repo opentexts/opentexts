@@ -54,7 +54,7 @@ class Search extends Controller
         $organisation = str_replace("&#39;s", "'s", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
-            $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"');
+            $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"')->addTag("filter-org");
             $query->addFilterQuery($filterQuery);
             $data['organisation'] = $organisation;
             $url = $url . '&organisation=' . $organisation;
@@ -64,7 +64,7 @@ class Search extends Controller
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
             $data['selectedlanguage'] = $language;
-            $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"');
+            $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"')->addTag("filter-lang");
             $query->addFilterQuery($filterQuery);
             $data['language'] = $language;
             $url = $url . '&language=' . $language;
@@ -81,8 +81,8 @@ class Search extends Controller
         $facetSet = $query->getFacetSet();
 
         // Create facet field instances
-        $facetSet->createFacetField('orgf')->setField('organisation_facet');
-        $facetSet->createFacetField('langf')->setField('language_facet');
+        $facetSet->createFacetField('orgf')->setField('organisation_facet')->addExclude("filter-org");
+        $facetSet->createFacetField('langf')->setField('language_facet')->addExclude("filter-lang");
 
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');

@@ -1,3 +1,13 @@
+<div class="card">
+    <form>
+        <input type="hidden" name="q" value="<?= $q ?>"/>
+        <?php
+        include('filter-generic.php');
+        render_facetset("Library","organisation", $organisation, $organisationfacet);
+        render_facetset("Language", "language", $language, $languagefacet);
+        ?>
+    </form>
+</div>
 <?php
 foreach ($results as $document) :
     // Highlight search terms in results
