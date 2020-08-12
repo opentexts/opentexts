@@ -7,6 +7,8 @@ if(!$lastpage)
     <form method="get">
         <input type="hidden" name="q" value="<?= $q ?>" />
         <input type="hidden" name="start" value="<?= ($start+$count) ?>" />
+        <input type="hidden" name="language" value="<?= ($language) ?>" />
+        <input type="hidden" name="organisation" value="<?= ($organisation) ?>" />
         <button type="submit" class="py-3 px-10 rounded-md bg-cobalt text-offWhite">More results</button>
     </form>
 <?php
