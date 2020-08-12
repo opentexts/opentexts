@@ -76,7 +76,10 @@ class Search extends Controller
             $start = filter_input(INPUT_GET, 'start', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         $query->setStart($start);
-          
+
+        $count = 10;
+        $query->setRows($count);
+
         // Get the facetset component
         $facetSet = $query->getFacetSet();
 
@@ -99,7 +102,9 @@ class Search extends Controller
         $data['highlighted'] = $resultset->getHighlighting();
         $data['results'] = $resultset;
         $data['start'] = $start;
+        $data['count'] = $count;
         $data['url'] = $url;
+        $data['lastpage'] = $start+$count >= $data['resultcount'];
         $data['exporturl'] = "/search/export/" . substr($url, 8);
                         
         echo view('search', $data);
