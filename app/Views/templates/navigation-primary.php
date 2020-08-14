@@ -15,7 +15,7 @@
             <?php
         }
 
-        renderNavLink("/home", "Home", $current_path);
+        renderNavLink("/", "Home", $current_path);
         renderNavLink("/about", "About", $current_path);
         renderNavLink("/contribute", "Get Involved", $current_path);
         renderNavLink("/support", "Help", $current_path);
