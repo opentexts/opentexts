@@ -1,16 +1,20 @@
 <nav class="container mx-auto pt-8">
     <ul class="flex justify-center space-x-8">
         <li>
-            <a href="/home" class="block border-b-2 border-cyan p-2 text-cyan">Home</a>
+            <a href="/home" class="navigation-link-current">Home</a>
         </li>
         <li>
-            <a href="/about" class="block text-offWhite p-2">About</a>
+            <a href="/about" class="navigation-link">About</a>
         </li>
         <li>
-            <a href="/contribute" class="block text-offWhite p-2">Get Involved</a>
+            <a href="/contribute" class="navigation-link">Get Involved</a>
         </li>
         <li>
-            <a href="/support" class="block text-offWhite p-2">Help</a>
+            <a href="/support" class="navigation-link">Help</a>
         </li>
     </ul>
 </nav>
+
+<style>
+
+</style>
