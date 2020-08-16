@@ -1,50 +1,4 @@
-<?php
-$resultList = array();
-foreach ($results as $document) :
-    // Highlight search terms in results
-    $title = $document->title;
-    $creators = $document->creator;
-    $publishers = $document->publisher;
-    $placesOfPublication = $document->placeOfPublication;
-    $highlightedDoc = $highlighted->getResult($document->id);
-    
-    if ($highlightedDoc) :
-        foreach ($highlightedDoc as $field => $highlight):
-            if ($field == "title") $title = $highlight[0];
-            if ($field == "creator") {
-                $creators = array();
-                foreach ($highlight as $each) {
-                    array_push($creators, $each);
-                }
-            }
-            if ($field == "publisher") {
-                $publishers = array();
-                foreach ($highlight as $each) {
-                    array_push($publishers, $each);
-                }
-            }
-            if ($field == "placeOfPublication") {
-                $placesOfPublication = array();
-                foreach ($highlight as $each) {
-                    array_push($placesOfPublication, $each);
-                }
-            }
-        endforeach;
-    endif;
 
-    array_push($resultList, array(
-        "title" => $title,
-        "creators" => $creators,
-        "publishers" => $publishers,
-        "placesOfPublication" => $placesOfPublication,
-        "urlMain" => $document->urlMain,
-        "urlPDF" => $document->urlPDF,
-        "urlIIIF" => $document->urlIIIF,
-        "urlOther" => $document->urlOther,
-        "year" => $document->year
-    ));
-endforeach;
-?>
 <div>
 <template id="result">
     <div class="container mx-auto max-w-xl mb-8">
@@ -79,7 +33,8 @@ endforeach;
     var resultsPayload = <?= json_encode($resultList) ?>;
     var template = document.querySelector("template#result");
     var container = template.parentNode;
-
+    var start = <?= $start ?>;
+    var count = 0;
     function addResult(result) {
         // TODO: innerHTML usage is bad here, it's needed for highlighting functionality but we should strip tags other than <em>
         var record = template.content.firstElementChild.cloneNode(true);
@@ -118,8 +73,18 @@ endforeach;
             }
         }
         container.appendChild(record);
+        count++;
+        document.querySelector("#resultCount").innerText = (start+1) + "-" + count;
     }
-    resultsPayload.forEach(addResult);
+
+    function fetchMoreResults()
+    {
+        fetch("/search/data?start=" + (start + count) + "&q=<?= $q ?>&organisation=<?= $organisation ?>&language=<?= $language ?>" )
+            .then(r => r.json())
+            .then(json => {
+                json.forEach(addResult);
+            })
+    }
 </script>
 </div>
 <?php
@@ -127,3 +92,7 @@ endforeach;
 
 // Show the search footer, which loads more results and allows users to export their results.
 include('search-footer.php');
+?>
+<script>
+    resultsPayload.forEach(addResult);
+</script>

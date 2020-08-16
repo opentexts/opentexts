@@ -3,9 +3,9 @@
 <?php
 // If we still have more results, show a "Load more" button
 ?>
-<button class="py-3 px-10 rounded-md bg-cobalt text-offWhite">More results</button>
+<button class="py-3 px-10 rounded-md bg-cobalt text-offWhite" onclick="fetchMoreResults()">More results</button>
 
-<span class="text-slate">[x-100] of <?= number_format($resultcount); ?> results.</span>
+<span class="text-slate">[<span id="resultCount"><?= $start+1 ?>-<?= $count ?></span>] of <?= number_format($resultcount); ?> results.</span>
 
 <a class="text-darkCyan underline" href="<?= esc($exporturl) ?>" rel=“nofollow”>Download full results.</a>
 </footer>
