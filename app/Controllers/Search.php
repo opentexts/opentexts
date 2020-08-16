@@ -1,11 +1,20 @@
 <?php namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use Solarium\QueryType\Select\Query\FilterQuery;
 
 helper('form');
 
 class Search extends Controller
 {
+    function applyFilter(FilterQuery $filter, string $facet, string $value) : FilterQuery
+    {
+        $values = explode("|", urldecode($value));
+        $queryString = join('" "', $values);
+        $filter->setQuery($facet . ':("' . $queryString . '")');
+        return $filter;
+    }
+
     public function index()
     {
         $data['title'] = "Search";
@@ -50,11 +59,10 @@ class Search extends Controller
              
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
-        // Quick fix for organisations containing a 's (such as Queen's University Belfast)
-        $organisation = str_replace("&#39;s", "'s", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
-            $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"')->addTag("filter-org");
+            $filterQuery = $query->createFilterQuery('fqOrg');
+            $filterQuery = $this->applyFilter($filterQuery, "organisation_facet", $organisation)->addTag("filter-org");
             $query->addFilterQuery($filterQuery);
             $data['organisation'] = $organisation;
             $url = $url . '&organisation=' . $organisation;
@@ -64,7 +72,8 @@ class Search extends Controller
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
             $data['selectedlanguage'] = $language;
-            $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"')->addTag("filter-lang");
+            $filterQuery = $query->createFilterQuery('fqLang');
+            $filterQuery = $this->applyFilter($filterQuery, "language_facet", $language)->addTag("filter-lang");
             $query->addFilterQuery($filterQuery);
             $data['language'] = $language;
             $url = $url . '&language=' . $language;
