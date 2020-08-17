@@ -6,9 +6,9 @@ function render_facetset(string $label, string $key, ?string $currentValue, stri
     $facetarray = $facet->getValues();
     $values = explode("|", urldecode($currentValue));
     ?>
-    <div tabindex="0" class="outline-none cursor-pointer p-y-2 mr-4">
+    <div tabindex="0" class="outline-none cursor-pointer py-2 mr-6">
         <div class="flex items-center">
-            <span class="text-gray-700"><?= $currentValue != null ? join(", ", $values) : $label; ?></span>
+            <span class="text-gray-700 focus:text-blue-700"><?= $currentValue != null ? join(", ", $values) : $label; ?></span>
             <span class="text-gray-600 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
         </div>
         <input type="hidden" name="<?=$key?>" value="<?= $currentValue ?>"/>
@@ -20,8 +20,8 @@ function render_facetset(string $label, string $key, ?string $currentValue, stri
             if($currentValue != null)
             {
                 ?>
-                <li class="p-1 text-gray-700" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
-                    <?= $defaultValue ?>
+                <li>
+                    <a class="block p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()"><?= $defaultValue ?></a>
                 </li>
                 <?php
             }
@@ -30,19 +30,23 @@ function render_facetset(string $label, string $key, ?string $currentValue, stri
                     if(in_array($value, $values))
                     {
                     ?>
-                        <li class="list-group-item text-blue-800 p-1 font-semibold flex items-center" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
-                            <?= $value ?>
-                            <span class="text-gray-600 font-normal pl-1">(<?= number_format($count); ?>)</span>
-                            <span class="text-gray-600 w-5 ml-auto icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
+                        <li>
+                            <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                                <?= $value ?>
+                                <span class="text-gray-600 font-normal pl-1">(<?= number_format($count); ?>)</span>
+                                <span class="text-gray-600 w-5 ml-auto icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
+                            </a>
                         </li>
                     <?php
                     }
                     else
                     {
                         ?>
-                        <li class="list-group-item p-1 text-gray-700" onclick="addValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
-                            <?= $value ?>
-                            <span class="text-gray-600 pl-1">(<?= number_format($count); ?>)</span>
+                        <li>
+                            <a class="block p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                                <?= $value ?>
+                                <span class="text-gray-600 pl-1">(<?= number_format($count); ?>)</span>
+                            </a>
                         </li>
                         <?php
                     }
