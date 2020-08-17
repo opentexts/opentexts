@@ -10,7 +10,7 @@
             $active = $path == $current_path;
             ?>
             <li>
-                <a href="<?= $path ?>" class="block <?= $active ? "border-b-2 border-cyan p-2 text-cyan" : "text-offWhite p-2" ?>"><?= $name ?></a>
+                <a href="<?= $path ?>" class="block <?= $active ? "navigation-link-current" : "navigation-link" ?>"><?= $name ?></a>
             </li>
             <?php
         }
@@ -22,3 +22,7 @@
         ?>
     </ul>
 </nav>
+
+<style>
+
+</style>

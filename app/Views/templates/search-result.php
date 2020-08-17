@@ -1,7 +1,7 @@
 <div class="container mx-auto max-w-xl mb-8">
     
     <!-- Title -->
-    <h2 class="text-darkCyan text-xl leading-tight mb-1">
+    <h2 class="text-blue-700 text-xl leading-tight mb-1">
         <?php if ( $document->urlMain ) {
             printf( '<a href="%1$s" rel="bookmark">%2$s</a>',
                 esc( $document->urlMain ),
@@ -14,7 +14,7 @@
     </h2>
 
     <!-- Author -->
-    <span class="text-slate">
+    <span class="text-gray-700">
     <?php if (!empty($document->creator[0])) {
         foreach ($creators as $creator) {
             echo $creator;
@@ -24,7 +24,7 @@
 
 
     <!-- Publication Information -->
-    <span class="text-slate text-opacity-75">
+    <span class="text-gray-700 text-opacity-75">
 
     <?php 
     // Publisher(s)
