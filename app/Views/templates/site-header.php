@@ -20,4 +20,4 @@
         <?php endif; ?>
 </head>
 
-<body class=" mx-auto bg-navy">
+<body class=" mx-auto bg-blue-900">

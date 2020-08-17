@@ -4,7 +4,7 @@
 
   <?php include('search-form.php'); ?>
     
-    <a class="flex flex-col justify-center items-center text-offWhite">
+    <a class="flex flex-col justify-center items-center text-gray-100 no-underline">
         <span class="text-opacity-50"><?php echo file_get_contents('svg/menu.svg'); ?></span>
         <span class="text-sm">Menu</span>
     </a>
