@@ -7,8 +7,8 @@ class Solr extends BaseConfig
     public $solarium = array(
         'endpoint' => array(
             'localhost' => array(
-                'host' => 'opentexts.world',
-                'port' => 8983,
+                'host' => 'solr.opentexts.world',
+                'port' => 80,
                 'path' => '/',
                 'core' => 'otw'
             )
