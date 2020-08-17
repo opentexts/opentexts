@@ -1,14 +1,14 @@
 <?php
 use Solarium\Component\Result\Facet\FacetResultInterface;
 include_once("filter-script.php");
-function render_facetset(string $label, string $key, ?string $currentValue, string $defaultValue, FacetResultInterface $facet)
+function render_facetset(string $key, ?string $currentValue, string $defaultValue, string $multiValue, FacetResultInterface $facet)
 {
     $facetarray = $facet->getValues();
     $values = explode("|", urldecode($currentValue));
     ?>
     <div tabindex="0" class="outline-none cursor-pointer py-2 mr-6">
         <div class="flex items-center">
-            <span class="text-gray-700 focus:text-blue-700"><?= $currentValue != null ? join(", ", $values) : $label; ?></span>
+            <span class="text-gray-700 focus:text-blue-700"><?= $currentValue == "" ? $defaultValue : (count($values) > 1 ? $multiValue : $currentValue); ?></span>
             <span class="text-gray-600 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
         </div>
         <input type="hidden" name="<?=$key?>" value="<?= $currentValue ?>"/>
