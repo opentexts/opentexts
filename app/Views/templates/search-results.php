@@ -17,7 +17,7 @@
 /** @var  string $exporturl */
 ?>
 <div class="container mx-auto max-w-xl mb-8">
-    <form>
+    <form class="flex">
         <input type="hidden" name="q" value="<?= $q ?>"/>
         <?php
         include('filter-generic.php');
