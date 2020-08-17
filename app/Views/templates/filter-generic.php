@@ -25,6 +25,17 @@ function render_facetset(string $label, string $key, ?string $currentValue, stri
                 </li>
                 <?php
             }
+            else
+            {
+                ?>
+                <li>
+                    <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                        <?= $defaultValue ?>
+                        <span class="text-gray-600 w-5 ml-auto icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
+                    </a>
+                </li>
+            <?php
+            }
             foreach ($facetarray as $value => $count) {
                 if ($count > 0) {
                     if(in_array($value, $values))
