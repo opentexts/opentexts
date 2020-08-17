@@ -64,10 +64,10 @@ class Search extends Controller
             $filterQuery = $query->createFilterQuery('fqOrg');
             $filterQuery = $this->applyFilter($filterQuery, "organisation_facet", $organisation)->addTag("filter-org");
             $query->addFilterQuery($filterQuery);
-            $data['organisation'] = $organisation;
             $url = $url . '&organisation=' . $organisation;
         }
-        
+        $data['organisation'] = $organisation;
+
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
@@ -75,10 +75,10 @@ class Search extends Controller
             $filterQuery = $query->createFilterQuery('fqLang');
             $filterQuery = $this->applyFilter($filterQuery, "language_facet", $language)->addTag("filter-lang");
             $query->addFilterQuery($filterQuery);
-            $data['language'] = $language;
             $url = $url . '&language=' . $language;
         }
-        
+        $data['language'] = $language;
+
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
