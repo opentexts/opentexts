@@ -5,7 +5,7 @@
 ?>
 <button class="button-primary">More results</button>
 
-<span class="text-slate">[x-100] of <?= number_format($resultcount); ?> results.</span>
+<span class="text-gray-700">[x-100] of <?= number_format($resultcount); ?> results.</span>
 
 <a class="link" href="<?= esc($exporturl) ?>" rel=“nofollow”>Download full results.</a>
 </footer>

@@ -2,15 +2,15 @@
 @tailwind components;
 
 a {
-    @apply text-darkCyan underline;
+    @apply text-blue-700 underline;
 }
 
 h1 {
-    @apply text-slate text-2xl leading-tight mb-2;
+    @apply text-gray-700 text-2xl leading-tight mb-2;
 }
 
 h2 {
-    @apply text-slate text-xl leading-tight mb-1 mt-8;
+    @apply text-gray-700 text-xl leading-tight mb-1 mt-8;
 }
 
 p {
@@ -18,27 +18,27 @@ p {
 }
 
 .intro {
-    @apply text-lg text-slate text-opacity-75 mb-10;
+    @apply text-lg text-gray-700 text-opacity-75 mb-10;
 }
 
 .navigation-link {
-    @apply block text-offWhite p-2 no-underline;
+    @apply block text-gray-100 p-2 no-underline;
 }
 
 .navigation-link-current {
-    @apply block border-b-2 border-cyan p-2 text-cyan no-underline;
+    @apply block border-b-2 border-blue-600 p-2 text-blue-600 no-underline;
 }
 
 .navigation-link:hover {
-    @apply border-b-2 border-white p-2 text-white no-underline;
+    @apply border-b-2 border-transparent p-2 text-blue-400 no-underline;
 }
 
 .navigation-link:focus {
-    @apply border-b-2 border-cyan p-2 text-cyan outline-none no-underline;
+    @apply border-b-2 border-blue-500 p-2 text-blue-500 outline-none no-underline;
 }
 
 .button-primary {
-    @apply py-3 px-10 rounded-md bg-cobalt text-offWhite;
+    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
 }
 
 @tailwind utilities;
