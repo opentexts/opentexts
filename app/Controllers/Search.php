@@ -98,6 +98,7 @@ class Search extends Controller
         $data['start'] = $start;
         $data['count'] = $count;
         $data['url'] = $url;
+
         $data['exporturl'] = "/search/export/" . substr($url, 8);
 
         $resultList = array();
@@ -145,7 +146,7 @@ class Search extends Controller
                 "year" => $document->year
             ));
         endforeach;
-        $data['resultList'] = $resultList;
+        $data['payload'] = array("results" => $resultList, "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation));
 
         return $data;
     }
