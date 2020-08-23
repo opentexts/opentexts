@@ -17,16 +17,34 @@ module.exports = {
       '4': '4px',
     },
     colors: {
-      cyan: '#00AAEE',
-      darkCyan: '#0080AB',
-      red: '#00345C',
-      offWhite: '#F5F8FA',
-      highlight: '#F0F5F7',
-      white: '#FFFFFF',
-      slate: '#4A6370',
-      cobalt: '#00345C',
-      navy_alt: '#002643', // maybe nix this entirely
-      navy: '#00204A', // For backgrounds and stuff
+      transparent: 'transparent',
+      current: 'currentColor',
+
+      black: '#000',
+      white: '#fff',
+
+      gray: {
+        100: '#F6FAFB',
+        200: '#ECF3F6',
+        300: '#E0EAEE',
+        400: '#C8D7DD',
+        500: '#9BB2BB',
+        600: '#6B8590',
+        700: '#445962',
+        800: '#283B43',
+        900: '#162328',
+      },
+      blue: {
+        100: '#EBF8FF',
+        200: '#BAEAFF',
+        300: '#68CFF7',
+        400: '#30B8F2',
+        500: '#00AAEE',
+        600: '#0099D1',
+        700: '#0080AB',
+        800: '#00345C',
+        900: '#00204A',
+      },
     },
     extend: {
       spacing: {

@@ -1,13 +1,13 @@
 <main role="main" class="container bg-white w-screen max-w-none pt-16">
     <article class="mx-auto max-w-xl">
-    <h1 class="text-slate text-2xl leading-tight mb-2">Get Involved</h1>
-    <p class="text-lg text-slate text-opacity-75 mb-10">
+    <h1>Get Involved</h1>
+    <p class="intro">
         If you would like to contribute data to be included in OpenTexts.World, please email 
         <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">stuart.lewis@nls.uk and gill.hamilton@nls.uk</a>
         for details.
     </p>
 	
-    <h2 class="text-darkCyan text-xl leading-tight mb-1 mt-8">Formats accepted</h2>
+    <h2>Formats accepted</h2>
 	<p>
             We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
             <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
@@ -15,7 +15,7 @@
 
     <p>If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> as we may be able to process and integrate it. We love a challenge!</p>
     
-    <h2 class="text-darkCyan text-xl leading-tight mb-1 mt-8">Comma-separated format</h2>
+    <h2>Comma-separated format</h2>
     <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
 
     <p>Repeatable fields must be separated with a '|' pipe.</p>
