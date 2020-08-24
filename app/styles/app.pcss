@@ -46,7 +46,15 @@ p {
 
 /* Buttons */
 .button-primary {
-    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
+    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
+}
+
+.button-primary:hover {
+    @apply bg-blue-700;
+}
+
+.button-primary:focus {
+    @apply border-blue-400;
 }
 
 /* Extra classes to apply consistent sizing to icons. */
