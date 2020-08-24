@@ -29,7 +29,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
             {
                 ?>
                 <li>
-                    <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                    <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
                         <?= $defaultValue ?>
                         <span class="text-gray-600 w-5 ml-auto icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
                     </a>
