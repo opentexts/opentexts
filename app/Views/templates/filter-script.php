@@ -2,6 +2,9 @@
     function addValue(element, value)
     {
         var values = element.value.split("|");
+        if (element.value === "") {
+            values = [];
+        }
         for(var i = 0; i < values.length; i++)
         {
             if(values[i] === value)
@@ -16,6 +19,9 @@
     function removeValue(element, value)
     {
         var values = element.value.split("|");
+        if (element.value === "") {
+            values = [];
+        }
         for(var i = 0; i < values.length; i++)
         {
             if(values[i] === value)
