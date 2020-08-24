@@ -3,7 +3,7 @@
     <!-- Title -->
     <h2 class="text-blue-700 text-xl leading-tight mb-1">
         <?php if ( $document->urlMain ) {
-            printf( '<a href="%1$s" rel="bookmark">%2$s</a>',
+            printf( '<a class="text-blue-700 hover:text-blue-600" href="%1$s" rel="bookmark">%2$s</a>',
                 esc( $document->urlMain ),
                 $title
         );
@@ -14,7 +14,7 @@
     </h2>
 
     <!-- Author -->
-    <span class="text-gray-700">
+    <span class="text-gray-800">
     <?php if (!empty($document->creator[0])) {
         foreach ($creators as $creator) {
             echo $creator;
@@ -24,7 +24,7 @@
 
 
     <!-- Publication Information -->
-    <span class="text-gray-700 text-opacity-75">
+    <span class="text-gray-600">
 
     <?php 
     // Publisher(s)

@@ -2,11 +2,20 @@
 
 use CodeIgniter\Controller;
 use Solarium\Client;
+use Solarium\QueryType\Select\Query\FilterQuery;
 
 helper('form');
 
 class Search extends Controller
 {
+    function applyFilter(FilterQuery $filter, string $facet, string $value) : FilterQuery
+    {
+        $values = explode("|", urldecode($value));
+        $queryString = join('" "', $values);
+        $filter->setQuery($facet . ':("' . $queryString . '")');
+        return $filter;
+    }
+
     function getData()
     {
         $config = config('Solr');
@@ -47,26 +56,24 @@ class Search extends Controller
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
-        // Quick fix for organisations containing a 's (such as Queen's University Belfast)
-        $organisation = str_replace("&#39;s", "'s", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
-            $filterQuery = $query->createFilterQuery('fqOrg')->setQuery('organisation_facet:"' . $organisation . '"');
+            $filterQuery = $query->createFilterQuery('fqOrg');
+            $filterQuery = $this->applyFilter($filterQuery, "organisation_facet", $organisation)->addTag("filter-org");
             $query->addFilterQuery($filterQuery);
-            $data['organisation'] = $organisation;
             $url = $url . '&organisation=' . $organisation;
         }
-
+$data['organisation'] = $organisation;
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
             $data['selectedlanguage'] = $language;
-            $filterQuery = $query->createFilterQuery('fqLang')->setQuery('language_facet:"' . $language . '"');
+            $filterQuery = $query->createFilterQuery('fqLang');
+            $filterQuery = $this->applyFilter($filterQuery, "language_facet", $language)->addTag("filter-lang");
             $query->addFilterQuery($filterQuery);
-            $data['language'] = $language;
             $url = $url . '&language=' . $language;
         }
-
+$data['language'] = $language;
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
@@ -80,8 +87,8 @@ class Search extends Controller
         $facetSet = $query->getFacetSet();
 
         // Create facet field instances
-        $facetSet->createFacetField('orgf')->setField('organisation_facet');
-        $facetSet->createFacetField('langf')->setField('language_facet');
+        $facetSet->createFacetField('orgf')->setField('organisation_facet')->addExclude("filter-org");
+        $facetSet->createFacetField('langf')->setField('language_facet')->addExclude("filter-lang");
 
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
@@ -169,7 +176,7 @@ class Search extends Controller
         $data = $this->getData();
         echo json_encode($data["resultList"]);
     }
-    
+
     public function export() 
     {
         $config = config('Solr');        

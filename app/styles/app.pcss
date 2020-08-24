@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 
+/* Global text styles. */
 a {
     @apply text-blue-700 underline;
 }
@@ -17,10 +18,12 @@ p {
     @apply mb-2;
 }
 
+/* Use for intro paragraphs of text. */
 .intro {
     @apply text-lg text-gray-700 text-opacity-75 mb-10;
 }
 
+/* Navigation links */
 .navigation-link {
     @apply block text-gray-100 p-2 no-underline;
 }
@@ -37,8 +40,32 @@ p {
     @apply border-b-2 border-blue-500 p-2 text-blue-500 outline-none no-underline;
 }
 
+/* Buttons */
 .button-primary {
     @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
 }
 
+/* Extra classes to apply consistent sizing to icons. */
+.icon-sm svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Show and hide filter popovers. */
+.filter-dropdown {
+    max-height: 280px;
+    visibility: collapse;
+}
+
+:focus > .filter-dropdown {
+    visibility: visible;
+}
+
+/* Add a border to the search input when focussed. */
+.search-focused {
+    @apply border-2 border-blue-300 !important;
+}
+
 @tailwind utilities;
+
+
