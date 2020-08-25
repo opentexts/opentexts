@@ -6,7 +6,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
     $facetarray = $facet->getValues();
     $values = explode("|", urldecode($currentValue));
     ?>
-    <div tabindex="0" class="outline-none cursor-pointer py-2 mr-6">
+    <div tabindex="0" class="outline-none cursor-pointer py-2 mr-6 filter">
         <div class="flex items-center">
             <span class="text-gray-700 focus:text-blue-700"><?= $currentValue == "" ? $defaultValue : (count($values) > 1 ? $multiValue : $currentValue); ?></span>
             <span class="text-gray-600 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
@@ -20,7 +20,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
             if($currentValue != null)
             {
                 ?>
-                <li>
+                <li tabindex="0">
                     <a class="flex items-center p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
                         <span class="block w-5"></span>
                         <?= $defaultValue ?>
@@ -31,7 +31,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
             else
             {
                 ?>
-                <li>
+                <li tabindex="0">
                     <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
                         <span class="block text-gray-600 w-5 icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
                         <?= $defaultValue ?>
@@ -44,7 +44,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
                     if(in_array($value, $values))
                     {
                     ?>
-                        <li>
+                        <li tabindex="0">
                             <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
                                 <span class="block text-gray-600 w-5 icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
                                 <?= $value ?>
@@ -56,7 +56,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
                     else
                     {
                         ?>
-                        <li>
+                        <li tabindex="0">
                             <a class="flex p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
                                 <span class="block w-5"></span>
                                 <?= $value ?>

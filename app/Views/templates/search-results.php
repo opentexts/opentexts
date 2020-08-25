@@ -58,6 +58,59 @@
 
 </template>
     <script type="module" src="./scripts/search-results.js"></script>
+    <script>
+        document.querySelectorAll(".filter").forEach(function(filter){
+            filter.addEventListener('click', function()
+            {
+                if(!this.classList.contains('filter-focus')) {
+                    this.classList.add('filter-focus');
+                }
+            }, true);
+
+            filter.addEventListener('keydown', function(event){
+                if(!this.classList.contains('filter-focus'))
+                {
+                    if(event.keyCode === 13 || event.keyCode === 32) {
+                        this.classList.add('filter-focus');
+                        this.querySelector("li[tabindex]").focus();
+                        event.preventDefault();
+                    }
+                }
+                else
+                {
+                    switch(event.keyCode)
+                    {
+                        case 27:
+                            this.classList.remove('filter-focus')
+                            this.focus();
+                            event.preventDefault();
+                            break;
+                        case 38:
+                            document.activeElement.previousElementSibling.focus();
+                            event.preventDefault();
+                            break;
+                        case 40:
+                            document.activeElement.nextElementSibling.focus();
+                            event.preventDefault();
+                            break;
+                        case 13:
+                            document.activeElement.querySelector("a").click();
+                            event.preventDefault();
+                    }
+                }
+
+            })
+
+            filter.addEventListener('blur',  function(){
+                setTimeout(function(){
+                    if(!this.contains(document.activeElement)) {
+                        this.classList.remove('filter-focus')
+                    }
+                }.bind(this),0)
+            }, true)
+        })
+
+    </script>
 </div>
 <?php
 
