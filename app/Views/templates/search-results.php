@@ -15,6 +15,7 @@
 /** @var  integer $lastpage */
 /** @var  string $url */
 /** @var  string $exporturl */
+/** @var  array $payload */
 ?>
 <div class="container mx-auto max-w-xl mb-8">
     <form class="flex">
