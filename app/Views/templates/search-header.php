@@ -1,6 +1,6 @@
 <header role="header" class="mx-auto max-w-3xl flex justify-center items-center py-6 space-x-6">
 
-  <a href="/home"><img class="w-16" src="/images/logo.svg" alt="Open Texts" /></a>
+  <a href="/"><img class="w-16" src="/images/logo.svg" alt="Open Texts" /></a>
 
   <?php include('search-form.php'); ?>
     
