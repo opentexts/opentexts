@@ -5,8 +5,10 @@ const controller = new ResultsController(template);
 
 controller.onResultsAdded.addEventListener(function(){
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
-    if (controller.getCount() >= controller.getTotal()) {
-        document.getElementsByClassName('load-more-results')[0].style.visibility = 'hidden';
+    if (controller.getCount() >= controller.getTotal()) {   
+        Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
+            element.className += " invisible";
+        });
     }
 });
 
