@@ -104,7 +104,11 @@ class Search extends Controller
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['start'] = $start;
+        
+        // If there were fewer results returned than the count, update the count
+        if ($resultset->getNumFound() < $count) $count = $resultset->getNumFound();
         $data['count'] = $count;
+        
         $data['url'] = $url;
 
         $data['exporturl'] = "/search/export/" . substr($url, 8);
