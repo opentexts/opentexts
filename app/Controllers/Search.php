@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use Solarium\Client;
 use Solarium\QueryType\Select\Query\FilterQuery;
 
 helper('form');
@@ -15,48 +16,44 @@ class Search extends Controller
         return $filter;
     }
 
-    public function index()
+    function getData()
     {
-        $data['title'] = "Search";
-        
-        $config = config('Solr');        
-        
+        $config = config('Solr');
+
         // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-        
+
         // Quick fix for double quotes around searches
         $q = str_replace("&#34;", '"', $q);
-        
+
         // Quick fix if there is an odd number of double quotes
         if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
-        
+
         // Store the query
         $data['q'] = $q;
-        
+
         // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
         $q = str_replace(":", '\:', $q);
         $q = str_replace("[", '\[', $q);
         $q = str_replace("]", '\]', $q);
         $q = str_replace("{", '\{', $q);
         $q = str_replace("}", '\}', $q);
-        
-        if ((empty($q)) || ($q == "")) { 
+
+        if ((empty($q)) || ($q == "")) {
             $q = "*";
         }
-        
-        echo view('templates/site-header', $data); 
-        echo view('templates/search-header', $data);
-        
+
+
         // Create a client instance
-        $client = new \Solarium\Client($config->solarium);
+        $client = new Client($config->solarium);
 
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
-        
+
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
-             
+
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($organisation)) {
@@ -66,8 +63,7 @@ class Search extends Controller
             $query->addFilterQuery($filterQuery);
             $url = $url . '&organisation=' . $organisation;
         }
-        $data['organisation'] = $organisation;
-
+$data['organisation'] = $organisation;
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
@@ -77,15 +73,16 @@ class Search extends Controller
             $query->addFilterQuery($filterQuery);
             $url = $url . '&language=' . $language;
         }
-        $data['language'] = $language;
-
+$data['language'] = $language;
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
             $start = filter_input(INPUT_GET, 'start', FILTER_SANITIZE_SPECIAL_CHARS);
         }
         $query->setStart($start);
-          
+
+        $count = 10;
+        $query->setRows($count);
         // Get the facetset component
         $facetSet = $query->getFacetSet();
 
@@ -97,7 +94,7 @@ class Search extends Controller
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
         $hl->setSimplePrefix('<em class="bg-gray-100 text-current not-italic">');
         $hl->setSimplePostfix('</em>');
-        
+
         // Execute the query and returns the result
         $resultset = $client->select($query);
 
@@ -105,16 +102,81 @@ class Search extends Controller
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
-        $data['highlighted'] = $resultset->getHighlighting();
-        $data['results'] = $resultset;
         $data['start'] = $start;
+        $data['count'] = $count;
         $data['url'] = $url;
+
         $data['exporturl'] = "/search/export/" . substr($url, 8);
-                        
+
+        $resultList = array();
+        foreach ($resultset as $document) :
+            // Highlight search terms in results
+            $title = $document->title;
+            $creators = $document->creator;
+            $publishers = $document->publisher;
+            $placesOfPublication = $document->placeOfPublication;
+            $highlightedDoc = $resultset->getHighlighting()->getResult($document->id);
+
+            if ($highlightedDoc) :
+                foreach ($highlightedDoc as $field => $highlight):
+                    if ($field == "title") $title = $highlight[0];
+                    if ($field == "creator") {
+                        $creators = array();
+                        foreach ($highlight as $each) {
+                            array_push($creators, $each);
+                        }
+                    }
+                    if ($field == "publisher") {
+                        $publishers = array();
+                        foreach ($highlight as $each) {
+                            array_push($publishers, $each);
+                        }
+                    }
+                    if ($field == "placeOfPublication") {
+                        $placesOfPublication = array();
+                        foreach ($highlight as $each) {
+                            array_push($placesOfPublication, $each);
+                        }
+                    }
+                endforeach;
+            endif;
+
+            array_push($resultList, array(
+                "title" => $title,
+                "creators" => $creators,
+                "publishers" => $publishers,
+                "placesOfPublication" => $placesOfPublication,
+                "urlMain" => $document->urlMain,
+                "urlPDF" => $document->urlPDF,
+                "urlIIIF" => $document->urlIIIF,
+                "urlOther" => $document->urlOther,
+                "year" => $document->year
+            ));
+        endforeach;
+        $data['payload'] = array("results" => $resultList, "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation));
+
+        return $data;
+    }
+
+    public function index()
+    {
+
+        $data = $this->getData();
+        $data['title'] = "Search";
+
+        echo view('templates/site-header', $data);
+        echo view('templates/search-header', $data);
+
         echo view('search', $data);
         echo view('templates/site-footer');
     }
-    
+
+    public function data()
+    {
+        $data = $this->getData();
+        echo json_encode($data["resultList"]);
+    }
+
     public function export() 
     {
         $config = config('Solr');        
