@@ -174,7 +174,7 @@ $data['language'] = $language;
     public function data()
     {
         $data = $this->getData();
-        echo json_encode($data["resultList"]);
+        echo json_encode($data["payload"]["results"]);
     }
 
     public function export() 
