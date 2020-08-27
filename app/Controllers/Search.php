@@ -49,7 +49,7 @@ class Search extends Controller
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
-
+        
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
 
@@ -179,6 +179,11 @@ class Search extends Controller
 
     public function data()
     {
+        // Setting the content type removes the CodeIgniter toolbar when running in the development environment
+        // This adds extra unwanted HTMl to the JSON response, so breaks it otherwise
+        // See: https://forum.codeigniter.com/thread-74553.html
+        $this->response->setContentType('Content-Type: application/json');
+        
         $data = $this->getData();
         echo json_encode($data["payload"]["results"]);
     }
