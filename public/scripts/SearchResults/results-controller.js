@@ -11,6 +11,7 @@ import Event from './Util/event.js';
  * @property {SearchResult[]} _results
  * @property {Number} _start
  * @property {Number} _count
+ * @property {Number} _total
  * @property {Query} _query
  * @property {Event} onResultsAdded - Is invoked whenever new results are added, useful for updating counts etc
  */
@@ -27,6 +28,7 @@ export default class ResultsController {
         const payload = JSON.parse(template.getAttribute("data-payload"));
         this._query = new Query(payload.query);
         const results = payload.results.map(o => new SearchResult(o));
+        this._total = payload.total;
         this._processResults(results);
     }
 
@@ -60,6 +62,14 @@ export default class ResultsController {
      */
     getCount() {
         return this._count;
+    }
+
+    /**
+     * Returns the overall total number of results
+     * @returns {number}
+     */
+    getTotal() {
+        return this._total;
     }
 
     _processResults(results) {

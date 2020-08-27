@@ -43,7 +43,6 @@ class Search extends Controller
             $q = "*";
         }
 
-
         // Create a client instance
         $client = new Client($config->solarium);
 
@@ -63,7 +62,8 @@ class Search extends Controller
             $query->addFilterQuery($filterQuery);
             $url = $url . '&organisation=' . $organisation;
         }
-$data['organisation'] = $organisation;
+        $data['organisation'] = $organisation;
+        
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
@@ -73,7 +73,8 @@ $data['organisation'] = $organisation;
             $query->addFilterQuery($filterQuery);
             $url = $url . '&language=' . $language;
         }
-$data['language'] = $language;
+        $data['language'] = $language;
+        
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
@@ -103,7 +104,11 @@ $data['language'] = $language;
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['start'] = $start;
+        
+        // If there were fewer results returned than the count, update the count
+        if ($resultset->getNumFound() < $count) $count = $resultset->getNumFound();
         $data['count'] = $count;
+        
         $data['url'] = $url;
 
         $data['exporturl'] = "/search/export/" . substr($url, 8);
@@ -153,14 +158,15 @@ $data['language'] = $language;
                 "year" => $document->year
             ));
         endforeach;
-        $data['payload'] = array("results" => $resultList, "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation));
+        $data['payload'] = array("results" => $resultList, 
+                                 "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "total" => $resultset->getNumFound());
 
         return $data;
     }
 
     public function index()
     {
-
         $data = $this->getData();
         $data['title'] = "Search";
 
