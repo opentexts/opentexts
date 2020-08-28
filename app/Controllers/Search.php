@@ -23,8 +23,9 @@ class Search extends Controller
         // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Quick fix for double quotes around searches
+        // Quick fix for quotes around searches
         $q = str_replace("&#34;", '"', $q);
+        $q = str_replace("&#39;", "'", $q);
 
         // Quick fix if there is an odd number of double quotes
         if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
@@ -56,6 +57,7 @@ class Search extends Controller
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
+        $organisation = str_replace("&#39;", "'", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
             $filterQuery = $query->createFilterQuery('fqOrg');
