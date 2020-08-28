@@ -21,7 +21,7 @@ controller.onResultsRequested.addEventListener(function(){
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
         element.classList.remove("invisible");
         element.disabled = true;
-        element.innerHTML = "Loading..";
+        element.innerHTML = "Loading...";
         element.classList.remove("bg-opacity-100");
         element.classList.add("bg-opacity-50");
     });
