@@ -40,6 +40,7 @@
             <li><a href="https://wellcomecollection.org/">The Wellcome Collection</a> (<a href="/search?organisation=Wellcome%20Collection">182,576 items</a>)</li>
             <li><a href="https://www.nls.uk/">National Library of Scotland</a> (<a href="/search?organisation=National%20Library%20of%20Scotland">26,971 items</a>)</li>
             <li><a href="https://library.wales/">National Library of Wales</a> (<a href="/search?organisation=ational%20Library%20of%%20Wales">2,801 items</a>)</li>
+            <li><a href="https://www.qub.ac.uk/directorates/InformationServices/TheLibrary/SpecialCollections/">Queen's University Belfast</a> (<a href="/search?organisation=Queen%27s%20University%20Belfast">186 items</a>)</li>
             <li>Your Library? Learn how to <a href="/contribute">contribute</a></li>
         </ul>
             
