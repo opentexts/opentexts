@@ -38,6 +38,7 @@ class Search extends Controller
         $q = str_replace("]", '\]', $q);
         $q = str_replace("{", '\{', $q);
         $q = str_replace("}", '\}', $q);
+        $q = str_replace("~", '\~', $q);
 
         if ((empty($q)) || ($q == "")) {
             $q = "*";
@@ -204,13 +205,14 @@ class Search extends Controller
         $q = str_replace("]", '\]', $q);
         $q = str_replace("{", '\{', $q);
         $q = str_replace("}", '\}', $q);
-        
+        $q = str_replace("~", '\~', $q);
+
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . $q;
+               "/select?q=" . urlencode($q);
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -222,8 +224,7 @@ class Search extends Controller
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {
-            
+        if (!empty($language)) {      
             $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
         }
         
@@ -236,7 +237,7 @@ class Search extends Controller
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
-        header('Content-Type: text/csv; charset=utf-8');
+        $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=data.csv');
         $fp = fopen($url, 'rb');
         fpassthru($fp);
