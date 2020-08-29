@@ -13,6 +13,7 @@ export default class FilterViewController {
      * @param {ResultsController} resultsController
      */
     constructor(root, resultsController) {
+        // noinspection JSUnusedGlobalSymbols
         this._root = root;
         this._key = root.getAttribute("data-key");
         this._controller = resultsController
