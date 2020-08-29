@@ -29,27 +29,15 @@ export default class ResultsController {
 
         const payload = JSON.parse(template.getAttribute("data-payload"));
         this._query = new Query(payload.query);
+        // Update history with a query object so we can process back requests to the initial page.
+        if(!history.state) {
+            history.replaceState(this._query, '', null);
+        }
         const results = payload.results.map(o => new SearchResult(o));
         this._total = payload.total;
         this._processResults(results);
     }
 
-    /**
-     * Retrieves and renders additional results
-     */
-    fetchMoreResults() {
-        const query = new Query(this._query);
-        query.start += this._count;
-        this.onResultsRequested.invoke();
-        fetch(query.buildDataUrl() )
-            .then(r => r.json())
-            .then(json => {
-                return json.map(o => new SearchResult(o));
-            })
-            .then(res => {
-                this._processResults(res);
-            })
-    }
 
     /**
      * Return the index of the first result
@@ -73,6 +61,70 @@ export default class ResultsController {
      */
     getTotal() {
         return this._total;
+    }
+
+
+    /**
+     * Retrieves and renders additional results
+     */
+    fetchMoreResults() {
+        const query = this._query.clone();
+        query.start += this._count;
+        this.onResultsRequested.invoke();
+        fetch(query.buildDataUrl() )
+            .then(r => r.json())
+            .then(json => {
+                return json.map(o => new SearchResult(o));
+            })
+            .then(res => {
+                this._processResults(res);
+            })
+    }
+
+    /**
+     * @returns {Query} A clone of the current query, useful for modifying to replace the existing query.
+     */
+    getQuery() {
+        return this._query.clone();
+    }
+
+    /**
+     * Uses Object.assign to amend the existing query and refreshes results.
+     * @param {Query} newQuery - An object representing the new state of the query object
+     */
+    updateQuery(newQuery) {
+        Object.assign(this._query, newQuery);
+        this._reloadResults();
+    }
+
+
+    /**
+     * Replaces the existing query in it's entirety and refreshes results.
+     * @param {Query} newQuery - An object representing the new state of the query object
+     * @param {boolean} updateHistory - Whether the History API should be pushed with this query
+     */
+    replaceQuery(newQuery, updateHistory = true) {
+        this._query = newQuery;
+        this._reloadResults(updateHistory);
+    }
+
+    /**
+     * Reload first page data and replace all existing content.
+     * @param {boolean} updateHistory - Whether the History API should be pushed with this query
+     * @private
+     */
+    _reloadResults(updateHistory= true) {
+        const searchUrl = this._query.buildDirectUrl();
+        if(updateHistory) {
+            history.pushState(this._query, "", searchUrl)
+        }
+        // Empty container of all children
+        while(this._container.firstChild)
+        {
+            this._container.removeChild(this._container.firstChild);
+        }
+        this._count = 0;
+        this.fetchMoreResults();
     }
 
     _processResults(results) {

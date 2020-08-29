@@ -21,7 +21,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
             {
                 ?>
                 <li tabindex="0">
-                    <a class="flex items-center p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
+                    <a class="flex items-center p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="resetFilter('<?= esc($key) ?>')">
                         <span class="block w-5"></span>
                         <?= $defaultValue ?>
                     </a>
@@ -32,7 +32,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
             {
                 ?>
                 <li tabindex="0">
-                    <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="this.closest('form').<?= $key ?>.value =''; this.closest('form').submit()">
+                    <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="resetFilter('<?= esc($key) ?>')">
                         <span class="block text-gray-600 w-5 icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
                         <?= $defaultValue ?>
                     </a>
@@ -45,7 +45,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
                     {
                     ?>
                         <li tabindex="0">
-                            <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                            <a class="flex items-center p-1 text-blue-800 font-semibold border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="removeFilter('<?= esc($key) ?>', '<?= esc($value) ?>')">
                                 <span class="block text-gray-600 w-5 icon-sm"><?php echo file_get_contents('svg/check.svg'); ?></span>
                                 <?= $value ?>
                                 <span class="text-gray-600 font-normal pl-1">(<?= number_format($count); ?>)</span>
@@ -57,7 +57,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
                     {
                         ?>
                         <li tabindex="0">
-                            <a class="flex p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addValue(this.closest('form').<?=$key?>, `<?= esc($value) ?>`);">
+                            <a class="flex p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addFilter('<?= esc($key) ?>', '<?= esc($value) ?>')">
                                 <span class="block w-5"></span>
                                 <?= $value ?>
                                 <span class="text-gray-600 pl-1">(<?= number_format($count); ?>)</span>
