@@ -32,15 +32,13 @@ document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", controller.fetchMoreResults.bind(controller));
 })
 
-globalThis.addFilter = function(filter, value) {
-    var query = controller.getQuery()
-    query.addToFilter(filter, value);
-    controller.replaceQuery(query);
-}
-
-globalThis.removeFilter = function(filter, value) {
-    var query = controller.getQuery()
-    query.removeFromFilter(filter, value);
+globalThis.toggleFilter = function(filter, value){
+    var query = controller.getQuery();
+    if(query.filterContainsValue(filter, value)) {
+        query.removeFromFilter(filter, value);
+    } else {
+        query.addToFilter(filter, value);
+    }
     controller.replaceQuery(query);
 }
 

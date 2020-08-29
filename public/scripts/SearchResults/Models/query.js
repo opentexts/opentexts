@@ -37,6 +37,21 @@ export default class Query {
     clone() {
         return new Query(this);
     }
+
+    /**
+     * Queries the specified filter for whether the provided value is currently included in the set.
+     * @param {string} filter - The name of the filter to be queried, should be a value in {@link filter}.
+     * @param {string} value - The value to be searched for in the filter
+     * @returns {boolean} - True if the value currently exists in the filter set.
+     * @throws Will throw if filter is not referenced in {@link filters}
+     */
+    filterContainsValue(filter, value) {
+        if(!filters.includes(filter)) {
+            throw `Attempted to query value of non-existent filter: ${filter}.`
+        }
+        return this[filter].includes(value);
+    }
+
     /**
      * Adds the provided value to the specified filter
      * @param {string} filter - The name of the filter to update, should be a value in {@link filters}.
@@ -62,10 +77,10 @@ export default class Query {
             throw `Attempted to remove from non-existent filter: ${filter}.`
         }
 
-        for(let i = filters[filter].length-1; i >= 0; i--)
+        for(let i = this[filter].length-1; i >= 0; i--)
         {
-            if(filters[filter][i] === value) {
-                filters[filter].removeAt(i);
+            if(this[filter][i] === value) {
+                this[filter].removeAt(i);
             }
         }
     }
@@ -79,7 +94,7 @@ export default class Query {
         if(!filters.includes(filter)) {
             throw `Attempted to reset non-existent filter: ${filter}.`
         }
-        filters[filter] = [];
+        this[filter] = [];
     }
 
     /**
@@ -87,7 +102,7 @@ export default class Query {
      * @returns {string}
      */
     buildDirectUrl() {
-        return `/search?start=${this.start}&q=${this.q}&organisation=${this.organisation}&language=${this.language}`;
+        return `/search?${this._getQueryString()}`;
     }
 
     /**
@@ -95,6 +110,27 @@ export default class Query {
      * @returns {string}
      */
     buildDataUrl() {
-        return `/search/data?start=${this.start}&q=${this.q}&organisation=${this.organisation}&language=${this.language}`;
+        return `/search/data?${this._getQueryString()}`;
+    }
+
+    /**
+     * Returns a query string suitable for using in request to the server
+     * @returns {string}
+     * @private
+     */
+    _getQueryString() {
+        const keys = Object.keys(this);
+        const params = [];
+        // Omit empty values for a cleaner URL for sharing purposes
+        keys.forEach(k => {
+            if(!this[k]) return;
+            if(Array.isArray(this[k])) {
+                if(this[k].length === 0) return;
+                params.push(`${k}=${encodeURIComponent(this[k].join('|'))}`)
+            } else {
+                params.push(`${k}=${encodeURIComponent(this[k])}`)
+            }
+        })
+        return params.join('&')
     }
 }
