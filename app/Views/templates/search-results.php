@@ -19,7 +19,7 @@
 ?>
 <div class="container mx-auto max-w-xl mb-8">
     <form class="flex">
-        <input type="hidden" name="q" value="<?= $q ?>"/>
+        <input type="hidden" name="q" value="<?= esc($q) ?>"/>
         <?php
         include('filter-generic.php');
         render_facetset("organisation", $organisation, "All libraries", "Multiple libraries", $organisationfacet);

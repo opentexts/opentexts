@@ -2,15 +2,15 @@
 
 use CodeIgniter\Controller;
 
-class Support extends Controller
+class Help extends Controller
 {
     public function index()
     {
-        $data['title'] = "Support";
+        $data['title'] = "Help";
         
         echo view('templates/site-header', $data); 
         echo view('templates/navigation-primary', $data);
-        echo view('support');
+        echo view('help');
         echo view('templates/site-footer');
     }
 

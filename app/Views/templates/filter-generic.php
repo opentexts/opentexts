@@ -57,7 +57,7 @@ function render_facetset(string $key, ?string $currentValue, string $defaultValu
                     {
                         ?>
                         <li tabindex="0">
-                            <a class="flex p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addValue(this.closest('form').<?=$key?>, '<?= esc($value) ?>');">
+                            <a class="flex p-1 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline" onclick="addValue(this.closest('form').<?=$key?>, `<?= esc($value) ?>`);">
                                 <span class="block w-5"></span>
                                 <?= $value ?>
                                 <span class="text-gray-600 pl-1">(<?= number_format($count); ?>)</span>

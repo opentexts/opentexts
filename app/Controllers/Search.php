@@ -23,8 +23,9 @@ class Search extends Controller
         // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Quick fix for double quotes around searches
+        // Quick fix for quotes around searches
         $q = str_replace("&#34;", '"', $q);
+        $q = str_replace("&#39;", "'", $q);
 
         // Quick fix if there is an odd number of double quotes
         if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
@@ -38,11 +39,11 @@ class Search extends Controller
         $q = str_replace("]", '\]', $q);
         $q = str_replace("{", '\{', $q);
         $q = str_replace("}", '\}', $q);
+        $q = str_replace("~", '\~', $q);
 
         if ((empty($q)) || ($q == "")) {
             $q = "*";
         }
-
 
         // Create a client instance
         $client = new Client($config->solarium);
@@ -50,12 +51,13 @@ class Search extends Controller
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
-
+        
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
+        $organisation = str_replace("&#39;", "'", $organisation);
         if (!empty($organisation)) {
             $data['selectedorganisation'] = $organisation;
             $filterQuery = $query->createFilterQuery('fqOrg');
@@ -63,7 +65,8 @@ class Search extends Controller
             $query->addFilterQuery($filterQuery);
             $url = $url . '&organisation=' . $organisation;
         }
-$data['organisation'] = $organisation;
+        $data['organisation'] = $organisation;
+        
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {
@@ -73,7 +76,8 @@ $data['organisation'] = $organisation;
             $query->addFilterQuery($filterQuery);
             $url = $url . '&language=' . $language;
         }
-$data['language'] = $language;
+        $data['language'] = $language;
+        
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
@@ -103,7 +107,11 @@ $data['language'] = $language;
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['start'] = $start;
+        
+        // If there were fewer results returned than the count, update the count
+        if ($resultset->getNumFound() < $count) $count = $resultset->getNumFound();
         $data['count'] = $count;
+        
         $data['url'] = $url;
 
         $data['exporturl'] = "/search/export/" . substr($url, 8);
@@ -153,14 +161,15 @@ $data['language'] = $language;
                 "year" => $document->year
             ));
         endforeach;
-        $data['payload'] = array("results" => $resultList, "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation));
+        $data['payload'] = array("results" => $resultList, 
+                                 "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "total" => $resultset->getNumFound());
 
         return $data;
     }
 
     public function index()
     {
-
         $data = $this->getData();
         $data['title'] = "Search";
 
@@ -173,8 +182,13 @@ $data['language'] = $language;
 
     public function data()
     {
+        // Setting the content type removes the CodeIgniter toolbar when running in the development environment
+        // This adds extra unwanted HTMl to the JSON response, so breaks it otherwise
+        // See: https://forum.codeigniter.com/thread-74553.html
+        $this->response->setContentType('Content-Type: application/json');
+        
         $data = $this->getData();
-        echo json_encode($data["resultList"]);
+        echo json_encode($data["payload"]["results"]);
     }
 
     public function export() 
@@ -193,13 +207,14 @@ $data['language'] = $language;
         $q = str_replace("]", '\]', $q);
         $q = str_replace("{", '\{', $q);
         $q = str_replace("}", '\}', $q);
-        
+        $q = str_replace("~", '\~', $q);
+
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . $q;
+               "/select?q=" . urlencode($q);
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -211,8 +226,7 @@ $data['language'] = $language;
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {
-            
+        if (!empty($language)) {      
             $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
         }
         
@@ -225,7 +239,7 @@ $data['language'] = $language;
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
-        header('Content-Type: text/csv; charset=utf-8');
+        $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=data.csv');
         $fp = fopen($url, 'rb');
         fpassthru($fp);
