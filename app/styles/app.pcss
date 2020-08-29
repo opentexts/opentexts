@@ -3,7 +3,16 @@
 
 /* Global text styles. */
 a {
-    @apply text-blue-700 underline;
+    @apply text-blue-700 underline border-2 border-transparent;
+    transition: all 200ms ease-in-out;
+}
+
+a:hover {
+    @apply text-red-700;
+}
+
+a:focus {
+    @apply border-blue-400 outline-none no-underline;
 }
 
 h1 {
@@ -26,6 +35,7 @@ p {
 /* Navigation links */
 .navigation-link {
     @apply block text-gray-100 border-2 border-transparent p-2 no-underline;
+    transition: all 200ms ease-in-out;
 }
 
 .navigation-link-current {
@@ -47,10 +57,11 @@ p {
 /* Buttons */
 .button-primary {
     @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
+    transition: all 200ms ease-in-out;
 }
 
 .button-primary:hover {
-    @apply bg-blue-700;
+    @apply bg-red-700;
 }
 
 .button-primary:focus {

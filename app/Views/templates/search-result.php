@@ -3,7 +3,7 @@
     <!-- Title -->
     <h2 class="text-blue-700 text-xl leading-tight mb-1">
         <?php if ( $document->urlMain ) {
-            printf( '<a class="text-blue-700 hover:text-blue-600" href="%1$s" rel="bookmark">%2$s</a>',
+            printf( '<a href="%1$s" rel="bookmark">%2$s</a>',
                 esc( $document->urlMain ),
                 $title
         );
