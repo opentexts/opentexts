@@ -80,7 +80,7 @@ export default class Query {
         for(let i = this[filter].length-1; i >= 0; i--)
         {
             if(this[filter][i] === value) {
-                this[filter].removeAt(i);
+                this[filter].splice(i,1);
             }
         }
     }
