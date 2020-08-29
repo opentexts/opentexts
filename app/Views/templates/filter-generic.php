@@ -22,6 +22,7 @@ function render_facetset(string $key, ?string $currentValue, string $pluralNoun,
                 <a class="flex items-center p-1 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline <?= $defaultActive != null ? ACTIVE_FILTER_CLASSES : INACTIVE_FILTER_CLASSES ?>">
                     <span class="block text-gray-600 w-5 icon-sm <?= $defaultActive ? "" : "invisible" ?>"><?php echo file_get_contents('svg/check.svg'); ?></span>
                     <span><?= $defaultValue ?></span>
+                    <span></span>
                 </a>
             </li>
             <?php

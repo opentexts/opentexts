@@ -5,8 +5,8 @@
  * @property {string} _key
  * @property {string} _plural
  * @property {ResultsController} _controller
- * @property {HTMLElement} _defaultValueElement
- * @property {HTMLElement[]} _valueElements
+ * @property {Node} _defaultValueElement
+ * @property {Array.<Node>} _valueElements
  */
 export default class FilterViewController {
     /**
@@ -30,11 +30,28 @@ export default class FilterViewController {
 
     updateCounts() {
         const counts = this._controller.getFilterCounts(this._key);
+        const parent = this._defaultValueElement.parentNode;
+        const query = this._controller.getQuery();
+
         this._valueElements.forEach(el => {
-            const spans = el.querySelectorAll("span");
-            const key = spans[1].firstChild.wholeText;
-            spans[2].innerText = `(${counts[key] || 0})`
+            parent.removeChild(el);
         })
+        this._valueElements = [];
+
+        Object.keys(counts).forEach(k => {
+            if(counts[k] === 0 && !query.filterContainsValue(this._key, k)) return;
+            /** @type HTMLLIElement */
+            const elem = this._defaultValueElement.cloneNode(true);
+            elem.removeEventListener('click', null);
+            elem.addEventListener('click',  this._toggleFilter.bind(this))
+            const spans = elem.querySelectorAll("span");
+            spans[1].innerText = k;
+            spans[2].innerHTML = `&nbsp;(${counts[k]})`
+            this.setVisualActiveState(elem, query.filterContainsValue(this._key, k));
+            parent.appendChild(elem);
+            this._valueElements.push(elem);
+        })
+        this.setVisualActiveState(this._defaultValueElement, query[this._key].length === 0);
     }
 
     /**
