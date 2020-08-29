@@ -1,6 +1,6 @@
 import Query from './Models/query.js'
 import SearchResult from './Models/search-result.js'
-import ResultViewController from "./result-view-controller.js";
+import ResultViewController from "./ViewControllers/result-view-controller.js";
 import Event from './Util/event.js';
 
 /**

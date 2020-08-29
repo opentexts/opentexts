@@ -1,7 +1,10 @@
 import ResultsController from "./SearchResults/results-controller.js";
 import Query from "./SearchResults/Models/query.js";
+import FilterViewController from "./SearchResults/ViewControllers/filter-view-controller.js";
 
+/** @type {HTMLTemplateElement} */
 const template = document.querySelector("template#result");
+/** @type {ResultsController} */
 const controller = new ResultsController(template);
 
 controller.onResultsAdded.addEventListener(function(){
@@ -32,6 +35,7 @@ document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", controller.fetchMoreResults.bind(controller));
 })
 
+const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
 globalThis.toggleFilter = function(filter, value){
     var query = controller.getQuery();
     if(query.filterContainsValue(filter, value)) {
@@ -50,6 +54,7 @@ globalThis.resetFilter = function(filter) {
 
 window.addEventListener('popstate', event => {
     if(event.state){
+        /** @type Query */
         const query = new Query(event.state);
         controller.replaceQuery(query, false);
     }
