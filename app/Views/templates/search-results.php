@@ -22,8 +22,8 @@
         <input type="hidden" name="q" value="<?= esc($q) ?>"/>
         <?php
         include('filter-generic.php');
-        render_facetset("organisation", $organisation, "All libraries", "Multiple libraries", $organisationfacet);
-        render_facetset("language", $language, "All languages", "Multiple languages", $languagefacet);
+        render_facetset("organisation", $organisation, "libraries", $organisationfacet);
+        render_facetset("language", $language, "languages", $languagefacet);
         ?>
     </form>
 </div>

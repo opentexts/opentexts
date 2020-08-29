@@ -3,6 +3,7 @@
  * @type Class
  * @property {HTMLElement} _root
  * @property {string} _key
+ * @property {string} _plural
  * @property {ResultsController} _controller
  * @property {HTMLElement} _defaultValueElement
  * @property {HTMLElement[]} _valueElements
@@ -16,6 +17,7 @@ export default class FilterViewController {
         // noinspection JSUnusedGlobalSymbols
         this._root = root;
         this._key = root.getAttribute("data-key");
+        this._plural = root.getAttribute("data-plural");
         this._controller = resultsController
 
         const values = Array.from(root.querySelectorAll("li"));
@@ -24,6 +26,15 @@ export default class FilterViewController {
 
         this._defaultValueElement.addEventListener('click', this._resetFilter.bind(this))
         this._valueElements.forEach(el => el.addEventListener('click', this._toggleFilter.bind(this)))
+    }
+
+    updateCounts() {
+        const counts = this._controller.getFilterCounts(this._key);
+        this._valueElements.forEach(el => {
+            const spans = el.querySelectorAll("span");
+            const key = spans[1].firstChild.wholeText;
+            spans[2].innerText = `(${counts[key] || 0})`
+        })
     }
 
     /**
@@ -47,6 +58,7 @@ export default class FilterViewController {
             this.setVisualActiveState(liElem, true);
             this.setVisualActiveState(this._defaultValueElement, false);
         }
+        this.setTopLevelState();
         this._controller.replaceQuery(query);
     }
 
@@ -61,9 +73,22 @@ export default class FilterViewController {
         const that = this;
         this._valueElements.forEach(el => that.setVisualActiveState(el, false));
         this.setVisualActiveState(this._defaultValueElement, true);
+        this.setTopLevelState();
         this._controller.replaceQuery(query);
     }
 
+    setTopLevelState(){
+        const query = this._controller.getQuery();
+        const count = query[this._key].length;
+        const element = this._root.firstElementChild.firstElementChild;
+        if(count === 0) {
+            element.innerText = `All ${this._plural}`;
+        } else if (count === 1) {
+            element.innerText = query[this._key][0];
+        } else {
+            element.innerText = `Multiple ${this._plural}`;
+        }
+    }
     /**
      * Sets the visual state of the component to checked or unchecked depending on parameter
      * @param {HTMLLIElement} element

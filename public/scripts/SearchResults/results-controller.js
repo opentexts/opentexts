@@ -12,6 +12,7 @@ import Event from './Util/event.js';
  * @property {Number} _start
  * @property {Number} _count
  * @property {Number} _total
+ * @property {Object} _filterCounts
  * @property {Query} _query
  * @property {Event} onResultsRequested - Is invoked whenever new results are requested, useful for updating buttons etc
  * @property {Event} onResultsAdded - Is invoked whenever new results are added, useful for updating counts etc
@@ -35,6 +36,7 @@ export default class ResultsController {
         }
         const results = payload.results.map(o => new SearchResult(o));
         this._total = payload.total;
+        this._filterCounts = payload.filters;
         this._processResults(results);
     }
 
@@ -73,11 +75,10 @@ export default class ResultsController {
         this.onResultsRequested.invoke();
         fetch(query.buildDataUrl() )
             .then(r => r.json())
-            .then(json => {
-                return json.map(o => new SearchResult(o));
-            })
             .then(res => {
-                this._processResults(res);
+                this._total = res.total;
+                this._filterCounts = res.filters;
+                this._processResults(res.results.map(o => new SearchResult(o)));
             })
     }
 
@@ -106,6 +107,15 @@ export default class ResultsController {
     replaceQuery(newQuery, updateHistory = true) {
         this._query = newQuery;
         this._reloadResults(updateHistory);
+    }
+
+    /**
+     * Returns the total records matching each filter value for the given filter.
+     * @param {string} filter
+     * @returns {Object} A map of filter values to number of results.
+     */
+    getFilterCounts(filter) {
+        return this._filterCounts[filter];
     }
 
     /**

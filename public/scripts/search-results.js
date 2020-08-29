@@ -7,8 +7,10 @@ const template = document.querySelector("template#result");
 /** @type {ResultsController} */
 const controller = new ResultsController(template);
 
+const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
 controller.onResultsAdded.addEventListener(function(){
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
+    document.querySelector("#resultTotal").innerText = controller.getTotal();
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
         if (controller.getCount() >= controller.getTotal()) {
             element.classList.add("invisible");
@@ -18,10 +20,10 @@ controller.onResultsAdded.addEventListener(function(){
         element.classList.remove("bg-opacity-50");
         element.classList.add("bg-opacity-100");
     });
+    filterViewControllers.forEach(vc => vc.updateCounts())
 });
 
 controller.onResultsRequested.addEventListener(function(){
-    document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
         element.classList.remove("invisible");
         element.disabled = true;
@@ -35,7 +37,6 @@ document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", controller.fetchMoreResults.bind(controller));
 })
 
-const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
 globalThis.toggleFilter = function(filter, value){
     var query = controller.getQuery();
     if(query.filterContainsValue(filter, value)) {
