@@ -75,8 +75,8 @@ export default class FilterViewController {
             this.setVisualActiveState(liElem, true);
             this.setVisualActiveState(this._defaultValueElement, false);
         }
-        this.setTopLevelState();
         this._controller.replaceQuery(query);
+        this.setTopLevelState();
     }
 
     /**
@@ -90,8 +90,8 @@ export default class FilterViewController {
         const that = this;
         this._valueElements.forEach(el => that.setVisualActiveState(el, false));
         this.setVisualActiveState(this._defaultValueElement, true);
-        this.setTopLevelState();
         this._controller.replaceQuery(query);
+        this.setTopLevelState();
     }
 
     setTopLevelState(){

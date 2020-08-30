@@ -42,7 +42,7 @@
 
         <!-- Title -->
         <h2 class="text-darkCyan text-xl leading-tight mb-1">
-            <a rel="bookmark"></a>
+            <a class="text-blue-700 hover:text-blue-600" rel="bookmark"></a>
         </h2>
 
         <!-- Author -->
