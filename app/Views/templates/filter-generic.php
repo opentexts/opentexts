@@ -16,7 +16,7 @@ function render_facetset(string $key, ?string $currentValue, string $pluralNoun,
             <span class="text-gray-600 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
         </div>
 
-    <div class="rounded-md absolute filter-dropdown overflow-y-auto bg-gray-100 shadow-lg -ml-6">
+    <div class="rounded-md absolute filter-dropdown overflow-y-auto bg-gray-100 shadow-lg -ml-6 z-10">
         <ul class="list-group list-group-flush py-3 pr-3">
             <li tabindex="0">
                 <a class="flex items-center p-1 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 no-underline <?= $defaultActive != null ? ACTIVE_FILTER_CLASSES : INACTIVE_FILTER_CLASSES ?>">

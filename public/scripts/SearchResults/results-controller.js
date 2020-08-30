@@ -68,8 +68,9 @@ export default class ResultsController {
 
     /**
      * Retrieves and renders additional results
+     * @param {boolean} replace
      */
-    fetchMoreResults() {
+    fetchMoreResults(replace= false) {
         const query = this._query.clone();
         query.start += this._count;
         this.onResultsRequested.invoke();
@@ -78,7 +79,16 @@ export default class ResultsController {
             .then(res => {
                 this._total = res.total;
                 this._filterCounts = res.filters;
+                if(replace) {
+                    // Empty container of all children
+                    while(this._container.firstChild)
+                    {
+                        this._container.removeChild(this._container.firstChild);
+                    }
+                    this._count = 0;
+                }
                 this._processResults(res.results.map(o => new SearchResult(o)));
+                this._container.classList.remove("transition-opacity", "duration-500", "opacity-0")
             })
     }
 
@@ -128,13 +138,8 @@ export default class ResultsController {
         if(updateHistory) {
             history.pushState(this._query, "", searchUrl)
         }
-        // Empty container of all children
-        while(this._container.firstChild)
-        {
-            this._container.removeChild(this._container.firstChild);
-        }
-        this._count = 0;
-        this.fetchMoreResults();
+        this._container.classList.add("transition-opacity", "duration-500", "opacity-0")
+        this.fetchMoreResults(true);
     }
 
     _processResults(results) {
