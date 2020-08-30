@@ -27,8 +27,16 @@
         ?>
     </form>
 </div>
-
+<div id="result-skeletons" class="hidden">
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+</div>
 <div>
+
 <template id="result" data-payload="<?=   esc(json_encode($payload));  ?>">
     <div class="container mx-auto max-w-xl mb-8">
 

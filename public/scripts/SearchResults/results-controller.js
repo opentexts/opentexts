@@ -8,6 +8,7 @@ import Event from './Util/event.js';
  * @type Class
  * @property {Node} _template
  * @property {Node} _container
+ * @property {Node} _skeletons - A container for skeleton search results to be used during loading.
  * @property {SearchResult[]} _results
  * @property {Number} _start
  * @property {Number} _count
@@ -27,7 +28,7 @@ export default class ResultsController {
         this._count = 0;
         this.onResultsRequested = new Event();
         this.onResultsAdded = new Event();
-
+        this._skeletons = document.querySelector("#result-skeletons");
         const payload = JSON.parse(template.getAttribute("data-payload"));
         this._query = new Query(payload.query);
         // Update history with a query object so we can process back requests to the initial page.
@@ -86,9 +87,16 @@ export default class ResultsController {
                         this._container.removeChild(this._container.firstChild);
                     }
                     this._count = 0;
+
                 }
+                this._skeletons.classList.add("transition-opacity", "duration-300", "opacity-0")
+                const that = this
+                setTimeout(function(){
+                    that._container.classList.remove("transition-opacity", "duration-300", "opacity-0")
+                    that._skeletons.classList.remove("transition-opacity", "duration-300", "opacity-0")
+                    that._skeletons.classList.add("hidden")
+                }, 250)
                 this._processResults(res.results.map(o => new SearchResult(o)));
-                this._container.classList.remove("transition-opacity", "duration-500", "opacity-0")
             })
     }
 
@@ -138,7 +146,9 @@ export default class ResultsController {
         if(updateHistory) {
             history.pushState(this._query, "", searchUrl)
         }
-        this._container.classList.add("transition-opacity", "duration-500", "opacity-0")
+
+        this._container.classList.add("transition-opacity", "duration-300", "opacity-0")
+        setTimeout(()=>document.querySelector("#result-skeletons").classList.remove("hidden"), 300)
         this.fetchMoreResults(true);
     }
 
