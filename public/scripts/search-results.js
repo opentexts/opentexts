@@ -32,9 +32,9 @@ controller.onResultsRequested.addEventListener(function(){
         element.classList.add("bg-opacity-50");
     });
 });
-
+const fetchMoreFunction = controller.fetchMoreResults.bind(controller)
 document.querySelectorAll(".load-more-results").forEach(function(elem){
-    elem.addEventListener("click", controller.fetchMoreResults.bind(controller));
+    elem.addEventListener("click", () => fetchMoreFunction(false));
 })
 
 globalThis.toggleFilter = function(filter, value){

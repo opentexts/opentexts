@@ -73,7 +73,9 @@ export default class ResultsController {
      */
     fetchMoreResults(replace= false) {
         const query = this._query.clone();
-        query.start += this._count;
+        if(!replace) {
+            query.start += this._count;
+        }
         this.onResultsRequested.invoke();
         fetch(query.buildDataUrl() )
             .then(r => r.json())
