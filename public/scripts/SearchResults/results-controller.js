@@ -73,7 +73,7 @@ export default class ResultsController {
      */
     fetchMoreResults(replace= false) {
         const query = this._query.clone();
-        if(!replace) {
+        if(replace === false) {
             query.start += this._count;
         }
         this.onResultsRequested.invoke();
@@ -82,7 +82,7 @@ export default class ResultsController {
             .then(res => {
                 this._total = res.total;
                 this._filterCounts = res.filters;
-                if(replace) {
+                if(replace === true) {
                     // Empty container of all children
                     while(this._container.firstChild)
                     {
