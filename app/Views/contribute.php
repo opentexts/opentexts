@@ -8,13 +8,13 @@
     </p>
 	
     <h2>Formats accepted</h2>
-	<p>
-            We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
-            <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
-            <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format</a> below.
-            We have also been able to harvest data via <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> and
-            <a href="https://iiif.io/">IIIF discovery</a>, or via custom existing data feeds and APIs.
-        </p>
+    <p>
+        We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
+        <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
+        <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format</a> below.
+        We have also been able to harvest data via <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> and
+        <a href="https://iiif.io/">IIIF discovery</a>, or via custom existing data feeds and APIs.
+    </p>
 
     <p>
         If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> 
@@ -51,11 +51,12 @@
                 <td>No</td>
                 <td>
                     So we know which organisation "owns" the metadata and content - 
-                    this info will be displayed in a facet and in the full record display. E.g.:</br>
-                    </br>
-                    Wellcome Library</br>
-                    National Library of Scotland</br>
-                    HathiTrust</td>
+                    this info will be displayed in a facet and in the full record display. E.g.:<br />
+                    <br />
+                    Wellcome Library<br />
+                    National Library of Scotland<br />
+                    HathiTrust
+                </td>
             </tr>
             <tr>
                 <th scope="row">2</th>
