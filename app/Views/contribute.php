@@ -11,7 +11,7 @@
     <p>
         We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
         <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
-        <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format</a> below.
+        <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format below.
         We have also been able to harvest data via <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> and
         <a href="https://iiif.io/">IIIF discovery</a>, or via custom existing data feeds and APIs.
     </p>
@@ -87,7 +87,8 @@
                 <td>No</td>
                 <td>
                     The URL that is most appropriate for a user to follow to get direct/immediate access to the
-                    content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
+                    content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or 
+                    <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
                 </td>
             </tr>
             <tr>
