@@ -1,6 +1,6 @@
 <main role="main" class="container bg-white w-screen max-w-none pt-16">
     <article class="mx-auto max-w-xl">
-    <h1>Get Involved</h1>
+    <h1>Become a data contributor</h1>
     <p class="intro">
         If you would like to contribute data to be included in OpenTexts.World, please email 
         <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">stuart.lewis@nls.uk and gill.hamilton@nls.uk</a>
@@ -8,17 +8,28 @@
     </p>
 	
     <h2>Formats accepted</h2>
-	<p>
-            We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
-            <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
-            <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format</a> below.</p>
+    <p>
+        We can work with <a href="https://www.loc.gov/marc/bibliographic/" title="MARC21 at Library of Congress, USA">MARC21</a>, 
+        <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/" title="DC terms">Dublin Core</a> or 
+        <a href="https://en.wikipedia.org/wiki/Comma-separated_values" title="comma-separated value at Wikipedia">CSV</a> (comma-separated) files in the format below.
+        We have also been able to harvest data via <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> and
+        <a href="https://iiif.io/">IIIF discovery</a>, or via custom existing data feeds and APIs.
+    </p>
 
-    <p>If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> as we may be able to process and integrate it. We love a challenge!</p>
+    <p>
+        If your data is in another format, please <a href="mailto:stuart.lewis@nls.uk; gill.hamilton@nls.uk">contact us</a> 
+        as we may be able to process and integrate it. We love a challenge!
+    </p>
     
     <h2>Comma-separated format</h2>
-    <p>If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated</a> data please follow the format below. Contact us if you want to include other data/fields that are not represented in the format - we'll try and adapt our tools to accommodate your data.
+    <p>
+        If you are submitting <a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated</a> 
+        data please follow the format below. Contact us if you want to include other data/fields that are not 
+        represented in the format - we'll try and adapt our tools to accommodate your data.
 
-    <p>Repeatable fields must be separated with a '|' pipe.</p>
+    <p>
+        Repeatable fields must be separated with a '|' pipe.
+    </p>
     
     <table class="my-12 md:-mx-40 md:max-w-screen-lg lg:-mx-64 lg:max-w-screen-2xl">
         <thead class="thead-dark">
@@ -40,15 +51,12 @@
                 <td>No</td>
                 <td>
                     So we know which organisation "owns" the metadata and content - 
-                    this info might be displayed in a facet or in the full record display</br>
-                    </br>
-                    Wellcome Library</br>
-                    University of Oxford</br>
-                    University of Cambridge</br>
-                    National Library of Wales</br>
-                    National Library of Scotland</br>
-                    Trinity College, Dublin</br>
-                    The British Library</td>
+                    this info will be displayed in a facet and in the full record display. E.g.:<br />
+                    <br />
+                    Wellcome Library<br />
+                    National Library of Scotland<br />
+                    HathiTrust
+                </td>
             </tr>
             <tr>
                 <th scope="row">2</th>
@@ -79,7 +87,8 @@
                 <td>No</td>
                 <td>
                     The URL that is most appropriate for a user to follow to get direct/immediate access to the
-                    content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
+                    content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or 
+                    <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
                 </td>
             </tr>
             <tr>
@@ -144,6 +153,30 @@
             </tr>
             <tr>
                 <th scope="row">11</th>
+                <td>urlIIIF</td>
+                <td>URL to a IIIF manifest</td>
+                <td>OPTIONAL</td>
+                <td>No</td>
+                <td>URL to a IIIF manifest</td>
+            </tr>
+            <tr>
+                <th scope="row">12</th>
+                <td>urlPlainText</td>
+                <td>URL to a plain text file</td>
+                <td>OPTIONAL</td>
+                <td>No</td>
+                <td>URL to a plain text file</td>
+            </tr>
+            <tr>
+                <th scope="row">13</th>
+                <td>urlALTOXML</td>
+                <td>URL to an ALTO XML file</td>
+                <td>OPTIONAL</td>
+                <td>No</td>
+                <td>URL to an <a href="https://en.wikipedia.org/wiki/ALTO_(XML)">ALTO XML</a> file</td>
+            </tr>
+            <tr>
+                <th scope="row">14</th>
                 <td>urlOther</td>
                 <td>URL of other useful version(s)</td>
                 <td>OPTIONAL</td>
@@ -154,15 +187,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">12</th>
-                <td>urlIIIF</td>
-                <td>URL to a IIIF manifest</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>URL to a IIIF manifest</td>
-            </tr>
-            <tr>
-                <th scope="row">13</th>
+                <th scope="row">15</th>
                 <td>placeOfPublication</td>
                 <td>Place of publication</td>
                 <td>OPTIONAL</td>
@@ -170,7 +195,7 @@
                 <td>May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
             </tr>
             <tr>
-                <th scope="row">14</th>
+                <th scope="row">16</th>
                 <td>licence</td>
                 <td>Licence of the material</td>
                 <td>OPTIONAL</td>
@@ -182,7 +207,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">15</th>
+                <th scope="row">17</th>
                 <td>idOther</td>
                 <td>Other local or external ids</td>
                 <td>OPTIONAL</td>
@@ -190,7 +215,7 @@
                 <td>Other identifiers such as DOIs</td>
             </tr>
             <tr>
-                <th scope="row">16</th>
+                <th scope="row">18</th>
                 <td>catLink</td>
                 <td>A link directly to the item's catalogue record</td>
                 <td>OPTIONAL</td>
@@ -198,12 +223,16 @@
                 <td>A link to the item in your catalogue or discovery system</td>
             </tr>
             <tr>
-                <th scope="row">17</th>
+                <th scope="row">19</th>
                 <td>language</td>
                 <td>language of the resource</td>
                 <td>OPTIONAL</td>
                 <td>No</td>
-                <td>May be in MARC 008 position 35-37 and/or  MARC 041.<a href="https://www.loc.gov/marc/languages/">[code list]</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.</td>
+                <td>
+                    May be in MARC 008 position 35-37 and/or  MARC 041.<a href="https://www.loc.gov/marc/languages/">[code list]</a> or 
+                    <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.
+                    Additional default values of 'Not specified' and 'Undetermined'
+                </td>
             </tr>
         </tbody>
     </table>

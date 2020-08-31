@@ -57,12 +57,12 @@
         <h3>Searching for multiple words</h3>
         <p>
             Normally the results will show any item that contains one or more of the words that 
-            you search for.  For example is you search for <a href="/search?q=cheese+wine">Cheese Wine</a> then all of the
-            results will contain either Cheshire, Cheese, or both of these words.
+            you search for.  For example is you search for <a href="/search?q=fruit_juice">Fruit Juice</a> then all of the
+            results will contain either Fruit, Juice, or both of these words.
         </p>
         <p>
             If you want to only see results that contain both words, search for 
-            <a href="/search?q=cheese+AND+wine">Cheese AND Wine</a> instead.
+            <a href="/search?q=fruit+AND+juice">Fruit AND Juice</a> instead.
         </p>
         
         <h3>Searching for phrases</h3>
@@ -74,8 +74,8 @@
         <h3>Removing words</h3>
         <p>
             It is possible to remove words from searches by putting a minus sign '-' before the word.
-            For example if you want to see all books about cheese but which don't mention wine, then you
-            can search for <a href="/search?q=cheese+-wine">Cheese -Wine</a>.
+            For example if you want to see all books about fruit but which don't mention juice, then you
+            can search for <a href="/search?q=fruit+-juice">Fruit -Juice</a>.
         </p>
         
         <h2>File formats</h2>
