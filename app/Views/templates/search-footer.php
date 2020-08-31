@@ -2,7 +2,7 @@
 
 <button class="button-primary load-more-results<?php if ($count >= $resultcount) echo " invisible"; ?>">More results</button>
 
-<span class="text-gray-700">[<span id="resultCount"><?= $start+1 ?>-<?= $count ?></span>] of <?= number_format($resultcount); ?> results.</span>
+    <span class="text-gray-700">[<span id="resultCount"><?= $start+1 ?>-<?= $count ?></span>] of <span id="resultTotal"><?= number_format($resultcount); ?></span> results.</span>
 
 <a class="link" href="<?= esc($exporturl) ?>" rel=“nofollow”>Download full results.</a>
 </footer>
