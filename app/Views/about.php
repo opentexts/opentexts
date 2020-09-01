@@ -3,7 +3,7 @@
         
         <h1>About</h1>
         <p class="intro">
-            OpenTexts.World is an experimental service developed to provide free access to digitised text collections. 
+            OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world. 
             Initiated during the COVID-19 lock down, it builds on the work of the 
             <a href="https://gddnetwork.arts.gla.ac.uk/index.php/about-us/" title="link to GDD Network">GDD Network</a>.
         </p>
@@ -11,8 +11,8 @@
         <p>
             Every year, libraries worldwide digitise hundreds of thousands of books.  This site helps to make it
             easier to find these from a single location. OpenTexts.World brings together, in a single search, the digitised 
-            collections of a group of libraries. A simple search interface, retrieves brief information about digitised 
-            books and other texts, and provides users with links to  resources.
+            collections of a growing group of worldwide libraries. A simple search interface retrieves brief information about digitised 
+            books and other texts, and provides users with links directly to the resources.
         </p>
         
         <p>
