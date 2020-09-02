@@ -29,7 +29,7 @@ export default class ResultViewController {
 
 
         let dlIcon = publisherDetails.nextElementSibling.firstElementChild;
-        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.ALTOXML, record.urlOther];
+        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML, record.urlOther];
         for(let i = 0; i < 5; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
