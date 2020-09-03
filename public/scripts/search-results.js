@@ -9,6 +9,7 @@ const controller = new ResultsController(template);
 
 const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
 controller.onResultsAdded.addEventListener(function(){
+    isLoading = false;
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
     document.querySelector("#resultTotal").innerText = controller.getTotal();
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
@@ -24,6 +25,8 @@ controller.onResultsAdded.addEventListener(function(){
 });
 
 controller.onResultsRequested.addEventListener(function(){
+    isLoading = true;
+    loadingSpinnerAnim(-1);
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
         element.classList.remove("invisible");
         element.disabled = true;
