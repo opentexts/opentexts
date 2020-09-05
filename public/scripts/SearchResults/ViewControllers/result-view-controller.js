@@ -1,4 +1,4 @@
-import SearchResult from './Models/search-result.js';
+import SearchResult from '../Models/search-result.js';
 export default class ResultViewController {
     /**
      * @param {Node} template - A template to be inflated.

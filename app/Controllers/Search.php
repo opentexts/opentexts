@@ -165,6 +165,10 @@ class Search extends Controller
         endforeach;
         $data['payload'] = array("results" => $resultList, 
                                  "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "filters" =>  array(
+                                     "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
+                                     "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
+                                 ),
                                  "total" => $resultset->getNumFound());
 
         return $data;
@@ -190,7 +194,7 @@ class Search extends Controller
         $this->response->setContentType('Content-Type: application/json');
         
         $data = $this->getData();
-        echo json_encode($data["payload"]["results"]);
+        echo json_encode($data["payload"]);
     }
 
     public function export() 
