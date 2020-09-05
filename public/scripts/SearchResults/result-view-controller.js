@@ -1,4 +1,5 @@
-import SearchResult from '../Models/search-result.js';
+import SearchResult from './Models/search-result.js';
+
 export default class ResultViewController {
     /**
      * @param {Node} template - A template to be inflated.
@@ -27,10 +28,9 @@ export default class ResultViewController {
         publisherDetailsString += record.year || ""
         this.SetInnerHTML(publisherDetails, publisherDetailsString);
 
-
         let dlIcon = publisherDetails.nextElementSibling.firstElementChild;
-        const urls = [record.urlPDF, record.urlIIIF, record.urlOther];
-        for(let i = 0; i < 3; i++) {
+        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML, record.urlOther];
+        for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
                 dlIcon = dlIcon.nextElementSibling;
