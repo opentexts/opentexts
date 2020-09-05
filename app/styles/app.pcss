@@ -56,16 +56,19 @@ p {
 }
 
 /* Buttons */
-.button-primary {
+.button-primary,
+body #doorbell-button {
     @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
     transition: all 200ms ease-in-out;
 }
 
-.button-primary:hover {
+.button-primary:hover,
+body #doorbell-button:hover {
     @apply bg-red-700;
 }
 
-.button-primary:focus {
+.button-primary:focus,
+body #doorbell-button:hover {
     @apply border-blue-400;
 }
 
@@ -127,4 +130,10 @@ p {
 .skeleton>h2{
     margin-top:0;
 }
+
+/* Style the Doorbell button + form */
+body #doorbell-button {
+    @apply rounded-b-none;
+}
+
 @tailwind utilities;
