@@ -53,7 +53,7 @@
             <a><img src="/images/logo-iiif-34x30.png" height="16" width="16" alt="IIIF manifest for this item" /></a>
             <a><img src="/images/txt.png" height="16" width="16" alt="Plain text version of this item" /></a>
             <a><img src="/images/alto-xml.png" height="16" width="16" alt="ALTO XML version of this item" /></a>
-            <a><img src="/images/txt.png" height="16" width="16" alt="Alternative version of this item" /></a>
+            <a><img src="/images/other.png" height="16" width="16" alt="Alternative version of this item" /></a>
         </div>
 
     </div>
