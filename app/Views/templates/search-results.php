@@ -51,16 +51,18 @@
 
         <!-- Publication Information -->
         <span class="text-slate text-opacity-75">
-    <!-- Publisher -->
+            <!-- Publisher -->
             <!-- Place of publication -->
             <!-- Year of publication -->
-</span>
+        </span>
 
         <!-- Icons for different formats -->
         <div class="inline-flex space-x-1">
-            <a><img src="/images/pdf.png" height="16" width="16" /></a>
-            <a><img src="/images/logo-iiif-34x30.png" height="16" width="16" /></a>
-            <a><img src="/images/txt.png" height="16" width="16" /></a>
+            <a><img src="/images/pdf.png" height="16" width="16" alt="PDF version of this item" /></a>
+            <a><img src="/images/logo-iiif-34x30.png" height="16" width="16" alt="IIIF manifest for this item" /></a>
+            <a><img src="/images/txt.png" height="16" width="16" alt="Plain text version of this item" /></a>
+            <a><img src="/images/alto-xml.png" height="16" width="16" alt="ALTO XML version of this item" /></a>
+            <a><img src="/images/other.png" height="16" width="16" alt="Alternative version of this item" /></a>
         </div>
 
     </div>
@@ -121,9 +123,8 @@
 
     </script>
 </div>
+
 <?php
-
-
-// Show the search footer, which loads more results and allows users to export their results.
-include('search-footer.php');
+    // Show the search footer, which loads more results and allows users to export their results.
+    include('search-footer.php');
 ?>
