@@ -50,7 +50,7 @@
                 <td>MANDATORY</td>
                 <td>No</td>
                 <td>
-                    So we know which organisation "owns" the metadata and content - 
+                    So we know which organisation contributed the metadata and content - 
                     this info will be displayed in a facet and in the full record display. E.g.:<br />
                     <br />
                     Wellcome Library<br />
@@ -98,12 +98,22 @@
                 <td>DESIRABLE</td>
                 <td>No</td>
                 <td>
-                    Ideally numeric <a href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
-                    MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
+                    This needs to be numeric and four digits in length as it is used to feed the year filter.
                 </td>
             </tr>
             <tr>
                 <th scope="row">6</th>
+                <td>date</td>
+                <td>Date of publication</td>
+                <td>DESIRABLE</td>
+                <td>No</td>
+                <td>
+                    Ideally numeric but can be any value, <a href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
+                    MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
                 <td>publisher</td>
                 <td>Publisher</td>
                 <td>DESIRABLE</td>
@@ -113,7 +123,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">7</th>
+                <th scope="row">8</th>
                 <td>creator</td>
                 <td>Creator</td>
                 <td>DESIRABLE</td>
@@ -123,7 +133,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">8</th>
+                <th scope="row">9</th>
                 <td>topic</td>
                 <td>Subject or topic</td>
                 <td>DESIRABLE</td>
@@ -132,7 +142,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">9</th>
+                <th scope="row">10</th>
                 <td>description</td>
                 <td>Description</td>
                 <td>DESIRABLE</td>
@@ -142,7 +152,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">10</th>
+                <th scope="row">11</th>
                 <td>urlPDF</td>
                 <td>URL of a PDF</td>
                 <td>OPTIONAL</td>
@@ -152,7 +162,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">11</th>
+                <th scope="row">12</th>
                 <td>urlIIIF</td>
                 <td>URL to a IIIF manifest</td>
                 <td>OPTIONAL</td>
@@ -160,7 +170,7 @@
                 <td>URL to a IIIF manifest</td>
             </tr>
             <tr>
-                <th scope="row">12</th>
+                <th scope="row">13</th>
                 <td>urlPlainText</td>
                 <td>URL to a plain text file</td>
                 <td>OPTIONAL</td>
@@ -168,7 +178,7 @@
                 <td>URL to a plain text file</td>
             </tr>
             <tr>
-                <th scope="row">13</th>
+                <th scope="row">14</th>
                 <td>urlALTOXML</td>
                 <td>URL to an ALTO XML file</td>
                 <td>OPTIONAL</td>
@@ -176,7 +186,7 @@
                 <td>URL to an <a href="https://en.wikipedia.org/wiki/ALTO_(XML)">ALTO XML</a> file</td>
             </tr>
             <tr>
-                <th scope="row">14</th>
+                <th scope="row">15</th>
                 <td>urlOther</td>
                 <td>URL of other useful version(s)</td>
                 <td>OPTIONAL</td>
@@ -187,7 +197,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">15</th>
+                <th scope="row">16</th>
                 <td>placeOfPublication</td>
                 <td>Place of publication</td>
                 <td>OPTIONAL</td>
@@ -195,7 +205,7 @@
                 <td>May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
             </tr>
             <tr>
-                <th scope="row">16</th>
+                <th scope="row">17</th>
                 <td>licence</td>
                 <td>Licence of the material</td>
                 <td>OPTIONAL</td>
@@ -207,7 +217,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">17</th>
+                <th scope="row">18</th>
                 <td>idOther</td>
                 <td>Other local or external ids</td>
                 <td>OPTIONAL</td>
@@ -215,7 +225,7 @@
                 <td>Other identifiers such as DOIs</td>
             </tr>
             <tr>
-                <th scope="row">18</th>
+                <th scope="row">19</th>
                 <td>catLink</td>
                 <td>A link directly to the item's catalogue record</td>
                 <td>OPTIONAL</td>
@@ -223,7 +233,7 @@
                 <td>A link to the item in your catalogue or discovery system</td>
             </tr>
             <tr>
-                <th scope="row">19</th>
+                <th scope="row">20</th>
                 <td>language</td>
                 <td>language of the resource</td>
                 <td>OPTIONAL</td>

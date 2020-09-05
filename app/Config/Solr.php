@@ -10,7 +10,7 @@ class Solr extends BaseConfig
                 'host' => 'solr.opentexts.world',
                 'port' => 80,
                 'path' => '/',
-                'core' => 'otw'
+                'core' => 'otw-v2'
             )
         )
     );
