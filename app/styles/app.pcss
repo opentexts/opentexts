@@ -168,7 +168,22 @@ body #doorbell form {
 }
 
 body #doorbell-container .close {
-    @apply right-0 top-0 mt-2 mr-3 text-2xl text-gray-500 opacity-100 font-medium;
+    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid border-2 border-transparent rounded-full py-1 px-2 leading-4;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+}
+
+#doorbell-close span {
+  vertical-align: 0.25rem;
+}
+
+
+body #doorbell-container .close:hover {
+    @apply text-blue-700;
+}
+
+body #doorbell-container .close:focus {
+    @apply outline-none border-blue-400 text-blue-700;
 }
 
 body #doorbell form legend {
