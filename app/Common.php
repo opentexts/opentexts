@@ -13,3 +13,13 @@
  *
  * @link: https://codeigniter4.github.io/CodeIgniter4/
  */
+
+// Outputs a navigation link for use in a menu. Currently used by both footer and header menus.
+function renderNavLink(string $path, string $name, string $current_path) {
+    $active = $path == $current_path;
+    ?>
+        <li>
+            <a href="<?= $path ?>" class="block <?= $active ? "navigation-link-current" : "navigation-link" ?>"><?= $name ?></a>
+        </li>
+    <?php
+}
