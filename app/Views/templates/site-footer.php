@@ -30,9 +30,9 @@
             <section class="md:col-span-3 opacity-75 text-xs text-center">
                 &copy; <?php echo date('Y'); ?> OpenTexts.world.
                 &middot; 
-                <a href="#" class="text-blue-100">Accessibility</a>
+                <a href="#" class="text-blue-100 hover:text-blue-400">Accessibility</a>
                 &middot;
-                <a href="#" class="text-blue-100">Privacy</a>
+                <a href="#" class="text-blue-100 hover:text-blue-400">Privacy</a>
         </footer>
 
         <script type="text/javascript">
