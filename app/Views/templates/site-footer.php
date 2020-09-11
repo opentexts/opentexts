@@ -12,7 +12,7 @@
                         <img src="/images/open-texts.svg" class="" alt="Open Texts" />
                     </div>
 
-                    <p class="text-xl">OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world.</p>
+                    <p class="text-xl">OpenTexts.world provide free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
                 </section>
 
                 <section>
