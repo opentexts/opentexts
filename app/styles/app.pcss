@@ -33,25 +33,38 @@ p {
 }
 
 /* Navigation links */
-.navigation-link {
+.navigation-primary .navigation-link {
     @apply block text-gray-100 border-2 border-transparent p-2 no-underline;
     transition: all 200ms ease-in-out;
 }
 
-.navigation-link-current {
+.navigation-primary .navigation-link-current {
     @apply block border-2 border-blue-500 p-2 text-blue-500 no-underline;
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
 }
 
-.navigation-link:hover,
-.navigation-link-current:hover {
+.navigation-primary .navigation-link:hover,
+.navigation-primary .navigation-link-current:hover {
     @apply border-2 border-transparent p-2 text-blue-400 no-underline;
 }
 
-.navigation-link:focus,
-.navigation-link-current:focus {
+
+/* Footer mavigation links */
+.navigation-footer .navigation-link,
+.navigation-footer .navigation-link-current {
+    @apply block text-blue-100 py-1 no-underline;
+    transition: all 200ms ease-in-out;
+}
+
+.navigation-footer .navigation-link:hover,
+.navigation-footer .navigation-link-current:hover {
+    @apply text-blue-400;
+}
+
+.navigation-primary .navigation-link:focus,
+.navigation-primary .navigation-link-current:focus {
     @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
 }
 

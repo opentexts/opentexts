@@ -1,4 +1,4 @@
-<nav class="container mx-auto pt-8">
+<nav class="container mx-auto pt-8 navigation-primary">
     <ul class="flex justify-center space-x-8">
         <?php
 

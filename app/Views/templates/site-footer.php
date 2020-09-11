@@ -10,11 +10,17 @@
             </section>
 
             <section>
-                <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Get Involved</li>
-                <li>Help</li>
+                <ul class="navigation-footer text-lg opacity-75">
+                    <?php 
+                    $uri = current_url(true);
+                    $current_path = "/" . $uri->getSegment(1);
+                    
+                    renderNavLink("/", "Home", $current_path);
+                    renderNavLink("/about", "About", $current_path);
+                    renderNavLink("/contribute", "Get Involved", $current_path);
+                    renderNavLink("/help", "Help", $current_path);
+                    ?>
+                </ul>
             </section>
             
             <section class="md:col-span-3 opacity-75 text-xs text-center">
