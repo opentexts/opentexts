@@ -1,24 +1,25 @@
-        <footer role="footer" class="mx-auto max-w-3xl grid md:grid-cols-3 gap-12 justify-center items-center p-6 md:p-12 text-white">
+        <footer role="footer" class="mx-auto max-w-3xl grid md:grid-cols-3 col-gap-24 row-gap-12 justify-center items-center p-6 md:p-12 text-white">
+
             <section class="md:col-span-2">
-                <div class="flex mb-4">
-                    <a href="/"><img src="/images/logo.svg" class="" alt="Open Texts website logo" /></a>
+                <div class="flex mb-6">
+                    <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
                 
-                    <img src="/images/logotype.svg" class="" alt="Open Texts: Opening up a world of digitised texts" />
+                    <img src="/images/open-texts.svg" class="" alt="Open Texts" />
                 </div>
 
-                <p class="text-lg">OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world.</p>
+                <p class="text-xl">OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world.</p>
             </section>
 
             <section>
                 <ul class="navigation-footer text-lg opacity-75">
                     <?php 
-                    $uri = current_url(true);
-                    $current_path = "/" . $uri->getSegment(1);
-                    
-                    renderNavLink("/", "Home", $current_path);
-                    renderNavLink("/about", "About", $current_path);
-                    renderNavLink("/contribute", "Get Involved", $current_path);
-                    renderNavLink("/help", "Help", $current_path);
+                        $uri = current_url(true);
+                        $current_path = "/" . $uri->getSegment(1);
+                        
+                        renderNavLink("/", "Home", $current_path);
+                        renderNavLink("/about", "About", $current_path);
+                        renderNavLink("/contribute", "Get Involved", $current_path);
+                        renderNavLink("/help", "Help", $current_path);
                     ?>
                 </ul>
             </section>
@@ -26,9 +27,9 @@
             <section class="md:col-span-3 opacity-75 text-xs text-center">
                 &copy; <?php echo date('Y'); ?> OpenTexts.world.
                 &middot; 
-                <a href="#">Accessibility</a>
+                <a href="#" class="text-blue-100">Accessibility</a>
                 &middot;
-                <a href="#">Privacy</a>
+                <a href="#" class="text-blue-100">Privacy</a>
         </footer>
 
         <script type="text/javascript">
