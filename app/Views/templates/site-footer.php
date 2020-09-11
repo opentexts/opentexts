@@ -1,28 +1,31 @@
         <footer role="footer" class="mx-auto max-w-3xl grid md:grid-cols-3 col-gap-24 row-gap-12 justify-center items-center p-6 md:p-12 text-white">
+            <?php
+                $uri = current_url(true);
+                $current_path = "/" . $uri->getSegment(1);
 
-            <section class="md:col-span-2">
-                <div class="flex mb-6">
-                    <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
-                
-                    <img src="/images/open-texts.svg" class="" alt="Open Texts" />
-                </div>
+                if($current_path !== "/"):
+            ?>
+                <section class="md:col-span-2">
+                    <div class="flex mb-6">
+                        <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
+                    
+                        <img src="/images/open-texts.svg" class="" alt="Open Texts" />
+                    </div>
 
-                <p class="text-xl">OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world.</p>
-            </section>
+                    <p class="text-xl">OpenTexts.World is an experimental service developed to provide free access to digitised text collections from around the world.</p>
+                </section>
 
-            <section>
-                <ul class="navigation-footer text-lg opacity-75">
-                    <?php 
-                        $uri = current_url(true);
-                        $current_path = "/" . $uri->getSegment(1);
-                        
-                        renderNavLink("/", "Home", $current_path);
-                        renderNavLink("/about", "About", $current_path);
-                        renderNavLink("/contribute", "Get Involved", $current_path);
-                        renderNavLink("/help", "Help", $current_path);
-                    ?>
-                </ul>
-            </section>
+                <section>
+                    <ul class="navigation-footer text-lg opacity-75">
+                        <?php 
+                            renderNavLink("/", "Home", $current_path);
+                            renderNavLink("/about", "About", $current_path);
+                            renderNavLink("/contribute", "Get Involved", $current_path);
+                            renderNavLink("/help", "Help", $current_path);
+                        ?>
+                    </ul>
+                </section>
+                <?php endif; ?>
             
             <section class="md:col-span-3 opacity-75 text-xs text-center">
                 &copy; <?php echo date('Y'); ?> OpenTexts.world.
