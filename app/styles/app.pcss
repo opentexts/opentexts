@@ -52,13 +52,14 @@ p {
 
 .navigation-link:hover,
 .navigation-link-current:hover {
-    @apply border-2 border-transparent p-2 text-blue-400 no-underline;
+    @apply border-transparent text-blue-400;
 }
 
-.navigation-link:focus,
-.navigation-link-current:focus {
-    @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
+.navigation-link:focus-visible,
+.navigation-link-current:focus-visible {
+    @apply border-blue-400 text-white outline-none;
 }
+
 
 /* Buttons */
 .button-primary,
