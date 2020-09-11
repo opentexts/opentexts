@@ -1,4 +1,4 @@
-<main role="main" class="container bg-white w-screen max-w-none pt-16">
+<main role="main" class="container bg-white w-screen max-w-none py-16">
     <article class="mx-auto max-w-xl">
         <h1>Help</h1>
         <p class="intro">
