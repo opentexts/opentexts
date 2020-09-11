@@ -10,10 +10,10 @@ function render_facetset(string $key, ?string $currentValue, string $pluralNoun,
     $defaultValue = "All " . $pluralNoun;
     $multiValue = "Multiple " . $pluralNoun;
     ?>
-    <div data-key="<?= esc($key) ?>" data-plural="<?= esc($pluralNoun) ?>"  tabindex="0" class="outline-none cursor-pointer py-2 mr-6 filter hover:bg-blue-200 focus:outline-none focus:bg-blue-400 py-2 px-3 rounded-full">
+    <div data-key="<?= esc($key) ?>" data-plural="<?= esc($pluralNoun) ?>"  tabindex="0" class="filter outline-none cursor-pointer mr-6 text-gray-700 border-2 border-transparent hover:text-blue-700 focus:text-blue-700 focus:border-blue-500 focus-visible:border-transparent">
         <div class="flex items-center">
-            <span class="text-gray-700 focus:text-blue-700"><?= $currentValue == "" ? $defaultValue : (count($values) > 1 ? $multiValue : $currentValue); ?></span>
-            <span class="text-gray-600 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
+            <span><?= $currentValue == "" ? $defaultValue : (count($values) > 1 ? $multiValue : $currentValue); ?></span>
+            <span class="opacity-75 pl-1 icon-sm"><?php echo file_get_contents('svg/chevron-down.svg'); ?></span>
         </div>
 
     <div class="rounded-md absolute filter-dropdown overflow-y-auto bg-gray-100 shadow-lg -ml-6 z-10">

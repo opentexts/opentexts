@@ -96,6 +96,15 @@ body #doorbell-button:focus,
     visibility: visible;
 }
 
+/* 
+ * Brute-force a transparent border for non-keyboard users. 
+ * This should work via Tailwind classes but for some reason, just doesn't. 
+ * See https://tailwindcss.com/docs/pseudo-class-variants#focus-visible 
+ */
+.filter:focus:not(:focus-visible) {
+    border-color: transparent;
+}
+
 /* Style skeleton loading animation */
 .skeleton {
     background-repeat: no-repeat;
