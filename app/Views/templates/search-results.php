@@ -24,6 +24,15 @@
         include('filter-generic.php');
         render_facetset("organisation", $organisation, "libraries", $organisationfacet);
         render_facetset("language", $language, "languages", $languagefacet);
+        
+        if ($yearfacettype == "century") {
+            render_facetset("century", $century, "centuries", $centuryfacet);
+        } else if ($yearfacettype == "decade") {
+            render_facetset("decade", $decade, "decades", $decadefacet);
+        } else if ($yearfacettype == "year") {
+            render_facetset("year", $year, "years", $yearfacet);
+        }
+        
         ?>
     </form>
 </div>

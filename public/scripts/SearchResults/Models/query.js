@@ -2,7 +2,7 @@
  * A list of currently supported filters in queries.
  * @type {string[]}
  */
-const filters = ["language", "organisation"];
+const filters = ["language", "organisation", "century", "decade", "year"];
 /**
  * @typedef Query
  * @type Class

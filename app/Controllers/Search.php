@@ -54,6 +54,7 @@ class Search extends Controller
                 
         // Get a select query instance
         $query = $client->createSelect();
+        $helper = $query->getHelper();
         $query->setQuery($q);
         
         // Only bring back the fields required
@@ -86,6 +87,28 @@ class Search extends Controller
         }
         $data['language'] = $language;
         
+        // Was a century facet selected?
+        $century = filter_input(INPUT_GET, 'century', FILTER_SANITIZE_SPECIAL_CHARS);
+        $decade = filter_input(INPUT_GET, 'decade', FILTER_SANITIZE_SPECIAL_CHARS);
+        $year = filter_input(INPUT_GET, 'year', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($century)) {
+            $data['selectedcentury'] = $century;
+            $filterQuery = $query->createFilterQuery('fqCentury');
+            $filterQuery = $query->createFilterQuery('year')->setQuery($helper->rangeQuery('year', $century, $century + 99));
+            $query->addFilterQuery($filterQuery);
+            $url = $url . '&century=' . $language;
+            $data['decade'] = $century;
+        } else if (!empty($decade)) {
+            $data['selecteddecade'] = $decade;
+            $filterQuery = $query->createFilterQuery('fqDecade');
+            $filterQuery = $query->createFilterQuery('year')->setQuery($helper->rangeQuery('year', $decade, $decade + 9));
+            $query->addFilterQuery($filterQuery);
+            $url = $url . '&decade=' . $language;
+            $data['year'] = $decade;
+        } else {
+            $data['century'] = "";
+        }
+        
         // Where to start and end the query (pagination)
         $start = 0;
         if (!empty($_GET['start'])) {
@@ -99,9 +122,18 @@ class Search extends Controller
         $facetSet = $query->getFacetSet();
 
         // Create facet field instances
-        $facetSet->createFacetField('orgf')->setField('organisation_facet')->addExclude("filter-org");
-        $facetSet->createFacetField('langf')->setField('language_facet')->addExclude("filter-lang");
-
+        $facetSet->createFacetField('orgf')->setField('organisation_facet')->addExclude("filter-org")->setMinCount(1);
+        $facetSet->createFacetField('langf')->setField('language_facet')->addExclude("filter-lang")->setMinCount(1);
+        
+        // Create the correct year type of facet
+        if (!empty($century)) {
+            $facetSet->createFacetRange('decadef')->setField('year_facet')->setStart($century)->setGap(10)->setEnd($century + 99);
+        } else if (!empty($decade)) {
+            $facetSet->createFacetRange('yearf')->setField('year_facet')->setStart($year)->setGap(1)->setEnd($year + 9);
+        } else {
+            $facetSet->createFacetRange('centuryf')->setField('year_facet')->setStart(1000)->setGap(100)->setEnd(2100);
+        }
+        
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
         $hl->setSimplePrefix('<em class="bg-gray-100 text-current not-italic">');
@@ -114,6 +146,19 @@ class Search extends Controller
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
+        
+        // Send the year facet data to the view
+        if (!empty($century)) {
+            $data['decadefacet'] = $resultset->getFacetSet()->getFacet('decadef');
+            $data['yearfacettype'] = "decade";
+        } else if (!empty($decade)) {
+            $data['yearfacet'] = $resultset->getFacetSet()->getFacet('yearf');
+            $data['yearfacettype'] = "year";
+        } else {
+            $data['centuryfacet'] = $resultset->getFacetSet()->getFacet('centuryf');
+            $data['yearfacettype'] = "century";
+        }
+        
         $data['start'] = $start;
         
         // If there were fewer results returned than the count, update the count
@@ -171,12 +216,27 @@ class Search extends Controller
                 "year" => $document->year
             ));
         endforeach;
+        
+        $queryArray = array("q" => $q, "start" => $start,
+                            "language" => $language, "organisation" => $organisation);
+        
+        $filterArray = array("organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
+                             "language" => $resultset->getFacetSet()->getFacet('langf')->getValues());
+        
+        if (!empty($century)) {
+            array_push($queryArray, array("decade" => ""));
+            array_push($filterArray, array("decade" => $resultset->getFacetSet()->getFacet('decadef')->getValues()));
+        } else if (!empty($decade)) {
+            array_push($queryArray, array("year" => ""));
+            array_push($filterArray, array("year" => $resultset->getFacetSet()->getFacet('yearf')->getValues()));
+        } else {
+            array_push($queryArray, array("century" => $century));
+            array_push($filterArray, array("century" => $resultset->getFacetSet()->getFacet('centuryf')->getValues()));
+        }
+        
         $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
-                                 "filters" =>  array(
-                                     "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
-                                     "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
-                                 ),
+                                 "query" => $queryArray,
+                                 "filters" =>  $filterArray,
                                  "total" => $resultset->getNumFound());
 
         return $data;
@@ -242,6 +302,12 @@ class Search extends Controller
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($language)) {      
             $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        }
+        
+        // Was a year facet selected?
+        $year = filter_input(INPUT_GET, 'year', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($year)) {      
+            $url = $url . '&fq=year_facet:"' . urlencode($year) . '"';
         }
         
         // We want a CSV
