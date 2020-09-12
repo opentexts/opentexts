@@ -17,7 +17,7 @@
 /** @var  string $exporturl */
 /** @var  array $payload */
 ?>
-<div class="container mx-auto max-w-xl mb-8">
+<div class="container mx-auto max-w-xl mb-12">
     <form class="flex">
         <input type="hidden" name="q" value="<?= esc($q) ?>"/>
         <?php
