@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 
+/* Main content container */
+.main-container {
+    @apply bg-white w-screen max-w-none py-16 px-4;
+}
+
 /* Global text styles. */
 a {
     @apply text-blue-700 underline border-2 border-transparent;
@@ -47,25 +52,32 @@ p {
 
 .navigation-link:hover,
 .navigation-link-current:hover {
-    @apply border-2 border-transparent p-2 text-blue-400 no-underline;
+    @apply border-transparent text-blue-400;
 }
 
-.navigation-link:focus,
-.navigation-link-current:focus {
-    @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
+.navigation-link:focus-visible,
+.navigation-link-current:focus-visible {
+    @apply border-blue-400 text-white outline-none;
 }
+
 
 /* Buttons */
-.button-primary {
+.button-primary,
+body #doorbell-button,
+#doorbell .buttons button {
     @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
     transition: all 200ms ease-in-out;
 }
 
-.button-primary:hover {
+.button-primary:hover,
+body #doorbell-button:hover,
+#doorbell .buttons button:hover {
     @apply bg-red-700;
 }
 
-.button-primary:focus {
+.button-primary:focus,
+body #doorbell-button:focus,
+#doorbell .buttons button:focus {
     @apply border-blue-400;
 }
 
@@ -73,6 +85,11 @@ p {
 .icon-sm svg {
     width: 16px;
     height: 16px;
+}
+
+/* Add a border to the search input when focussed. */
+.search-focused {
+    @apply border-2 border-blue-400 !important;
 }
 
 /* Show and hide filter popovers. */
@@ -85,46 +102,153 @@ p {
     visibility: visible;
 }
 
-/* Add a border to the search input when focussed. */
-.search-focused {
-    @apply border-2 border-blue-400 !important;
+/* 
+ * Brute-force a transparent border for non-keyboard users. 
+ * This should work via Tailwind classes but for some reason, just doesn't. 
+ * See https://tailwindcss.com/docs/pseudo-class-variants#focus-visible 
+ */
+.filter:focus:not(:focus-visible) {
+    border-color: transparent;
 }
 
+/* Style skeleton loading animation */
 .skeleton {
     background-repeat: no-repeat;
     background-image:
+        /* Animated overlay */
         linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .8) 50%, rgba(255, 255, 255, 0) 100%),
-        linear-gradient(lightgrey 1.5rem, transparent 0),
-        linear-gradient(lightgrey 2.5rem, transparent 0),
-        linear-gradient(white 100%, transparent 0);
+        /* Heading */
+        linear-gradient(#ECF3F6 2rem, transparent 0),
+        /* Body */
+        linear-gradient(#ECF3F6 4rem, transparent 0);
     background-size:
-        280px 5.5rem,
-        36rem 1.5rem,
-        36rem 2.5rem,
-        100% 100%;
+        280px 7rem,
+        24rem 2rem,
+        36rem 4rem;
     background-position:
         -150% 0,
-        0.5rem 0.5rem,
-        0.5rem 2.5rem,
-        0 0;
-    border-radius: 5px;
-    max-width: 37rem;
-    height: 5.5rem;
-    padding: 0.5rem;
-    opacity: 0.7;
-    animation: loading 1s infinite;
+        0 0rem,
+        0 2.5rem;
+    height: 7rem;
+    opacity: 1;
+    animation: loading 2s infinite ease-in-out;
 }
+
+.skeleton:nth-of-type(1) {
+    animation-delay: 250ms;
+}
+
+.skeleton:nth-of-type(3) {
+    animation-delay: 100ms;
+}
+
+.skeleton:nth-of-type(4) {
+    animation-delay: 200ms;
+}
+
+.skeleton:nth-of-type(5) {
+    animation-delay: 150ms;
+}
+
+.skeleton:nth-of-type(6) {
+    animation-delay: 300ms;
+}
+
 @keyframes loading {
   to {
     background-position:
       250% 0,
-      0.5rem 0.5rem,
-      0.5rem 2.5rem,
-      0 0
-    ;
+      0 0,
+      0 2.5rem;
   }
 }
-.skeleton>h2{
-    margin-top:0;
+
+/* Style the Doorbell button + form */
+body #doorbell-button {
+    @apply rounded-b-none;
 }
+
+body #doorbell-background {
+    @apply bg-gray-900;
+}
+
+@media screen and (max-width: 640px) {
+    body #doorbell {
+        @apply left-0 ml-2;
+        width: calc(100% - 1rem);
+    }
+}
+
+@media screen and (min-width: 641px) {
+    body #doorbell {
+        width: 600px;
+        margin-left: -300px;
+    }
+}
+
+body #doorbell form {
+    @apply rounded-lg bg-white shadow-lg pt-6 px-4 pb-4;
+}
+
+@media screen and (min-width: 640px) {
+    body #doorbell form {
+        @apply pt-8 px-10 pb-6;
+    }
+}
+
+body #doorbell-container .close {
+    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid border-2 border-transparent rounded-full py-1 px-2 leading-4;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+}
+
+#doorbell-close span {
+  vertical-align: 0.25rem;
+}
+
+
+body #doorbell-container .close:hover {
+    @apply text-blue-700;
+}
+
+body #doorbell-container .close:focus {
+    @apply outline-none border-blue-400 text-blue-700;
+}
+
+body #doorbell form legend {
+    @apply hidden;
+}
+
+#doorbell-feedback-label,
+#doorbell-email-label {
+    @apply block w-full max-w-2xl mb-1 text-sm text-gray-800;
+}
+
+#doorbell-feedback,
+#doorbell-email,
+body #doorbell form textarea, 
+body #doorbell form input[type="email"] {
+    @apply block bg-white rounded-md border-2 border-gray-300 p-3 mb-6 text-base text-gray-700 box-border w-full;
+}
+
+body #doorbell form textarea::placeholder, 
+body #doorbell form input[type="email"]::placeholder {
+    color: transparent;
+}
+
+body #doorbell form textarea {
+    @apply h-40;
+}
+
+#doorbell-feedback:focus,
+#doorbell-email:focus,
+body #doorbell form textarea:focus, 
+body #doorbell form input[type="email"]:focus {
+    @apply outline-none text-blue-700 border-blue-400;
+}
+
+body #doorbell #doorbell-powered-by {
+    @apply block text-xs text-gray-600 text-center mt-8;
+}
+
 @tailwind utilities;
