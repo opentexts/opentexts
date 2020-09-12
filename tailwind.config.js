@@ -1,6 +1,7 @@
 module.exports = {
   theme: {
     screens: {
+      xs: '380px', // This is mostly to support a smaller search header!
       sm: '640px',
       md: '768px',
       lg: '1024px',
