@@ -2,6 +2,7 @@
 
 use CodeIgniter\Controller;
 use Solarium\Client;
+use Solarium\Core\Client\Adapter\Curl;
 use Solarium\QueryType\Select\Query\FilterQuery;
 
 helper('form');
@@ -48,6 +49,11 @@ class Search extends Controller
         // Create a client instance
         $client = new Client($config->solarium);
 
+        // Set the solaroum timeout setting from the Solr.php config file
+        $adapter = new Curl();
+        $adapter->setTimeout($config->solariumTimeout);
+        $client->setAdapter($adapter);
+                
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);

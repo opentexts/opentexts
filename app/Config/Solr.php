@@ -14,4 +14,7 @@ class Solr extends BaseConfig
             )
         )
     );
+    
+    // The timeout (in seconds) for solr queries to complete
+    public $solariumTimeout = 10;
 }
