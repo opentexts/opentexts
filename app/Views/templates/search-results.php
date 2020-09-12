@@ -65,7 +65,7 @@
             <a class="text-gray-600">IIIF</a>
             <a class="text-gray-600">Plain-text</a>
             <a class="text-gray-600">ALTO XML</a>
-            <a class="text-gray-600">Alternative</a>
+            <a class="text-gray-600">Other format</a>
         </div>
 
     </div>
