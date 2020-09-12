@@ -1,6 +1,7 @@
 module.exports = {
   theme: {
     screens: {
+      xs: '380px', // This is mostly to support a smaller search header!
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -44,6 +45,13 @@ module.exports = {
         700: '#007EA8',
         800: '#00345C',
         900: '#00204A',
+      },
+      red: {
+        500: '#FA2A4D',
+        600: '#DE0D2D',
+        700: '#B50015',
+        800: '#870005',
+        900: '#520300',
       },
     },
     extend: {

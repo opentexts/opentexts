@@ -157,12 +157,18 @@ class Search extends Controller
                 "urlMain" => $document->urlMain,
                 "urlPDF" => $document->urlPDF,
                 "urlIIIF" => $document->urlIIIF,
+                "urlPlainText" => $document->urlPlainText,
+                "urlALTOXML" => $document->urlALTOXML,
                 "urlOther" => $document->urlOther,
                 "year" => $document->year
             ));
         endforeach;
         $data['payload'] = array("results" => $resultList, 
                                  "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "filters" =>  array(
+                                     "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
+                                     "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
+                                 ),
                                  "total" => $resultset->getNumFound());
 
         return $data;
@@ -188,7 +194,7 @@ class Search extends Controller
         $this->response->setContentType('Content-Type: application/json');
         
         $data = $this->getData();
-        echo json_encode($data["payload"]["results"]);
+        echo json_encode($data["payload"]);
     }
 
     public function export() 
@@ -234,7 +240,7 @@ class Search extends Controller
         $url = $url . "&wt=csv";
         
         // Only export standard fields
-        $url = $url . "&fl=organisation,idLocal,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlOther,urlIIIF,placeOfPublication,licence,idOther,catLink,language";
+        $url = $url . "&fl=organisation,idLocal,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language";
         
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
