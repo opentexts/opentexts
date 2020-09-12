@@ -1,4 +1,4 @@
-<form method="get" action="/search" class="container flex flex-col justify-center items-center max-w-xl mr-2 xs:mr-0">
+<form method="get" action="/search" class="container flex flex-col justify-center items-center max-w-xl">
     <label class="block w-full text-white mb-1 pl-4 text-sm <?php echo isset($q) ? "sr-only" : "" ?>" for="search-input">Search by title, author, date, or subject</label>
 
     <div class="w-full bg-white rounded-full flex border-2 border-transparent" onfocusin="this.classList.add('search-focused')" onfocusout="this.classList.remove('search-focused')">
