@@ -97,14 +97,14 @@ class Search extends Controller
             $filterQuery = $query->createFilterQuery('year')->setQuery($helper->rangeQuery('year', $century, $century + 99));
             $query->addFilterQuery($filterQuery);
             $url = $url . '&century=' . $language;
-            $data['decade'] = $century;
+            $data['decade'] = "";
         } else if (!empty($decade)) {
             $data['selecteddecade'] = $decade;
             $filterQuery = $query->createFilterQuery('fqDecade');
             $filterQuery = $query->createFilterQuery('year')->setQuery($helper->rangeQuery('year', $decade, $decade + 9));
             $query->addFilterQuery($filterQuery);
             $url = $url . '&decade=' . $language;
-            $data['year'] = $decade;
+            $data['year'] = "";
         } else {
             $data['century'] = "";
         }
