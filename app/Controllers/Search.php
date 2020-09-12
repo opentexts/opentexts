@@ -49,7 +49,7 @@ class Search extends Controller
         // Create a client instance
         $client = new Client($config->solarium);
 
-        // Set the solaroum timeout setting from the Solr.php config file
+        // Set the solarium timeout setting from the Solr.php config file
         $adapter = new Curl();
         $adapter->setTimeout($config->solariumTimeout);
         $client->setAdapter($adapter);
