@@ -5,8 +5,6 @@ use Solarium\Client;
 use Solarium\Core\Client\Adapter\Curl;
 use Solarium\QueryType\Select\Query\FilterQuery;
 
-helper('form');
-
 class Search extends Controller
 {
     function applyFilter(FilterQuery $filter, string $facet, string $value) : FilterQuery
@@ -57,6 +55,10 @@ class Search extends Controller
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
+        
+        // Only bring back the fields required
+        $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
+                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther'));
         
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
