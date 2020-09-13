@@ -28,8 +28,9 @@ export default class ResultViewController {
         this.SetInnerHTML(publisherDetails, publisherDetailsString);
 
 
-        let dlIcon = publisherDetails.nextElementSibling.firstElementChild;
-        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML, record.urlOther];
+        let dlIcon = publisherDetails.nextElementSibling.querySelector("a");
+        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML];
+
         for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
@@ -39,6 +40,20 @@ export default class ResultViewController {
                 dlIcon = dlIcon.nextElementSibling;
                 icon.parentElement.removeChild(icon);
             }
+        }
+        if(record.urlOther && record.urlOther.length > 0){
+            for(let i = 0; i < record.urlOther.length; i++){
+
+                if(i === 0) {
+                    dlIcon.href = record.urlOther[i]
+                } else {
+                    const icon = dlIcon.cloneNode(true);
+                    dlIcon.parentElement.appendChild(icon);
+                    icon.href = record.urlOther[i]
+                }
+            }
+        } else {
+            dlIcon.parentElement.removeChild(dlIcon);
         }
         return inflatedRecord;
     }
