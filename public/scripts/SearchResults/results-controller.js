@@ -147,6 +147,8 @@ export default class ResultsController {
         const searchUrl = this._query.buildDirectUrl();
         if(updateHistory) {
             history.pushState(this._query, "", searchUrl)
+            ga('set', 'page', searchUrl);
+            ga('send', 'pageview')
         }
 
         this._container.classList.add("transition-opacity", "duration-300", "opacity-0")
