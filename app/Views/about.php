@@ -27,7 +27,7 @@
             Currently the site provides access to:
         </p>
         <ul class="list-disc list-inside mb-2">
-            <li>Over 3.8 million records (more than 47 miles of books if they were all put on a long bookshelf!)</li>
+            <li>Over 8.3 million records (more than 47 miles of books if they were all put on a long bookshelf!)</li>
             <li>Items in 85 different languages</li>
             <li>Items from as <a href='/search?q="gutenberg%20bible"&organisation=National%20Library%20of%20Scotland'>early as 1455</a> through to many more <a href="/search?q=2020">modern books</a></li>
             <li>Links to different formats where they exist, such as PDF, plain text, and <a href="https://iiif.io/">IIIF manifests</a></li>
@@ -36,6 +36,7 @@
         <h2>Sources</h2>
         <p>OpenTexts.World currently searches digitized content from the following libraries:</p>
         <ul class="list-disc list-inside mb-2">
+            <li><a href="https://www.hathitrust.org/">HathiTrust Digital Library</a> (<a href="/search?organisation=HathiTrust">4,425,106 items</a>)</li>
             <li><a href="https://archive.org/details/americana">Internet Archive American Libraries Collection</a> (<a href="/search?organisation=Internet%20Archive%20Books">3,182,419 items</a>)</li>
             <li><a href="https://digitalnz.org/">DigitalNZ</a> (<a href="/search?organisation=DigitalNZ">244,376 items</a>)</li>
             <li><a href="https://www.bodleian.ox.ac.uk/">Bodleian Libraries, University of Oxford</a> (<a href="/search?organisation=Bodleian%20Libraries">231,088 items</a>)</li>
