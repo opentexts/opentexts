@@ -246,5 +246,6 @@
             </tr>
         </tbody>
     </table>
+
     </article>
 </main>
