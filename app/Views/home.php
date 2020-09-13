@@ -1,4 +1,4 @@
-<main role="main" class="container mx-auto flex flex-col justify-center items-center px-24">
+<main role="main" class="container mx-auto flex flex-col justify-center items-center px-4">
 
   <img src="/images/logo.svg" class="pt-24 pb-8" alt="Open Texts website logo" />
   <img src="/images/logotype.svg" class="pb-24" alt="Open Texts: Opening up a world of digitised texts" />

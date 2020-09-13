@@ -2,9 +2,8 @@
 
 use CodeIgniter\Controller;
 use Solarium\Client;
+use Solarium\Core\Client\Adapter\Curl;
 use Solarium\QueryType\Select\Query\FilterQuery;
-
-helper('form');
 
 class Search extends Controller
 {
@@ -48,9 +47,18 @@ class Search extends Controller
         // Create a client instance
         $client = new Client($config->solarium);
 
+        // Set the solarium timeout setting from the Solr.php config file
+        $adapter = new Curl();
+        $adapter->setTimeout($config->solariumTimeout);
+        $client->setAdapter($adapter);
+                
         // Get a select query instance
         $query = $client->createSelect();
         $query->setQuery($q);
+        
+        // Only bring back the fields required
+        $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
+                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther'));
         
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;

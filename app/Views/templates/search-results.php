@@ -17,7 +17,7 @@
 /** @var  string $exporturl */
 /** @var  array $payload */
 ?>
-<div class="container mx-auto max-w-xl mb-8">
+<div class="container mx-auto max-w-xl mb-12">
     <form class="flex">
         <input type="hidden" name="q" value="<?= esc($q) ?>"/>
         <?php
@@ -28,12 +28,12 @@
     </form>
 </div>
 <div id="result-skeletons" class="hidden">
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
 </div>
 <div>
 

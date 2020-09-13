@@ -1,4 +1,4 @@
-<main role="main" class="container bg-white w-screen max-w-none pt-16">
+<main role="main" class="container main-container pt-6">
 
     <h1 class="sr-only">Search results for <?php echo(esc($q)); ?></h2>
             

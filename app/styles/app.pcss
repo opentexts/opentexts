@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 
+/* Main content container */
+.main-container {
+    @apply bg-white w-screen max-w-none py-16 px-4;
+}
+
 /* Global text styles. */
 a {
     @apply text-blue-700 underline border-2 border-transparent;
@@ -47,7 +52,12 @@ p {
 
 .navigation-primary .navigation-link:hover,
 .navigation-primary .navigation-link-current:hover {
-    @apply border-2 border-transparent p-2 text-blue-400 no-underline;
+    @apply border-transparent text-blue-400;
+}
+
+.navigation-primary .navigation-link:focus-visible,
+.navigation-primary .navigation-link-current:focus-visible {
+    @apply border-blue-400 text-white outline-none;
 }
 
 
@@ -67,6 +77,7 @@ p {
 .navigation-primary .navigation-link-current:focus {
     @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
 }
+
 
 /* Buttons */
 .button-primary,
@@ -94,6 +105,11 @@ body #doorbell-button:focus,
     height: 16px;
 }
 
+/* Add a border to the search input when focussed. */
+.search-focused {
+    @apply border-2 border-blue-400 !important;
+}
+
 /* Show and hide filter popovers. */
 .filter-dropdown {
     max-height: 280px;
@@ -104,47 +120,65 @@ body #doorbell-button:focus,
     visibility: visible;
 }
 
-/* Add a border to the search input when focussed. */
-.search-focused {
-    @apply border-2 border-blue-400 !important;
+/* 
+ * Brute-force a transparent border for non-keyboard users. 
+ * This should work via Tailwind classes but for some reason, just doesn't. 
+ * See https://tailwindcss.com/docs/pseudo-class-variants#focus-visible 
+ */
+.filter:focus:not(:focus-visible) {
+    border-color: transparent;
 }
 
+/* Style skeleton loading animation */
 .skeleton {
     background-repeat: no-repeat;
     background-image:
+        /* Animated overlay */
         linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .8) 50%, rgba(255, 255, 255, 0) 100%),
-        linear-gradient(lightgrey 1.5rem, transparent 0),
-        linear-gradient(lightgrey 2.5rem, transparent 0),
-        linear-gradient(white 100%, transparent 0);
+        /* Heading */
+        linear-gradient(#ECF3F6 2rem, transparent 0),
+        /* Body */
+        linear-gradient(#ECF3F6 4rem, transparent 0);
     background-size:
-        280px 5.5rem,
-        36rem 1.5rem,
-        36rem 2.5rem,
-        100% 100%;
+        280px 7rem,
+        24rem 2rem,
+        36rem 4rem;
     background-position:
         -150% 0,
-        0.5rem 0.5rem,
-        0.5rem 2.5rem,
-        0 0;
-    border-radius: 5px;
-    max-width: 37rem;
-    height: 5.5rem;
-    padding: 0.5rem;
-    opacity: 0.7;
-    animation: loading 1s infinite;
+        0 0rem,
+        0 2.5rem;
+    height: 7rem;
+    opacity: 1;
+    animation: loading 2s infinite ease-in-out;
 }
+
+.skeleton:nth-of-type(1) {
+    animation-delay: 250ms;
+}
+
+.skeleton:nth-of-type(3) {
+    animation-delay: 100ms;
+}
+
+.skeleton:nth-of-type(4) {
+    animation-delay: 200ms;
+}
+
+.skeleton:nth-of-type(5) {
+    animation-delay: 150ms;
+}
+
+.skeleton:nth-of-type(6) {
+    animation-delay: 300ms;
+}
+
 @keyframes loading {
   to {
     background-position:
       250% 0,
-      0.5rem 0.5rem,
-      0.5rem 2.5rem,
-      0 0
-    ;
+      0 0,
+      0 2.5rem;
   }
-}
-.skeleton>h2{
-    margin-top:0;
 }
 
 /* Style the Doorbell button + form */
