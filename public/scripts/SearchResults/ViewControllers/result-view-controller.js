@@ -31,7 +31,7 @@ export default class ResultViewController {
         let dlIcon = publisherDetails.nextElementSibling.querySelector("a");
         const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML];
         let anyUrls = false;
-        for(let i = 0; i < urls; i++){
+        for(let i = 0; i < urls.length; i++){
             if(urls[i]) {
                 anyUrls = true;
                 break;
