@@ -1,5 +1,4 @@
 <header role="header" class="mx-auto max-w-3xl flex justify-center items-center py-4 px-4 xs:space-x-2 sm:py-6 sm:space-x-6">
-
   <a href="/"><img class="hidden xs:block w-12 sm:w-16" src="/images/logo.svg" alt="Open Texts" /></a>
 
   <?php include('search-form.php'); ?>
