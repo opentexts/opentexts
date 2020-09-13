@@ -71,13 +71,6 @@
     <script type="module" src="./scripts/search-results.js"></script>
     <script>
         document.querySelectorAll(".filter").forEach(function(filter){
-            filter.addEventListener('click', function()
-            {
-                if(!this.classList.contains('filter-focus')) {
-                    this.classList.add('filter-focus');
-                }
-            }, true);
-
             filter.addEventListener('keydown', function(event){
                 if(!this.classList.contains('filter-focus'))
                 {
@@ -111,14 +104,6 @@
                 }
 
             })
-
-            filter.addEventListener('blur',  function(){
-                setTimeout(function(){
-                    if(!this.contains(document.activeElement)) {
-                        this.classList.remove('filter-focus')
-                    }
-                }.bind(this),0)
-            }, true)
         })
 
     </script>
