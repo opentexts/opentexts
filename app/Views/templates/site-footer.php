@@ -20,7 +20,7 @@
                         <?php 
                             renderNavLink("/", "Home", $current_path);
                             renderNavLink("/about", "About", $current_path);
-                            renderNavLink("/contribute", "Get Involved", $current_path);
+                            renderNavLink("/contribute", "Contribute", $current_path);
                             renderNavLink("/help", "Help", $current_path);
                         ?>
                     </ul>
