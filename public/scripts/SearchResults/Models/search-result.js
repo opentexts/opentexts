@@ -8,6 +8,8 @@
  * @property {?string} urlMain - The main URL to retrieve the record at.
  * @property {?string} urlPDF - The URL at which the record is kept in PDF format.
  * @property {?string} urlIIIF - The URL at which the record is kept in IIIF format.
+ * @property {?string} urlPlainText - The URL at which the record is kept in plaintext format.
+ * @property {?string} urlALTOXML - The URL at which the record is kept in ALTOXML format.
  * @property {?string[]} urlOther - Other relevant URLs for the record.
  * @property {Number} year - The year of publication
  */
