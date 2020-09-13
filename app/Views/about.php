@@ -27,7 +27,7 @@
             Currently the site provides access to:
         </p>
         <ul class="list-disc list-inside mb-2">
-            <li>Over 8.3 million records (more than 47 miles of books if they were all put on a long bookshelf!)</li>
+            <li>Over 8.3 million records (more than 103 miles of books if they were all put on a long bookshelf!)</li>
             <li>Items in 85 different languages</li>
             <li>Items from as <a href='/search?q="gutenberg%20bible"&organisation=National%20Library%20of%20Scotland'>early as 1455</a> through to many more <a href="/search?q=2020">modern books</a></li>
             <li>Links to different formats where they exist, such as PDF, plain text, and <a href="https://iiif.io/">IIIF manifests</a></li>
