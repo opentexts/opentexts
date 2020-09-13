@@ -30,7 +30,22 @@ export default class ResultViewController {
 
         let dlIcon = publisherDetails.nextElementSibling.querySelector("a");
         const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML];
+        let anyUrls = false;
+        for(let i = 0; i < urls; i++){
+            if(urls[i]) {
+                anyUrls = true;
+                break;
+            }
+        }
+        if(!anyUrls && record.urlOther && record.urlOther.length > 0) {
+            anyUrls = true;
+        }
 
+        if(!anyUrls){
+            const iconStrip = dlIcon.parentNode;
+            iconStrip.parentNode.removeChild(iconStrip);
+            return inflatedRecord;
+        }
         for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
