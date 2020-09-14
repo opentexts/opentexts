@@ -61,7 +61,7 @@ p {
 }
 
 
-/* Footer mavigation links */
+/* Footer navigation links */
 .navigation-footer .navigation-link,
 .navigation-footer .navigation-link-current {
     @apply block text-blue-100 py-1 no-underline;
@@ -73,11 +73,36 @@ p {
     @apply text-blue-400;
 }
 
-.navigation-primary .navigation-link:focus,
-.navigation-primary .navigation-link-current:focus {
+.navigation-footer .navigation-link:focus,
+.navigation-footer .navigation-link-current:focus {
     @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
 }
 
+/* Modal navigation links */
+.navigation-modal .navigation-link,
+.navigation-modal .navigation-link-current {
+    @apply block text-blue-900 text-lg border-2 border-transparent p-2 no-underline;
+    transition: all 200ms ease-in-out;
+}
+
+.navigation-modal .navigation-link:hover,
+.navigation-modal .navigation-link-current:hover {
+    @apply text-blue-700;
+}
+
+.navigation-modal .navigation-link:focus,
+.navigation-modal .navigation-link-current:focus {
+    @apply border-blue-400 text-blue-700 outline-none no-underline;
+}
+
+/* Show and hide modal navigation */
+#navigation-modal-wrapper {
+    transition: all 200ms ease-in-out;
+}
+
+.modal-closed {
+    right: -24rem !important;
+}
 
 /* Buttons */
 .button-primary,
