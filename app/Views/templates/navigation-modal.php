@@ -4,13 +4,11 @@
     </a>
   <ul class="navigation-modal ml-2">
     <?php
-            $uri = current_url(true);
-            $current_path = "/" . $uri->getSegment(1);
-
-            renderNavLink("/", "Home", $current_path);
-            renderNavLink("/about", "About", $current_path);
-            renderNavLink("/contribute", "Contribute", $current_path);
-            renderNavLink("/help", "Help", $current_path);
+        $current_path = getCurrentPage();
+        renderNavLink("/", "Home", $current_path);
+        renderNavLink("/about", "About", $current_path);
+        renderNavLink("/contribute", "Contribute", $current_path);
+        renderNavLink("/help", "Help", $current_path);
         ?>
   </ul>
 </nav>

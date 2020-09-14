@@ -18,6 +18,7 @@
                 <section>
                     <ul class="navigation-footer text-lg opacity-75">
                         <?php 
+                            $current_path = getCurrentPage();
                             renderNavLink("/", "Home", $current_path);
                             renderNavLink("/about", "About", $current_path);
                             renderNavLink("/contribute", "Contribute", $current_path);

@@ -23,3 +23,10 @@ function renderNavLink(string $path, string $name, string $current_path) {
         </li>
     <?php
 }
+
+// Get a reference for the current page.
+function getCurrentPage() {
+    $uri = current_url(true);
+    $current_path = "/" . $uri->getSegment(1);
+    return $current_path;
+}

@@ -9,7 +9,7 @@ class Help extends Controller
         $data['title'] = "Help";
         
         echo view('templates/site-header', $data); 
-        echo view('templates/navigation-primary', $data);
+        echo view('templates/search-header', $data);
         echo view('help');
         echo view('templates/site-footer');
     }
