@@ -74,6 +74,9 @@
     <script type="module" src="./scripts/search-results.js"></script>
     <script>
         document.querySelectorAll(".filter").forEach(function(filter){
+            filter.addEventListener('click', function(event){
+                this._root.classList.add('filter-focus');
+            })
             filter.addEventListener('keydown', function(event){
                 if(!this.classList.contains('filter-focus'))
                 {
