@@ -23,8 +23,8 @@ class Solr extends BaseConfig
             $this->solarium = array(
                 'endpoint' => array(
                     'localhost' => array(
-                        'host' => '18.134.23.60',
-                        'port' => 8983,
+                        'host' => 'solr.opentexts.world',
+                        'port' => 80,
                         'path' => '/',
                         'core' => 'otw-v2'
                     )
