@@ -39,6 +39,8 @@ export default class ResultsController {
         this._total = payload.total;
         this._filterCounts = payload.filters;
         this._processResults(results);
+
+        setTotal(this._total);
     }
 
 
@@ -76,11 +78,15 @@ export default class ResultsController {
         if(replace === false) {
             query.start += this._count;
         }
+        if(!replace) {
+            moreResultsInteraction();
+        }
         this.onResultsRequested.invoke();
         fetch(query.buildDataUrl() )
             .then(r => r.json())
             .then(res => {
                 this._total = res.total;
+                setTotal(this._total);
                 this._filterCounts = res.filters;
                 if(replace === true) {
                     // Empty container of all children
@@ -147,8 +153,7 @@ export default class ResultsController {
         const searchUrl = this._query.buildDirectUrl();
         if(updateHistory) {
             history.pushState(this._query, "", searchUrl)
-            ga('set', 'page', searchUrl);
-            ga('send', 'pageview')
+            sendPageview(searchUrl);
         }
 
         this._container.classList.add("transition-opacity", "duration-300", "opacity-0")
@@ -159,10 +164,14 @@ export default class ResultsController {
     _processResults(results) {
         const that = this;
         results.forEach(function(result){
-            const record = ResultViewController.InflateTemplate(that._template, result)
+            const record = ResultViewController.InflateTemplate(that._template, result, that._count)
             that._container.appendChild(record);
             that._count++;
         })
+        setLoadedTotal(this._count);
+        if(this._count >= this._total) {
+            allResultsLoadedInteraction();
+        }
         this.onResultsAdded.invoke();
     }
 }

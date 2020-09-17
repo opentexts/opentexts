@@ -3,14 +3,16 @@ export default class ResultViewController {
     /**
      * @param {Node} template - A template to be inflated.
      * @param {SearchResult} record - The record to be loaded into the template.
+     * @param {number} index - The record to be loaded into the template.
      */
-    static InflateTemplate(template, record) {
+    static InflateTemplate(template, record, index) {
         const inflatedRecord = template.cloneNode(true);
         const titleNode = inflatedRecord.firstElementChild;
         if(record.urlMain)
         {
             const link = titleNode.firstElementChild;
             link.href = record.urlMain;
+            addOutboundLinkHandler(index, link)
             this.SetInnerHTML(link, record.title);
         }
         else
@@ -49,6 +51,8 @@ export default class ResultViewController {
         for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
+                addOutboundLinkHandler(index, dlIcon)
+                dlIcon.addEventListener('click', handleOutboundLink.bind(null, index))
                 dlIcon = dlIcon.nextElementSibling;
             } else {
                 const icon = dlIcon
@@ -61,10 +65,12 @@ export default class ResultViewController {
 
                 if(i === 0) {
                     dlIcon.href = record.urlOther[i]
+                    addOutboundLinkHandler(index, dlIcon)
                 } else {
                     const icon = dlIcon.cloneNode(true);
                     dlIcon.parentElement.appendChild(icon);
                     icon.href = record.urlOther[i]
+                    addOutboundLinkHandler(index, icon)
                 }
             }
         } else {

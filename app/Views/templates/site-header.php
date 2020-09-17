@@ -8,7 +8,6 @@
           gtag('js', new Date());
           gtag('config', 'UA-171145480-1', { 'anonymize_ip': true });
         </script>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>OpenTexts.world: <?= esc($title); ?></title>
@@ -18,6 +17,7 @@
         <?php if (getenv('CI_ENVIRONMENT') !== 'production'): ?>
           <script src="//localhost:35729/livereload.js"></script>
         <?php endif; ?>
+        <script src="./scripts/analytics.js"></script>
 </head>
 
 <body class=" mx-auto bg-blue-900">
