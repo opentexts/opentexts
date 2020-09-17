@@ -8,6 +8,20 @@ const template = document.querySelector("template#result");
 const controller = new ResultsController(template);
 
 const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
+
+function detectFocus(){
+    filterViewControllers.forEach(fvc => fvc.onFocusChange());
+}
+
+function detectBlur() {
+    setTimeout(function() {
+        filterViewControllers.forEach(fvc => fvc.onFocusChange());
+    }, 0);
+}
+window.addEventListener ? window.addEventListener('focus', detectFocus, true) : window.attachEvent('onfocusout', detectFocus);
+
+window.addEventListener ? window.addEventListener('blur', detectBlur, true) : window.attachEvent('onblur', detectBlur);
+
 controller.onResultsAdded.addEventListener(function(){
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
     document.querySelector("#resultTotal").innerText = controller.getTotal();
@@ -36,22 +50,6 @@ const fetchMoreFunction = controller.fetchMoreResults.bind(controller)
 document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", () => fetchMoreFunction(false));
 })
-
-globalThis.toggleFilter = function(filter, value){
-    var query = controller.getQuery();
-    if(query.filterContainsValue(filter, value)) {
-        query.removeFromFilter(filter, value);
-    } else {
-        query.addToFilter(filter, value);
-    }
-    controller.replaceQuery(query);
-}
-
-globalThis.resetFilter = function(filter) {
-    var query = controller.getQuery()
-    query.resetFilter(filter);
-    controller.replaceQuery(query);
-}
 
 window.addEventListener('popstate', event => {
     if(event.state){

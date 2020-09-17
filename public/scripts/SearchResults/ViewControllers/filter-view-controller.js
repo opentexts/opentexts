@@ -51,9 +51,19 @@ export default class FilterViewController {
             parent.appendChild(elem);
             this._valueElements.push(elem);
         })
+        if(this._root.classList.contains('filter-focus')){
+            this._root.focus()
+        }
         this.setVisualActiveState(this._defaultValueElement, query[this._key].length === 0);
     }
 
+    onFocusChange() {
+        if (!this._root.classList.contains('filter-focus') && this._root.contains(document.activeElement)) {
+            this._root.classList.add('filter-focus');
+        } else if (this._root.classList.contains('filter-focus') && !this._root.contains(document.activeElement)) {
+            this._root.classList.remove('filter-focus');
+        }
+    }
     /**
      * Handles a click on a non-default element
      * @param {MouseEvent} event
