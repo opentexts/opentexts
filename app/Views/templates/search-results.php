@@ -75,7 +75,7 @@
     <script>
         document.querySelectorAll(".filter").forEach(function(filter){
             filter.addEventListener('click', function(event){
-                this._root.classList.add('filter-focus');
+                this.classList.add('filter-focus');
             })
             filter.addEventListener('keydown', function(event){
                 if(!this.classList.contains('filter-focus'))
