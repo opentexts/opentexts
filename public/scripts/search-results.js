@@ -58,3 +58,15 @@ window.addEventListener('popstate', event => {
         controller.replaceQuery(query, false);
     }
 })
+
+const exportLink = document.querySelector("#export");
+exportLink.addEventListener('mouseup', (evt) => {
+    if(evt.button < 2) {
+        exportInteraction()
+    }
+})
+exportLink.addEventListener('keydown', (evt) => {
+    if(evt.keyCode === 13) {
+        exportInteraction()
+    }
+})
