@@ -13,3 +13,9 @@
         ?>
   </ul>
 </nav>
+<?php
+if(!isset($data['payload'])) {
+    ?>
+    <script src="./scripts/static-page.js"></script>
+<?php
+}
