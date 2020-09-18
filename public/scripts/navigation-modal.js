@@ -35,7 +35,8 @@ function navKeyboardHandler(event){
                 event.preventDefault();
                 break;
             case 13:
-                document.activeElement.querySelector("a").click();
+                var link  = document.activeElement.querySelector("a") || document.activeElement;
+                link.click()
                 event.preventDefault();
         }
     }
