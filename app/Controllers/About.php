@@ -9,7 +9,7 @@ class About extends Controller
         $data['title'] = "About";
         
         echo view('templates/site-header', $data); 
-        echo view('templates/navigation-primary', $data);
+        echo view('templates/search-header', $data);
         echo view('about');
         echo view('templates/site-footer');
     }
