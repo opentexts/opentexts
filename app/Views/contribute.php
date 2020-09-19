@@ -31,25 +31,27 @@
         Repeatable fields must be separated with a '|' pipe.
     </p>
     
-    <table class="my-12 md:-mx-40 md:max-w-screen-lg lg:-mx-64 lg:max-w-screen-2xl">
-        <thead class="thead-dark">
+    <table class="my-12 md:-mx-40 md:max-w-screen-lg table-auto border">
+        <thead>
             <tr>
-                <th scope="col">Column</th>
-                <th scope="col">Heading</th>
-                <th scope="col">Content</th>
-                <th scope="col">Requirement</th>
-                <th scope="col">Repeatable</th>
-                <th scope="col">Notes</th>
+                <th scope="col" class="contribute-table__header">Column</th>
+                <th scope="col" class="contribute-table__header">Heading</th>
+                <th scope="col" class="contribute-table__header">Content</th>
+                <th scope="col" class="contribute-table__header">Requirement</th>
+                <th scope="col" class="contribute-table__header">Repeatable</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td>organisation</td>
-                <td>Unique name of provider</td>
-                <td>MANDATORY</td>
-                <td>No</td>
-                <td>
+                <th scope="row" class="contribute-table__cell">1</th>
+                <td class="contribute-table__cell">organisation</td>
+                <td class="contribute-table__cell">Unique name of provider</td>
+                <td class="contribute-table__cell">Mandatory</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     So we know which organisation contributed the metadata and content - 
                     this info will be displayed in a facet and in the full record display. E.g.:<br />
                     <br />
@@ -59,186 +61,256 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row">2</th>
-                <td>idLocal</td>
-                <td>Local identifier</td>
-                <td>MANDATORY</td>
-                <td>No</td>
-                <td>
+                <th scope="row" class="contribute-table__cell">2</th>
+                <td class="contribute-table__cell">idLocal</td>
+                <td class="contribute-table__cell">Local identifier</td>
+                <td class="contribute-table__cell">Mandatory</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     ID from the local system - so each library can look up their 
                     local system if there's a query 
                 </td>
             </tr>
             <tr>
-                <th scope="row">3</th>
-                <td>title</td>
-                <td>Title of the work</td>
-                <td>MANDATORY</td>
-                <td>No</td>
-                <td>
+                <th scope="row" class="contribute-table__cell">3</th>
+                <td class="contribute-table__cell">title</td>
+                <td class="contribute-table__cell">Title of the work</td>
+                <td class="contribute-table__cell">Mandatory</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     For example <a href="https://www.loc.gov/marc/bibliographic/concise/bd245.html">MARC 245 $a $b</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/title">DC terms:title</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">4</th>
-                <td>urlMain</td>
-                <td>URL to access the item</td>
-                <td>MANDATORY</td>
-                <td>No</td>
-                <td>
+                <th class="contribute-table__cell">4</th>
+                <td class="contribute-table__cell">urlMain</td>
+                <td class="contribute-table__cell">URL to access the item</td>
+                <td class="contribute-table__cell">Mandatory</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     The URL that is most appropriate for a user to follow to get direct/immediate access to the
                     content. May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd856.html">MARC 856</a> or 
                     <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier">DC terms:identifier</a>. This will likely be a 'landing page' containing metadata about the item and the item itself.
                 </td>
             </tr>
             <tr>
-                <th scope="row">5</th>
-                <td>year</td>
-                <td>Year of publication</td>
-                <td>DESIRABLE</td>
-                <td>No</td>
-                <td>
+                <th class="contribute-table__cell">5</th>
+                <td class="contribute-table__cell">year</td>
+                <td class="contribute-table__cell">Year of publication</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     This needs to be numeric and four digits in length as it is used to feed the year filter.
                 </td>
             </tr>
             <tr>
-                <th scope="row">6</th>
-                <td>date</td>
-                <td>Date of publication</td>
-                <td>DESIRABLE</td>
-                <td>No</td>
-                <td>
+                <th class="contribute-table__cell">6</th>
+                <td class="contribute-table__cell">date</td>
+                <td class="contribute-table__cell">Date of publication</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     Ideally numeric but can be any value, <a href="https://www.loc.gov/marc/bibliographic/concise/bd008a.html">MARC 008 position 7-10</a> rather than 
                     MARC 260 $c - e.g. preferred to 1884 vs ca.1884). May be in <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/date">DC terms:date</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">7</th>
-                <td>publisher</td>
-                <td>Publisher</td>
-                <td>DESIRABLE</td>
-                <td>Yes</td>
-                <td>
+                <th class="contribute-table__cell">7</th>
+                <td class="contribute-table__cell">publisher</td>
+                <td class="contribute-table__cell">Publisher</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Yes</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $b</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher">DC terms:publisher</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">8</th>
-                <td>creator</td>
-                <td>Creator</td>
-                <td>DESIRABLE</td>
-                <td>Yes</td>
-                <td>
+                <th class="contribute-table__cell">8</th>
+                <td class="contribute-table__cell">creator</td>
+                <td class="contribute-table__cell">Creator</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Yes</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     Author, editor, creator, organisation - any named person/organisation involved in the creation of the work. May be in MARC <a href="https://www.loc.gov/marc/bibliographic/bd1xx.html">1xx</a>, <a href="https://www.loc.gov/marc/bibliographic/bd70x75x.html">7xx</a> and <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">DC terms:creator</a>, <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/contributor">DC terms:contributor</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">9</th>
-                <td>topic</td>
-                <td>Subject or topic</td>
-                <td>DESIRABLE</td>
-                <td>Yes</td>
-                <td>May be in <a href="https://www.loc.gov/marc/bibliographic/bd6xx.html">MARC 6xx</a>, and <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject">DC terms:subject</a>
+                <th class="contribute-table__cell">9</th>
+                <td class="contribute-table__cell">topic</td>
+                <td class="contribute-table__cell">Subject or topic</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Yes</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    May be in <a href="https://www.loc.gov/marc/bibliographic/bd6xx.html">MARC 6xx</a>, and <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject">DC terms:subject</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">10</th>
-                <td>description</td>
-                <td>Description</td>
-                <td>DESIRABLE</td>
-                <td>Yes</td>
-                <td>
+                <th class="contribute-table__cell">10</th>
+                <td class="contribute-table__cell">description</td>
+                <td class="contribute-table__cell">Description</td>
+                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Yes</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     Description about the content. May be in <a href="https://www.loc.gov/marc/bibliographic/bd5xx.html">MARC 5xx</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description">DC terms:description</a>
                 </td>
             </tr>
             <tr>
-                <th scope="row">11</th>
-                <td>urlPDF</td>
-                <td>URL of a PDF</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>
+                <th class="contribute-table__cell">11</th>
+                <td class="contribute-table__cell">urlPDF</td>
+                <td class="contribute-table__cell">URL of a PDF</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     If there is a PDF version of the item
                 </td>
             </tr>
             <tr>
-                <th scope="row">12</th>
-                <td>urlIIIF</td>
-                <td>URL to a IIIF manifest</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>URL to a IIIF manifest</td>
+                <th class="contribute-table__cell">12</th>
+                <td class="contribute-table__cell">urlIIIF</td>
+                <td class="contribute-table__cell">URL to a IIIF manifest</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
             </tr>
             <tr>
-                <th scope="row">13</th>
-                <td>urlPlainText</td>
-                <td>URL to a plain text file</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>URL to a plain text file</td>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    URL to a IIIF manifest
+                </td>
             </tr>
             <tr>
-                <th scope="row">14</th>
-                <td>urlALTOXML</td>
-                <td>URL to an ALTO XML file</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>URL to an <a href="https://en.wikipedia.org/wiki/ALTO_(XML)">ALTO XML</a> file</td>
+                <th class="contribute-table__cell">13</th>
+                <td class="contribute-table__cell">urlPlainText</td>
+                <td class="contribute-table__cell">URL to a plain text file</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+                </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    URL to a plain text file
+                </td>
             </tr>
             <tr>
-                <th scope="row">15</th>
-                <td>urlOther</td>
-                <td>URL of other useful version(s)</td>
-                <td>OPTIONAL</td>
-                <td>Yes</td>
-                <td>
+                <th class="contribute-table__cell">14</th>
+                <td class="contribute-table__cell">urlALTOXML</td>
+                <td class="contribute-table__cell">URL to an ALTO XML file</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    URL to an <a href="https://en.wikipedia.org/wiki/ALTO_(XML)">ALTO XML</a> file
+                </td>
+            </tr>
+            <tr>
+                <th class="contribute-table__cell">15</th>
+                <td class="contribute-table__cell">urlOther</td>
+                <td class="contribute-table__cell">URL of other useful version(s)</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">Yes</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     If there are other URLs for the content that may be useful - perhaps 
                     Google Books URL, or link to the catalogue record of the original
                 </td>
             </tr>
             <tr>
-                <th scope="row">16</th>
-                <td>placeOfPublication</td>
-                <td>Place of publication</td>
-                <td>OPTIONAL</td>
-                <td>Yes</td>
-                <td>May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a></td>
+                <th class="contribute-table__cell">16</th>
+                <td class="contribute-table__cell">placeOfPublication</td>
+                <td class="contribute-table__cell">Place of publication</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">Yes</td>
             </tr>
             <tr>
-                <th scope="row">17</th>
-                <td>licence</td>
-                <td>Licence of the material</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd260.html">MARC 260 $a</a> or <a href="https://www.loc.gov/marc/bibliographic/bd264.html">MARC 264 $a</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/coverage">DC terms:coverage</a>
+                </td>
+            </tr>
+            <tr>
+                <th class="contribute-table__cell">17</th>
+                <td class="contribute-table__cell">licence</td>
+                <td class="contribute-table__cell">Licence of the material</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     May be in <a href="https://www.loc.gov/marc/bibliographic/concise/bd540.html">MARC 540</a> or <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/rights">DC terms:rights</a><br/>
                     <br/>
                     For example CC-BY
                 </td>
             </tr>
             <tr>
-                <th scope="row">18</th>
-                <td>idOther</td>
-                <td>Other local or external ids</td>
-                <td>OPTIONAL</td>
-                <td>Yes</td>
-                <td>Other identifiers such as DOIs</td>
+                <th class="contribute-table__cell">18</th>
+                <td class="contribute-table__cell">idOther</td>
+                <td class="contribute-table__cell">Other local or external ids</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">Yes</td>
             </tr>
             <tr>
-                <th scope="row">19</th>
-                <td>catLink</td>
-                <td>A link directly to the item's catalogue record</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>A link to the item in your catalogue or discovery system</td>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    Other identifiers such as DOIs
+                </td>
             </tr>
             <tr>
-                <th scope="row">20</th>
-                <td>language</td>
-                <td>language of the resource</td>
-                <td>OPTIONAL</td>
-                <td>No</td>
-                <td>
+                <th class="contribute-table__cell">19</th>
+                <td class="contribute-table__cell">catLink</td>
+                <td class="contribute-table__cell">A link directly to the item's catalogue record</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
+                    A link to the item in your catalogue or discovery system
+                </td>
+            </tr>
+            <tr>
+                <th class="contribute-table__cell">20</th>
+                <td class="contribute-table__cell">language</td>
+                <td class="contribute-table__cell">language of the resource</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">No</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="contribute-table__notes"></td>
+                <td colspan="3" class="contribute-table__notes">
                     May be in MARC 008 position 35-37 and/or  MARC 041.<a href="https://www.loc.gov/marc/languages/">[code list]</a> or 
                     <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/language">DC terms:language</a>.
                     Additional default values of 'Not specified' and 'Undetermined'
