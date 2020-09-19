@@ -56,10 +56,13 @@
             <!-- Year of publication -->
         </span>
 
-
+        <!-- Source library -->
+        <div class="mt-2 text-gray-600 text-sm">
+            National Library of Scotland
+        </div>
 
         <!-- Different formats for download -->
-        <div class="flex flex-wrap items-baseline space-x-1 mt-1 text-gray-600 text-sm">
+        <div class="flex flex-wrap items-baseline space-x-1 text-gray-600 text-sm">
             <span>Download:</span>
             <a class="text-gray-600">PDF</a>
             <a class="text-gray-600">IIIF</a>
@@ -67,7 +70,6 @@
             <a class="text-gray-600">ALTO XML</a>
             <a class="text-gray-600">Other format</a>
         </div>
-
     </div>
 
 </template>
