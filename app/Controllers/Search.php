@@ -130,7 +130,7 @@ class Search extends Controller
             $title = $document->title;
             $creators = $document->creator;
             $publishers = $document->publisher;
-            $organisation = $document->organisation;
+            $resultOrganisation = $document->organisation;
             $placesOfPublication = $document->placeOfPublication;
             $highlightedDoc = $resultset->getHighlighting()->getResult($document->id);
 
@@ -156,7 +156,7 @@ class Search extends Controller
                         }
                     }
                     if ($field == "organisation") {
-                        $organisation = $highlight[0];
+                        $resultOrganisation = $highlight[0];
                     }
                 endforeach;
             endif;
@@ -166,7 +166,7 @@ class Search extends Controller
                 "creators" => $creators,
                 "publishers" => $publishers,
                 "placesOfPublication" => $placesOfPublication,
-                "organisation" => $organisation,
+                "organisation" => $resultOrganisation,
                 "urlMain" => $document->urlMain,
                 "urlPDF" => $document->urlPDF,
                 "urlIIIF" => $document->urlIIIF,
