@@ -10,7 +10,7 @@
             Every year, libraries worldwide digitise hundreds of thousands of books. Open Texts brings (some of!) those collections together, allowing you to search across a multitude of different libraries worldwide.        
         </p>
                 
-        <h2>What's on our shelves</h2>
+        <h2>What’s on our shelves</h2>
 
         <p class="text-5xl font-bold text-blue-600 mb-0">3.8 million items</p>
         <p class="text-sm">If you put them all on one very long bookshelf, they’d keep going for over 47 miles!</p>
@@ -41,7 +41,7 @@
             <li><a href="mailto:gill.hamilton@nls.uk">Gill Hamilton</a> (National Library of Scotland)</li>
         </ul>
 
-        <p>We've been grateful for assistance from the <a href="https://www.scottishtecharmy.org/">Scottish Tech Army</a>.</p>
+        <p>We’ve been grateful for assistance from the <a href="https://www.scottishtecharmy.org/">Scottish Tech Army</a>, including:</p>
             <ul>
                 <li>Design: Sarah Semark (<a href="https://octopusthink.com/">Octopus Think</a>)</li>
                 <li>Programming: Brian Beacom</li>
@@ -59,14 +59,5 @@
 
         <h2>Get involved</h2>
         <p>If you’re curious about how everything works, the <a href="https://github.com/opentexts/opentexts/">code for this site</a> is publicly available on GitHub. We welcome your feedback, bug reports, and feature requests—please feel free to <a href="https://github.com/opentexts/opentexts/issues">file an issue</a>!</p>
-            </li>
-            <li>Our content providers who have provided millions of records of digitised texts</li>
-            <li>You? Please get in touch!</li>
-        </ul>
-        <p>
-            The code for the site is available openly at <a href="https://github.com/opentexts/opentexts/">https://github.com/opentexts/opentexts</a>
-            where you are also welcome to <a href="https://github.com/opentexts/opentexts/issues">report bugs</a> or to 
-            <a href="https://github.com/opentexts/opentexts/issues">make feature requests</a>.
-        </p>
     </article>
 </main>
