@@ -12,8 +12,8 @@
                 
         <h2>What’s on our shelves</h2>
 
-        <p class="text-5xl font-bold text-blue-600 mb-0">3.8 million items</p>
-        <p class="text-sm">If you put them all on one very long bookshelf, they’d keep going for over 47 miles!</p>
+        <p class="text-5xl font-bold text-blue-600 mb-0">8.3 million items</p>
+        <p class="text-sm">If you put them all on one very long bookshelf, they’d keep going for over 103 miles!</p>
 
         <p class="text-5xl font-bold text-purple-700 mb-0">85 languages</p>
         <p class="text-sm">From Middle German to Tagalog, if someone’s written it down, it’s probably here.</p>
