@@ -268,8 +268,14 @@ class Search extends Controller
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
+        // Concoct the filename
+        $exportFilename = 'export-' . $q . '-';
+        $exportFilename = str_replace(' ', '_', $exportFilename);
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename);
+        $exportFilename = $exportFilename . date("Ymd") . '.csv';
+        
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=data.csv');
+        header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);
     }
