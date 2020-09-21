@@ -239,14 +239,24 @@ class Search extends Controller
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
         // Quick fix for organisations containing a 's (such as Queen's University Belfast)
         $organisation = str_replace("&#39;s", "'s", $organisation);
-        if (!empty($organisation)) {
-            $url = $url . '&fq=organisation_facet:"' . urlencode($organisation) . '"';
+        $organisations = explode("|", $organisation);
+        $organisationFQ = "";
+        foreach ($organisations as $value) {
+            $organisationFQ = $organisationFQ . '"' . $value . '" ';
+        }
+        if (!empty($organisationFQ)) {
+            $url = $url . '&fq=organisation:(' . urlencode($organisationFQ) . ')';
         }
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {      
-            $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        $languages = explode("|", $language);
+        $languageFQ = "";
+        foreach ($languages as $value) {
+            $languageFQ = $languageFQ . '"' . $value . '" ';
+        }
+        if (!empty($languageFQ)) {      
+            $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
         // We want a CSV
