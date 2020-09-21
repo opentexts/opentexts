@@ -3,10 +3,11 @@
 
   <?php include('search-form.php'); ?>
     
-    <a class="flex ml-2 xs:ml-0 flex-col justify-center items-center text-gray-100 no-underline">
-        <span class="text-opacity-50"><?php echo file_get_contents('svg/menu.svg'); ?></span>
+    <a id="navigation-toggle" tabindex="0" class="flex ml-2 xs:ml-0 flex-col justify-center items-center text-gray-100 no-underline cursor-pointer hover:text-blue-200">
+        <span aria-hidden="true" class="text-opacity-50"><?php echo file_get_contents('svg/menu.svg'); ?></span>
         <span class="text-xs sm:text-sm">Menu</span>
     </a>
-
+  
+    <?php include('navigation-modal.php'); ?>
 
 </header>

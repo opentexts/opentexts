@@ -12,12 +12,13 @@
                         <img src="/images/open-texts.svg" class="" alt="Open Texts" />
                     </div>
 
-                    <p class="text-xl">OpenTexts.world provide free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
+                    <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
                 </section>
 
                 <section>
                     <ul class="navigation-footer text-lg opacity-75">
                         <?php 
+                            $current_path = getCurrentPage();
                             renderNavLink("/", "Home", $current_path);
                             renderNavLink("/about", "About", $current_path);
                             renderNavLink("/contribute", "Contribute", $current_path);
@@ -49,5 +50,6 @@
         </script>
         
         <script src="/scripts/focus-visible.min.js"></script>
+        <script src="/scripts/navigation-modal.js"></script>
     </body>
 </html>

@@ -38,3 +38,10 @@ function renderSuggestedSearch(string $search_string, string $image, string $lab
       $label
     );
 }
+
+// Get a reference for the current page.
+function getCurrentPage() {
+    $uri = current_url(true);
+    $current_path = "/" . $uri->getSegment(1);
+    return $current_path;
+}
