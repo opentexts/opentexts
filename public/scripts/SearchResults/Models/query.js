@@ -106,6 +106,14 @@ export default class Query {
     }
 
     /**
+     * Creates a Url representing this query which will load the export CSV version
+     * @returns {string}
+     */
+    buildExportUrl() {
+        return `/search/export?${this._getQueryString()}`;
+    }
+
+    /**
      * Creates a Url representing this query which will load a JSON response
      * @returns {string}
      */

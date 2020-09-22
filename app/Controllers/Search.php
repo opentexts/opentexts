@@ -239,14 +239,24 @@ class Search extends Controller
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
         // Quick fix for organisations containing a 's (such as Queen's University Belfast)
         $organisation = str_replace("&#39;s", "'s", $organisation);
-        if (!empty($organisation)) {
-            $url = $url . '&fq=organisation_facet:"' . urlencode($organisation) . '"';
+        $organisations = explode("|", $organisation);
+        $organisationFQ = "";
+        foreach ($organisations as $value) {
+            $organisationFQ = $organisationFQ . '"' . $value . '" ';
+        }
+        if (!empty($organisationFQ)) {
+            $url = $url . '&fq=organisation:(' . urlencode($organisationFQ) . ')';
         }
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {      
-            $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        $languages = explode("|", $language);
+        $languageFQ = "";
+        foreach ($languages as $value) {
+            $languageFQ = $languageFQ . '"' . $value . '" ';
+        }
+        if (!empty($languageFQ)) {      
+            $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
         // We want a CSV
@@ -258,8 +268,13 @@ class Search extends Controller
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
+        // Concoct the filename
+        $exportFilename = 'export-' . $q . '-'. date("Ymd") . '.csv';
+        $exportFilename = str_replace(' ', '_', $exportFilename);
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename);
+        
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=data.csv');
+        header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);
     }
