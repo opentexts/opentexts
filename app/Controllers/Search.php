@@ -269,9 +269,9 @@ class Search extends Controller
         $url = $url . "&rows=5000";
         
         // Concoct the filename
-        $exportFilename = 'export-' . $q . '-'. date("Ymd") . '.csv';
+        $exportFilename = 'export-' . $q . '-'. date("Ymd");
         $exportFilename = str_replace(' ', '_', $exportFilename);
-        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename);
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
         
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=' . $exportFilename);
