@@ -24,6 +24,21 @@ function renderNavLink(string $path, string $name, string $current_path) {
     <?php
 }
 
+// Output a suggested search link. Used on the homepage.
+function renderSuggestedSearch(string $search_string, string $image, string $label) {
+    printf(
+    '<li>
+        <a href="https://opentexts.world/search?q=%1$s" class="suggested-search flex flex-col justify-center items-center text-white no-underline hover:text-blue-400">
+          <img class="mb-0" src="/images/%2$s" alt="" />
+          <span class="text-center leading-tight">%3$s</span>
+        </a>
+      </li>',
+      $search_string,
+      $image, 
+      $label
+    );
+}
+
 // Get a reference for the current page.
 function getCurrentPage() {
     $uri = current_url(true);
