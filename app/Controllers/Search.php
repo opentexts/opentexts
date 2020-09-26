@@ -58,7 +58,7 @@ class Search extends Controller
         
         // Only bring back the fields required
         $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
-                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther'));
+                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id'));
         
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q;
