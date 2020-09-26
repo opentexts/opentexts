@@ -33,7 +33,7 @@
                 &middot; 
                 <a href="#" class="text-blue-100 hover:text-blue-400">Accessibility</a>
                 &middot;
-                <a href="#" class="text-blue-100 hover:text-blue-400">Privacy</a>
+                <a href="/privacy" class="text-blue-100 hover:text-blue-400">Privacy</a>
         </footer>
 
         <script type="text/javascript">
