@@ -177,7 +177,7 @@ export default class ResultsController {
     }
     
     _updateExportUrl() {
-        var exportUrlLink = document.getElementById("exportLink");
+        var exportUrlLink = document.getElementById("export");
         exportUrlLink.href = this._query.buildExportUrl();
     }
 }
