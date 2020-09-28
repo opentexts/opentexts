@@ -7,7 +7,7 @@
             ?>
                 <section class="md:col-span-2">
                     <div class="flex mb-6">
-                        <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
+                        <a href="/" class="rounded-full p-2 -m-2"><img src="/images/logo.svg" class="" alt="" /></a>
                     
                         <img src="/images/open-texts.svg" class="" alt="Open Texts" />
                     </div>

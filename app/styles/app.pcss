@@ -8,7 +8,7 @@
 
 /* Global text styles. */
 a {
-    @apply text-blue-700 underline border-2 border-transparent;
+    @apply text-blue-700 underline;
     transition: all 200ms ease-in-out;
 }
 
@@ -17,7 +17,7 @@ a:hover {
 }
 
 a:focus {
-    @apply border-blue-400 outline-none no-underline;
+    @apply no-underline outline-none shadow-focus;
 }
 
 h1 {
@@ -51,15 +51,12 @@ p {
 
 /* Navigation links */
 .navigation-primary .navigation-link {
-    @apply block text-gray-100 border-2 border-transparent p-2 no-underline;
+    @apply block text-gray-100 border-b-2 border-transparent p-2 no-underline;
     transition: all 200ms ease-in-out;
 }
 
 .navigation-primary .navigation-link-current {
-    @apply block border-2 border-blue-500 p-2 text-blue-500 no-underline;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
+    @apply block border-b-2 border-blue-500 p-2 text-blue-500 no-underline;
 }
 
 .navigation-primary .navigation-link:hover,
@@ -69,7 +66,7 @@ p {
 
 .navigation-primary .navigation-link:focus-visible,
 .navigation-primary .navigation-link-current:focus-visible {
-    @apply border-blue-400 text-white outline-none;
+    @apply text-white border-transparent outline-none shadow-focus;
 }
 
 
@@ -88,7 +85,7 @@ p {
 /* Modal navigation links */
 .navigation-modal .navigation-link,
 .navigation-modal .navigation-link-current {
-    @apply block text-blue-900 text-lg border-2 border-transparent p-2 no-underline;
+    @apply block text-blue-900 text-lg p-2 no-underline;
     transition: all 200ms ease-in-out;
 }
 
@@ -99,7 +96,7 @@ p {
 
 .navigation-modal .navigation-link:focus,
 .navigation-modal .navigation-link-current:focus {
-    @apply border-blue-400 text-blue-700 outline-none no-underline;
+    @apply text-blue-700 outline-none no-underline shadow-focus;
 }
 
 /* Show and hide modal navigation */
@@ -116,7 +113,7 @@ p {
 .button-primary,
 body #doorbell-button,
 #doorbell .buttons button {
-    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
+    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
     transition: all 200ms ease-in-out;
 }
 
@@ -129,7 +126,7 @@ body #doorbell-button:hover,
 .button-primary:focus,
 body #doorbell-button:focus,
 #doorbell .buttons button:focus {
-    @apply border-blue-400;
+    @apply no-outline shadow-focus;
 }
 
 /* Extra classes to apply consistent sizing to icons. */
@@ -140,7 +137,7 @@ body #doorbell-button:focus,
 
 /* Add a border to the search input when focussed. */
 .search-focused {
-    @apply border-2 border-blue-400 !important;
+    @apply shadow-focus;
 }
 
 /* Show and hide filter popovers. */
@@ -248,7 +245,7 @@ body #doorbell form {
 }
 
 body #doorbell-container .close {
-    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid border-2 border-transparent rounded-full py-1 px-2 leading-4;
+    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid rounded-full py-1 px-2 leading-4;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
 }
@@ -263,7 +260,7 @@ body #doorbell-container .close:hover {
 }
 
 body #doorbell-container .close:focus {
-    @apply outline-none border-blue-400 text-blue-700;
+    @apply outline-none text-blue-700 shadow-focus;
 }
 
 body #doorbell form legend {
@@ -299,7 +296,7 @@ body #doorbell form textarea {
 #doorbell-email:focus,
 body #doorbell form textarea:focus, 
 body #doorbell form input[type="email"]:focus {
-    @apply outline-none text-blue-700 border-blue-400;
+    @apply outline-none text-blue-700 shadow-focus;
 }
 
 body #doorbell #doorbell-powered-by {
