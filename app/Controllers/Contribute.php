@@ -9,7 +9,7 @@ class Contribute extends Controller
         $data['title'] = "Contribute";
         
         echo view('templates/site-header', $data); 
-        echo view('templates/navigation-primary', $data);
+        echo view('templates/search-header', $data);
         echo view('contribute');
         echo view('templates/site-footer');
     }

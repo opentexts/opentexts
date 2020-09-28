@@ -2,15 +2,15 @@
 
 use CodeIgniter\Controller;
 
-class About extends Controller
+class Accessibility extends Controller
 {
     public function index()
     {
-        $data['title'] = "About";
+        $data['title'] = "Accessibility";
         
         echo view('templates/site-header', $data); 
         echo view('templates/search-header', $data);
-        echo view('about');
+        echo view('accessibility');
         echo view('templates/site-footer');
     }
 

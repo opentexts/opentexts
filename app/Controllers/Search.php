@@ -36,7 +36,7 @@ class Search extends Controller
         $q->applyQuery($query);
         // Only bring back the fields required
         $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
-                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther'));
+                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id'));
         
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q->sanitisedQuery;
@@ -110,6 +110,7 @@ class Search extends Controller
             $title = $document->title;
             $creators = $document->creator;
             $publishers = $document->publisher;
+            $resultOrganisation = $document->organisation;
             $placesOfPublication = $document->placeOfPublication;
             $highlightedDoc = $resultset->getHighlighting()->getResult($document->id);
 
@@ -134,6 +135,9 @@ class Search extends Controller
                             array_push($placesOfPublication, $each);
                         }
                     }
+                    if ($field == "organisation") {
+                        $resultOrganisation = $highlight[0];
+                    }
                 endforeach;
             endif;
 
@@ -142,6 +146,7 @@ class Search extends Controller
                 "creators" => $creators,
                 "publishers" => $publishers,
                 "placesOfPublication" => $placesOfPublication,
+                "organisation" => $resultOrganisation,
                 "urlMain" => $document->urlMain,
                 "urlPDF" => $document->urlPDF,
                 "urlIIIF" => $document->urlIIIF,
@@ -203,14 +208,24 @@ class Search extends Controller
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
         // Quick fix for organisations containing a 's (such as Queen's University Belfast)
         $organisation = str_replace("&#39;s", "'s", $organisation);
-        if (!empty($organisation)) {
-            $url = $url . '&fq=organisation_facet:"' . urlencode($organisation) . '"';
+        $organisations = explode("|", $organisation);
+        $organisationFQ = "";
+        foreach ($organisations as $value) {
+            $organisationFQ = $organisationFQ . '"' . $value . '" ';
+        }
+        if (!empty($organisationFQ)) {
+            $url = $url . '&fq=organisation:(' . urlencode($organisationFQ) . ')';
         }
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {      
-            $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        $languages = explode("|", $language);
+        $languageFQ = "";
+        foreach ($languages as $value) {
+            $languageFQ = $languageFQ . '"' . $value . '" ';
+        }
+        if (!empty($languageFQ)) {      
+            $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
         // We want a CSV
@@ -222,8 +237,13 @@ class Search extends Controller
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
+        // Concoct the filename
+        $exportFilename = 'export-' . $q . '-'. date("Ymd");
+        $exportFilename = str_replace(' ', '_', $exportFilename);
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
+        
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=data.csv');
+        header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);
     }

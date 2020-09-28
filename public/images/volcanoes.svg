@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="600px" viewBox="0 0 600 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>volcanoes</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#1C0D2F" offset="0%"></stop>
+            <stop stop-color="#2B1B40" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="volcanoes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="url(#linearGradient-1)" cx="300" cy="300" r="240"></circle>
+        <path d="M373,305 L459.589548,479.255043 C417.17845,517.040242 361.270494,540 300,540 C238.728913,540 182.820469,517.039798 140.409221,479.253947 L227,305 L373,305 Z" id="Combined-Shape" fill="#00204A"></path>
+        <path d="M211.000259,305 L297.589808,479.255043 C255.640555,516.628771 200.486799,539.49819 140,539.991842 L140,305 L211.000259,305 Z" id="Combined-Shape" fill="#000000" opacity="0.174316406" transform="translate(218.794904, 422.495921) scale(-1, 1) translate(-218.794904, -422.495921) "></path>
+        <polygon id="Rectangle" fill="#870005" points="233 240.241573 361 243.117978 327.921348 338.039326 264.640449 338.758427"></polygon>
+        <polygon id="Path-8" fill="#B50015" points="264 257 297 339 333 258"></polygon>
+        <rect id="Rectangle" fill="#870005" x="271" y="296" width="55" height="21"></rect>
+        <path d="M373,305 L433.038707,425.823 L433,427 C420.132653,427 417.064549,411.608365 413.122218,405.195448 L413,405 C406,394 393.714844,395.3125 391,404 C386.109829,419.648548 420.460938,464.53125 381.730469,478.265625 C343,492 331.344317,409.249841 329.332031,384.429688 C328,368 308.567484,368.719028 304.207031,371.285156 C286,382 296.607517,404.173369 294.554688,417.089844 C293.991185,420.635424 291,444 266,438 C252.255995,434.701439 254.611675,420.20181 257.452642,405.612581 L257.788171,403.896457 C260.419264,390.460753 262.942461,377.319023 253.136719,373.167969 C238.032005,366.773706 229.370447,387.900082 226.96875,394.285156 C221.711537,408.261811 220.709739,423.475665 219.756493,438.737508 L219.60577,441.147498 L219.60577,441.147498 L219.452175,443.557246 C218.801097,453.59591 217.979366,463.601163 215.789063,473.234375 C214.191339,480.261352 202.821776,490.205846 195.097656,487.601563 C177.011688,481.503651 180.662179,457.589215 183.066406,444.035156 C187.603978,418.454174 196.406305,402.620727 190.140946,379.179907 L227,305 L373,305 Z" id="Combined-Shape" fill="#B50015"></path>
+        <g id="stars" opacity="0.382324219" transform="translate(123.000000, 124.000000)" fill="#F5F8FA" stroke="#F5F8FA" stroke-width="0.5">
+            <g id="star-point" transform="translate(0.000000, 158.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+            <g id="star-point" transform="translate(349.000000, 142.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+            <g id="star-point" transform="translate(54.000000, 3.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+            <g id="star-point" transform="translate(28.000000, 200.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+            <g id="star-point" transform="translate(330.000000, 222.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+            <g id="star-point" transform="translate(306.000000, 0.000000)">
+                <circle id="Oval" cx="4" cy="4" r="4"></circle>
+            </g>
+        </g>
+        <g id="lower-cloud" transform="translate(150.000000, 152.000000)" fill="#68CFF7">
+            <circle id="Oval-Copy-11" cx="37" cy="55" r="37"></circle>
+            <circle id="Oval-Copy-14" cx="267" cy="55" r="37"></circle>
+            <circle id="Oval-Copy-12" cx="112.5" cy="65.5" r="65.5"></circle>
+            <circle id="Oval-Copy-13" cx="189.5" cy="65.5" r="61.5"></circle>
+        </g>
+        <g id="upper-cloud" transform="translate(148.000000, 107.000000)" fill="#BAEAFF">
+            <circle id="Oval-Copy-16" cx="259" cy="86" r="37"></circle>
+            <circle id="Oval-Copy-20" cx="193" cy="102" r="45"></circle>
+            <circle id="Oval-Copy-22" cx="116.5" cy="97.5" r="55.5"></circle>
+            <circle id="Oval-Copy-21" cx="37" cy="86" r="37"></circle>
+            <circle id="Oval-Copy-19" cx="225" cy="59" r="37"></circle>
+            <circle id="Oval-Copy-17" cx="104.5" cy="65.5" r="60.5"></circle>
+            <circle id="Oval-Copy-18" cx="175.5" cy="49.5" r="49.5"></circle>
+        </g>
+    </g>
+</svg>

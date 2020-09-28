@@ -1,9 +1,7 @@
 <nav class="container mx-auto pt-8 px-4 navigation-primary">
     <ul class="flex justify-center space-x-2 sm:space-x-8">
         <?php
-            $uri = current_url(true);
-            $current_path = "/" . $uri->getSegment(1);
-
+            $current_path = getCurrentPage();
             renderNavLink("/", "Home", $current_path);
             renderNavLink("/about", "About", $current_path);
             renderNavLink("/contribute", "Contribute", $current_path);
