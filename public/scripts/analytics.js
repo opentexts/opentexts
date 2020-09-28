@@ -1,5 +1,5 @@
 let analyticsDebug = {}
-const debug = true;
+const debug = false;
 
 function pushAnalytics(dataObject) {
     if(debug) {
