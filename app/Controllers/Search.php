@@ -19,6 +19,7 @@ class Search extends Controller
     function getData()
     {
         $config = config('Solr');
+        $include_score = getenv('CI_ENVIRONMENT') !== 'production' && isset($_GET['debug_score']);
 
         $q = new OTQuery(filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS));
 
@@ -35,8 +36,13 @@ class Search extends Controller
         $query = $client->createSelect();
         $q->applyQuery($query);
         // Only bring back the fields required
-        $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
-                                'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id'));
+        $fl = array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year',
+            'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id');
+        if($include_score)
+        {
+            array_push($fl, "score");
+        }
+        $query->setFields($fl);
         
         // Generate the URL without pagination details
         $url = '/search/?q=' . $q->sanitisedQuery;
@@ -95,6 +101,7 @@ class Search extends Controller
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['start'] = $start;
+        $data['include_score'] = $include_score;
         
         // If there were fewer results returned than the count, update the count
         if ($resultset->getNumFound() < $count) $count = $resultset->getNumFound();
@@ -153,11 +160,12 @@ class Search extends Controller
                 "urlPlainText" => $document->urlPlainText,
                 "urlALTOXML" => $document->urlALTOXML,
                 "urlOther" => $document->urlOther,
-                "year" => $document->year
+                "year" => $document->year,
+                "score" => $document->score
             ));
         endforeach;
         $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "query" => array("q" => $q->sanitisedQuery, "start" => $start, "language" => $language, "organisation" => $organisation),
                                  "filters" =>  array(
                                      "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
                                      "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
@@ -238,7 +246,7 @@ class Search extends Controller
         $url = $url . "&rows=5000";
         
         // Concoct the filename
-        $exportFilename = 'export-' . $q . '-'. date("Ymd");
+        $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
         $exportFilename = str_replace(' ', '_', $exportFilename);
         $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
         

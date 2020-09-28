@@ -7,7 +7,7 @@ class EContext {
     const GLOBAL = 0;
     const QUOTES = 1;
 }
-
+const FUZZY_SEARCH_ENABLED = true;
 class OTQuery
 {
     public $isValid = true;
@@ -110,6 +110,11 @@ class OTQuery
         if ((empty($this->solrSafeQuery)) || ($this->solrSafeQuery == "")) {
             $this->solrSafeQuery = "*";
         }
+        if (getenv('CI_ENVIRONMENT') !== 'production') {
+            $log = fopen("/var/www/writable/query.log", "a");
+            fwrite($log, $this->sanitisedQuery . " -> " . $this->solrSafeQuery . "\n");
+            fclose($log);
+        }
     }
 
     function buildQueryPart(Array $term, bool $mustInclude, bool $mustNotInclude) : string {
@@ -117,8 +122,12 @@ class OTQuery
         $multiWord = str_contains($finalTerm, " ");
         $expr = "";
         $lcase = strtolower($finalTerm);
+        $fuzzy = FUZZY_SEARCH_ENABLED && strlen($finalTerm) > 5 && !$mustInclude && !$mustNotInclude;
         if($lcase == "and" || $lcase == "or") {
             return $expr;
+        }
+        if ($fuzzy){
+            return "(" . $finalTerm . "^2 OR " . $finalTerm . "~) ";
         }
         if($mustInclude) {
             $expr .= "+";
@@ -131,8 +140,6 @@ class OTQuery
         $expr .= $finalTerm;
         if($multiWord) {
             $expr .= "\"";
-        } elseif (strlen($finalTerm) > 5 && !$mustInclude && !$mustNotInclude){
-            $expr .= "~";
         }
         $expr .= " ";
         return $expr;
