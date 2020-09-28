@@ -12,13 +12,13 @@
                 
         <h2>What’s on our shelves</h2>
 
-        <p class="text-5xl font-bold text-blue-600 mb-0">8.3 million items</p>
+        <p class="text-5xl font-bold text-blue-600 mb-1 leading-none">8.3 million items</p>
         <p class="text-sm">If you put them all on one very long bookshelf, they’d keep going for over 103 miles!</p>
 
-        <p class="text-5xl font-bold text-purple-700 mb-0">85 languages</p>
+        <p class="text-5xl font-bold text-blue-700 mb-1 leading-none">85 languages</p>
         <p class="text-sm">From Middle German to Tagalog, if someone’s written it down, it’s probably here.</p>
 
-        <p class="text-5xl font-bold text-purple-500 mb-0">15th century onward</p>
+        <p class="text-5xl font-bold text-blue-800 mb-1 leading-none">15th century onward</p>
         <p class="text-sm">We have records from as early as <a href='/search?q="gutenberg%20bible"&organisation=National%20Library%20of%20Scotland'>1455</a> through to many more <a href="/search?q=2020">modern books</a>.
     
         <h2>Where our records come from</h2>
