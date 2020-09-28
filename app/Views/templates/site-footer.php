@@ -6,18 +6,18 @@
                 if($current_path !== "/"):
             ?>
                 <section class="md:col-span-2">
-                    <div class="flex mb-6">
-                        <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
-                    
-                        <img src="/images/open-texts.svg" class="" alt="Open Texts" />
-                    </div>
+                    <a href="/" class="rounded-sm p-2 flex mb-4">
+                        <img src="/images/logo.svg" class="w-12 sm:w-16 -ml-2 sm:-mr-1" alt="" />                    
+                        <img src="/images/open-texts.svg" class="w-full max-w-sm" alt="Open Texts" />
+                    </a>
 
-                    <p class="text-xl">OpenTexts.world provide free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
+                    <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
                 </section>
 
                 <section>
                     <ul class="navigation-footer text-lg opacity-75">
                         <?php 
+                            $current_path = getCurrentPage();
                             renderNavLink("/", "Home", $current_path);
                             renderNavLink("/about", "About", $current_path);
                             renderNavLink("/contribute", "Contribute", $current_path);
@@ -30,9 +30,9 @@
             <section class="md:col-span-3 opacity-75 text-xs text-center">
                 &copy; <?php echo date('Y'); ?> OpenTexts.world.
                 &middot; 
-                <a href="#" class="text-blue-100 hover:text-blue-400">Accessibility</a>
+                <a href="/accessibility" class="text-blue-100 hover:text-blue-400">Accessibility</a>
                 &middot;
-                <a href="#" class="text-blue-100 hover:text-blue-400">Privacy</a>
+                <a href="/privacy" class="text-blue-100 hover:text-blue-400">Privacy</a>
         </footer>
 
         <script type="text/javascript">
@@ -49,5 +49,6 @@
         </script>
         
         <script src="/scripts/focus-visible.min.js"></script>
+        <script src="/scripts/navigation-modal.js"></script>
     </body>
 </html>

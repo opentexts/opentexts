@@ -11,11 +11,13 @@ const filterViewControllers = Array.from(document.querySelectorAll(".filter")).m
 
 function detectFocus(){
     filterViewControllers.forEach(fvc => fvc.onFocusChange());
+    navHandleFocusChange();
 }
 
 function detectBlur() {
     setTimeout(function() {
         filterViewControllers.forEach(fvc => fvc.onFocusChange());
+        navHandleFocusChange();
     }, 0);
 }
 window.addEventListener ? window.addEventListener('focus', detectFocus, true) : window.attachEvent('onfocusout', detectFocus);

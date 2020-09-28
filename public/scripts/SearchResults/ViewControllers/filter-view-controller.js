@@ -67,9 +67,7 @@ export default class FilterViewController {
     }
 
     onFocusChange() {
-        if (!this._root.classList.contains('filter-focus') && this._root.contains(document.activeElement)) {
-            this._root.classList.add('filter-focus');
-        } else if (this._root.classList.contains('filter-focus') && !this._root.contains(document.activeElement)) {
+        if (this._root.classList.contains('filter-focus') && !this._root.contains(document.activeElement)) {
             this._root.classList.remove('filter-focus');
         }
     }

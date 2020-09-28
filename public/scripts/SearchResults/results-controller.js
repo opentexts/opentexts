@@ -159,6 +159,7 @@ export default class ResultsController {
         this._container.classList.add("transition-opacity", "duration-300", "opacity-0")
         setTimeout(()=>document.querySelector("#result-skeletons").classList.remove("hidden"), 300)
         this.fetchMoreResults(true);
+        this._updateExportUrl();
     }
 
     _processResults(results) {
@@ -173,5 +174,10 @@ export default class ResultsController {
             allResultsLoadedInteraction();
         }
         this.onResultsAdded.invoke();
+    }
+    
+    _updateExportUrl() {
+        var exportUrlLink = document.getElementById("exportLink");
+        exportUrlLink.href = this._query.buildExportUrl();
     }
 }

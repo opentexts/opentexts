@@ -3,12 +3,12 @@
 
 /* Main content container */
 .main-container {
-    @apply bg-white w-screen max-w-none py-16 px-4;
+    @apply bg-white w-screen max-w-none py-16 px-4 overflow-x-hidden;
 }
 
 /* Global text styles. */
 a {
-    @apply text-blue-700 underline border-2 border-transparent;
+    @apply text-blue-700 underline;
     transition: all 200ms ease-in-out;
 }
 
@@ -17,37 +17,46 @@ a:hover {
 }
 
 a:focus {
-    @apply border-blue-400 outline-none no-underline;
+    @apply no-underline outline-none shadow-focus;
 }
 
 h1 {
-    @apply text-gray-700 text-2xl leading-tight mb-2;
+    @apply text-gray-700 text-3xl leading-tight mb-6;
 }
 
 h2 {
-    @apply text-gray-700 text-xl leading-tight mb-1 mt-8;
+    @apply text-gray-700 text-2xl leading-tight mb-4 mt-12;
+}
+
+h3 {
+    @apply text-gray-700 text-lg leading-tight mb-2 mt-8;
 }
 
 p {
-    @apply mb-2;
+    @apply mb-6;
+}
+
+.main-container article ul {
+    @apply list-disc list-outside mb-6;
+}
+
+.main-container article li {
+    @apply leading-snug mb-1;
 }
 
 /* Use for intro paragraphs of text. */
 .intro {
-    @apply text-lg text-gray-700 text-opacity-75 mb-10;
+    @apply text-lg text-gray-600 mb-6 mt-6;
 }
 
 /* Navigation links */
 .navigation-primary .navigation-link {
-    @apply block text-gray-100 border-2 border-transparent p-2 no-underline;
+    @apply block text-gray-100 border-b-2 border-transparent p-2 no-underline;
     transition: all 200ms ease-in-out;
 }
 
 .navigation-primary .navigation-link-current {
-    @apply block border-2 border-blue-500 p-2 text-blue-500 no-underline;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
+    @apply block border-b-2 border-blue-500 p-2 text-blue-500 no-underline;
 }
 
 .navigation-primary .navigation-link:hover,
@@ -57,11 +66,11 @@ p {
 
 .navigation-primary .navigation-link:focus-visible,
 .navigation-primary .navigation-link-current:focus-visible {
-    @apply border-blue-400 text-white outline-none;
+    @apply text-white border-transparent outline-none shadow-focus;
 }
 
 
-/* Footer mavigation links */
+/* Footer navigation links */
 .navigation-footer .navigation-link,
 .navigation-footer .navigation-link-current {
     @apply block text-blue-100 py-1 no-underline;
@@ -73,17 +82,38 @@ p {
     @apply text-blue-400;
 }
 
-.navigation-primary .navigation-link:focus,
-.navigation-primary .navigation-link-current:focus {
-    @apply border-2 border-blue-400 p-2 text-white outline-none no-underline;
+/* Modal navigation links */
+.navigation-modal .navigation-link,
+.navigation-modal .navigation-link-current {
+    @apply block text-blue-900 text-lg p-2 no-underline;
+    transition: all 200ms ease-in-out;
 }
 
+.navigation-modal .navigation-link:hover,
+.navigation-modal .navigation-link-current:hover {
+    @apply text-blue-700;
+}
+
+.navigation-modal .navigation-link:focus,
+.navigation-modal .navigation-link-current:focus {
+    @apply text-blue-700 outline-none no-underline shadow-focus;
+}
+
+/* Show and hide modal navigation */
+#navigation-modal-wrapper {
+    transition: all 200ms ease-in-out;
+}
+
+.modal-closed {
+    right: -24rem !important;
+    visibility: collapse;
+}
 
 /* Buttons */
 .button-primary,
 body #doorbell-button,
 #doorbell .buttons button {
-    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100 border-2 border-transparent;
+    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
     transition: all 200ms ease-in-out;
 }
 
@@ -96,7 +126,7 @@ body #doorbell-button:hover,
 .button-primary:focus,
 body #doorbell-button:focus,
 #doorbell .buttons button:focus {
-    @apply border-blue-400;
+    @apply outline-none shadow-focus;
 }
 
 /* Extra classes to apply consistent sizing to icons. */
@@ -107,7 +137,7 @@ body #doorbell-button:focus,
 
 /* Add a border to the search input when focussed. */
 .search-focused {
-    @apply border-2 border-blue-400 !important;
+    @apply shadow-focus;
 }
 
 /* Show and hide filter popovers. */
@@ -215,7 +245,7 @@ body #doorbell form {
 }
 
 body #doorbell-container .close {
-    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid border-2 border-transparent rounded-full py-1 px-2 leading-4;
+    @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid rounded-full py-1 px-2 leading-4;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
 }
@@ -230,7 +260,7 @@ body #doorbell-container .close:hover {
 }
 
 body #doorbell-container .close:focus {
-    @apply outline-none border-blue-400 text-blue-700;
+    @apply outline-none text-blue-700 shadow-focus;
 }
 
 body #doorbell form legend {
@@ -266,11 +296,63 @@ body #doorbell form textarea {
 #doorbell-email:focus,
 body #doorbell form textarea:focus, 
 body #doorbell form input[type="email"]:focus {
-    @apply outline-none text-blue-700 border-blue-400;
+    @apply outline-none text-blue-700 shadow-focus;
 }
 
 body #doorbell #doorbell-powered-by {
     @apply block text-xs text-gray-600 text-center mt-8;
+}
+
+/* Suggested search icons */
+.suggested-search:hover img {
+   transform: scale(110%);
+   transition: all 200ms ease-in;
+}
+
+/* Contribute table */
+.contribute-table__header {
+    @apply bg-gray-100 px-6 py-4 text-sm font-normal uppercase text-gray-700 tracking-wider text-left;
+}
+
+.contribute-table__cell {
+    @apply border-t px-6 py-4 text-sm text-left text-gray-900 font-normal;
+}
+
+.contribute-table__notes td {
+    @apply px-6 pb-6 text-gray-600 text-sm;
+}
+
+@media only screen and (max-width: 767px) {
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	.contribute-table__header { 
+		@apply sr-only;
+	}
+	
+	.contribute-table__cell { 
+        @apply pl-3 pt-4 pb-0 text-xs border-0 relative;
+		padding-left: 50%; 
+	}
+
+    .contribute-table__notes {
+        @apply border-b;
+    }
+
+    .contribute-table__notes td {
+        @apply px-3 pb-4 text-xs;
+    }
+	
+	.contribute-table__cell:before { 
+        @apply pl-3 pt-4 text-xs font-normal uppercase text-gray-700 tracking-wide whitespace-no-wrap absolute w-1/2 top-0 left-0;
+	}
+	
+	.contribute-table__cell:nth-of-type(1):before { content: "Heading"; }
+	.contribute-table__cell:nth-of-type(2):before { content: "Content"; }
+	.contribute-table__cell:nth-of-type(3):before { content: "Requirement"; }
+	.contribute-table__cell:nth-of-type(4):before { content: "Repeatable"; }
 }
 
 @tailwind utilities;

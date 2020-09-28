@@ -29,8 +29,10 @@ export default class ResultViewController {
         publisherDetailsString += record.year || ""
         this.SetInnerHTML(publisherDetails, publisherDetailsString);
 
+        const libraryDetails = publisherDetails.nextElementSibling;
+        this.SetInnerHTML(libraryDetails, record.organisation);
 
-        let dlIcon = publisherDetails.nextElementSibling.querySelector("a");
+        let dlIcon = libraryDetails.nextElementSibling.querySelector("a");
         const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML];
         let anyUrls = false;
         for(let i = 0; i < urls.length; i++){
