@@ -6,7 +6,7 @@
   <?php include('templates/search-form.php'); ?>
 
   <div class="container max-w-xl pt-12 pb-6">
-    <h2 class="text-md text-blue-200 mb-4 text-center">Try these searches!</h2>
+    <h2 class="text-md text-gray-200 mb-4 text-center">Try these searches!</h2>
 
     <ul class="grid sm:grid-cols-3 gap-10">
       <?php
