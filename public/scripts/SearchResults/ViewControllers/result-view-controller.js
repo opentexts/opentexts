@@ -14,6 +14,9 @@ export default class ResultViewController {
             link.href = record.urlMain;
             addOutboundLinkHandler(index, link)
             this.SetInnerHTML(link, record.title);
+            if(record.score) {
+                link.nextElementSibling.innerText = `[${record.score}]`;
+            }
         }
         else
         {
