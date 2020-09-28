@@ -26,6 +26,15 @@ export default class FilterViewController {
 
         this._defaultValueElement.addEventListener('click', this._resetFilter.bind(this))
         this._valueElements.forEach(el => el.addEventListener('click', this._toggleFilter.bind(this)))
+        this.updateAnalytics();
+    }
+
+    updateAnalytics() {
+        var value = this._controller.getQuery()[this._key].join(",");
+        switch(this._key) {
+            case "language": setLanguageFilter(value); return;
+            case "organisation": setLibraryFilter(value); return;
+        }
     }
 
     updateCounts() {
@@ -72,9 +81,14 @@ export default class FilterViewController {
         const liElem = event.currentTarget;
         const value = liElem.querySelectorAll('span')[1].innerText;
         const query = this._controller.getQuery();
+        const counts = this._controller.getFilterCounts(this._key);
         if(query.filterContainsValue(this._key, value)) {
             query.removeFromFilter(this._key, value);
             this.setVisualActiveState(liElem, false);
+            switch(this._key) {
+                case "language": languageFilterRemovedInteraction(value);
+                case "organisation": libraryFilterRemovedInteraction(value);
+            }
             if(query[this._key].length === 0) {
                 this.setVisualActiveState(this._defaultValueElement, true);
             }
@@ -82,8 +96,14 @@ export default class FilterViewController {
             query.addToFilter(this._key, value);
             this.setVisualActiveState(liElem, true);
             this.setVisualActiveState(this._defaultValueElement, false);
+            switch(this._key) {
+                case "language": languageFilterAddedInteraction(value, counts[value]);
+                case "organisation": libraryFilterAddedInteraction(value, counts[value]);
+            }
         }
         this._controller.replaceQuery(query);
+        this.updateAnalytics();
+
         this.setTopLevelState();
     }
 
@@ -99,6 +119,7 @@ export default class FilterViewController {
         this._valueElements.forEach(el => that.setVisualActiveState(el, false));
         this.setVisualActiveState(this._defaultValueElement, true);
         this._controller.replaceQuery(query);
+        this.updateAnalytics();
         this.setTopLevelState();
     }
 
