@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 
+use App\Models\OTQuery;
 use CodeIgniter\Controller;
 use Solarium\Client;
 use Solarium\Core\Client\Adapter\Curl;
@@ -19,30 +20,8 @@ class Search extends Controller
     {
         $config = config('Solr');
 
-        // TODO Make much more robust (if is_empty($q)) etc
-        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        $q = new OTQuery(filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS));
 
-        // Quick fix for quotes around searches
-        $q = str_replace("&#34;", '"', $q);
-        $q = str_replace("&#39;", "'", $q);
-
-        // Quick fix if there is an odd number of double quotes
-        if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
-
-        // Store the query
-        $data['q'] = $q;
-
-        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
-        $q = str_replace(":", '\:', $q);
-        $q = str_replace("[", '\[', $q);
-        $q = str_replace("]", '\]', $q);
-        $q = str_replace("{", '\{', $q);
-        $q = str_replace("}", '\}', $q);
-        $q = str_replace("~", '\~', $q);
-
-        if ((empty($q)) || ($q == "")) {
-            $q = "*";
-        }
 
         // Create a client instance
         $client = new Client($config->solarium);
@@ -54,14 +33,13 @@ class Search extends Controller
                 
         // Get a select query instance
         $query = $client->createSelect();
-        $query->setQuery($q);
-        
+        $q->applyQuery($query);
         // Only bring back the fields required
         $query->setFields(array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year', 
                                 'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id'));
         
         // Generate the URL without pagination details
-        $url = '/search/?q=' . $q;
+        $url = '/search/?q=' . $q->sanitisedQuery;
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -95,6 +73,7 @@ class Search extends Controller
 
         $count = 10;
         $query->setRows($count);
+        $query->addSort("score", "desc");
         // Get the facetset component
         $facetSet = $query->getFacetSet();
 
@@ -111,6 +90,7 @@ class Search extends Controller
         $resultset = $client->select($query);
 
         // Send the parameters to the view
+        $data['q'] = $q->sanitisedQuery;
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
@@ -215,25 +195,14 @@ class Search extends Controller
         $config = config('Solr');        
         
         // TODO Make much more robust (if is_empty($q)) etc
-        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-        
-        // Quick fix for double quotes around searches
-        $q = str_replace("&#34;", '"', $q);
-        
-        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
-        $q = str_replace(":", '\:', $q);
-        $q = str_replace("[", '\[', $q);
-        $q = str_replace("]", '\]', $q);
-        $q = str_replace("{", '\{', $q);
-        $q = str_replace("}", '\}', $q);
-        $q = str_replace("~", '\~', $q);
+        $q = new OTQuery(filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS));
 
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . urlencode($q);
+               "/select?q=" . urlencode($q->getQuery());
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
