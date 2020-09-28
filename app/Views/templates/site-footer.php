@@ -6,11 +6,10 @@
                 if($current_path !== "/"):
             ?>
                 <section class="md:col-span-2">
-                    <div class="flex mb-6">
-                        <a href="/"><img src="/images/logo.svg" class="" alt="" /></a>
-                    
-                        <img src="/images/open-texts.svg" class="" alt="Open Texts" />
-                    </div>
+                    <a href="/" class="rounded-sm p-2 flex mb-4">
+                        <img src="/images/logo.svg" class="w-12 sm:w-16 -ml-2 sm:-mr-1" alt="" />                    
+                        <img src="/images/open-texts.svg" class="w-full max-w-sm" alt="Open Texts" />
+                    </a>
 
                     <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
                 </section>
