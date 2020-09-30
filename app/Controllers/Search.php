@@ -21,7 +21,9 @@ class Search extends Controller
         $config = config('Solr');
         $include_score = getenv('CI_ENVIRONMENT') !== 'production' && isset($_GET['debug_score']);
 
-        $q = new OTQuery(filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS));
+        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($q)) $q = "";
+        $q = new OTQuery($q);
 
 
         // Create a client instance
@@ -202,8 +204,9 @@ class Search extends Controller
     {
         $config = config('Solr');        
         
-        // TODO Make much more robust (if is_empty($q)) etc
-        $q = new OTQuery(filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS));
+        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($q)) $q = "";
+        $q = new OTQuery($q);
 
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
