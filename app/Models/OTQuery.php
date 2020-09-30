@@ -111,7 +111,7 @@ class OTQuery
             $this->solrSafeQuery = "*";
         }
         if (getenv('CI_ENVIRONMENT') !== 'production') {
-            $log = fopen("/var/www/writable/query.log", "a");
+            $log = fopen("../writable/query.log", "a");
             fwrite($log, $this->sanitisedQuery . " -> " . $this->solrSafeQuery . "\n");
             fclose($log);
         }
