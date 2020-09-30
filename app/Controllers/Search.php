@@ -222,7 +222,9 @@ class Search extends Controller
         $organisations = explode("|", $organisation);
         $organisationFQ = "";
         foreach ($organisations as $value) {
-            $organisationFQ = $organisationFQ . '"' . $value . '" ';
+            if (!$value == "") {
+                $organisationFQ = $organisationFQ . '"' . $value . '" ';
+            }
         }
         if (!empty($organisationFQ)) {
             $url = $url . '&fq=organisation:(' . urlencode($organisationFQ) . ')';
@@ -233,7 +235,9 @@ class Search extends Controller
         $languages = explode("|", $language);
         $languageFQ = "";
         foreach ($languages as $value) {
-            $languageFQ = $languageFQ . '"' . $value . '" ';
+            if (!$value == "") {
+                $languageFQ = $languageFQ . '"' . $value . '" ';
+            }
         }
         if (!empty($languageFQ)) {      
             $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
