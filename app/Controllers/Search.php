@@ -240,7 +240,7 @@ class Search extends Controller
         $url = $url . "&wt=csv";
         
         // Only export standard fields
-        $url = $url . "&fl=organisation,idLocal,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language";
+        $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
