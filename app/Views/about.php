@@ -24,7 +24,8 @@
         <h2>Where our records come from</h2>
         <p>OpenTexts.World currently searches digitized content from the following libraries:</p>
         <ul>
-            <li><a href="https://archive.org/details/americana">Internet Archive American Libraries Collection</a> (<a href="/search?organisation=Internet%20Archive%20Books">3,182,419 items</a>)</li>
+            <li><a href="https://www.hathitrust.org/">HathiTrust</a> (<a href="/search?organisation=HathiTrust">4,425,106 items</a>)</li>
+            <li><a href="https://archive.org/details/americana">Internet Archive American Libraries Collection</a> (<a href="/search?organisation=Internet%20Archive%20Books">2,956,349 items</a>)</li>
             <li><a href="https://digitalnz.org/">DigitalNZ</a> (<a href="/search?organisation=DigitalNZ">244,376 items</a>)</li>
             <li><a href="https://www.bodleian.ox.ac.uk/">Bodleian Libraries, University of Oxford</a> (<a href="/search?organisation=Bodleian%20Libraries">231,088 items</a>)</li>
             <li><a href="https://wellcomecollection.org/">The Wellcome Collection</a> (<a href="/search?organisation=Wellcome%20Collection">182,576 items</a>)</li>
