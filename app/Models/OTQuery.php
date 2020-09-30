@@ -24,7 +24,6 @@ class OTQuery
         $chars = str_split($q);
         $context = EContext::GLOBAL;
 
-
         $term = array();
         $mandatoryFlag = false;
         $notIncludeFlag = false;
@@ -107,7 +106,7 @@ class OTQuery
         }
         $this->solrSafeQuery .= $this->buildQueryPart($term, $mandatoryFlag, $notIncludeFlag);
 
-        if ((empty($this->solrSafeQuery)) || ($this->solrSafeQuery == "")) {
+        if ((empty($this->solrSafeQuery)) || (trim($this->solrSafeQuery) == "")) {
             $this->solrSafeQuery = "*";
         }
         if (getenv('CI_ENVIRONMENT') !== 'production') {
