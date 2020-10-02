@@ -73,6 +73,10 @@ module.exports = {
         '96': '24rem',
         '128': '32rem',
       }
-    }
-  }
+    },
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
 }
