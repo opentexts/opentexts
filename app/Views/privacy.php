@@ -134,7 +134,7 @@
         
         <h2>How to complain</h2>
         <p>
-            You can make a complaint by contacting us at <a href="mailto:info@opentexts.world">info@opentexts.world</a>.
+            You can make a complaint by contacting us at <a href="mailto:privacy@nls.uk">privacy@nls.uk</a>.
         </p>
         <p>
             You can also complain to the ICO if you are unhappy with how we have used your data.
