@@ -40,7 +40,11 @@ export default class ResultsController {
         this._filterCounts = payload.filters;
         this._processResults(results);
 
-        setTotal(this._total);
+        try {
+            setTotal(this._total);
+        } catch (error) {
+            // Analytics not loaded
+        }
     }
 
 
@@ -79,14 +83,22 @@ export default class ResultsController {
             query.start += this._count;
         }
         if(!replace) {
-            moreResultsInteraction();
+            try {
+                moreResultsInteraction();
+            } catch (error) {
+                // Analytics not loaded
+            }
         }
         this.onResultsRequested.invoke();
         fetch(query.buildDataUrl() )
             .then(r => r.json())
             .then(res => {
                 this._total = res.total;
-                setTotal(this._total);
+                try {
+                    setTotal(this._total);
+                } catch (error) {
+                    // Analytics not loaded
+                }
                 this._filterCounts = res.filters;
                 if(replace === true) {
                     // Empty container of all children
@@ -153,7 +165,11 @@ export default class ResultsController {
         const searchUrl = this._query.buildDirectUrl();
         if(updateHistory) {
             history.pushState(this._query, "", searchUrl)
-            sendPageview(searchUrl);
+            try {
+                sendPageview(searchUrl);
+            } catch (error) {
+                // Analytics not loaded
+            }
         }
 
         this._container.classList.add("transition-opacity", "duration-300", "opacity-0")
@@ -169,9 +185,13 @@ export default class ResultsController {
             that._container.appendChild(record);
             that._count++;
         })
-        setLoadedTotal(this._count);
-        if(this._count >= this._total) {
-            allResultsLoadedInteraction();
+        try {
+            setLoadedTotal(this._count);
+            if(this._count >= this._total) {
+                allResultsLoadedInteraction();
+            }
+        } catch (error) {
+            // Analytics not loaded
         }
         this.onResultsAdded.invoke();
     }

@@ -12,10 +12,15 @@ export default class ResultViewController {
         {
             const link = titleNode.firstElementChild;
             link.href = record.urlMain;
-            addOutboundLinkHandler(index, link)
             this.SetInnerHTML(link, record.title);
             if(record.score) {
                 link.nextElementSibling.innerText = `[${record.score}]`;
+            }
+            // GA scripts may be blocked by ad blockers, so make this step fail-safe
+            try {
+                addOutboundLinkHandler(index, link);
+            } catch (error) {
+                // Analytics not loaded
             }
         }
         else
@@ -56,8 +61,12 @@ export default class ResultViewController {
         for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
-                addOutboundLinkHandler(index, dlIcon)
-                dlIcon.addEventListener('click', handleOutboundLink.bind(null, index))
+                try {
+                    addOutboundLinkHandler(index, dlIcon);
+                    dlIcon.addEventListener('click', handleOutboundLink.bind(null, index));
+                } catch (error) {
+                    
+                }
                 dlIcon = dlIcon.nextElementSibling;
             } else {
                 const icon = dlIcon
@@ -70,12 +79,20 @@ export default class ResultViewController {
 
                 if(i === 0) {
                     dlIcon.href = record.urlOther[i]
-                    addOutboundLinkHandler(index, dlIcon)
+                    try {
+                        addOutboundLinkHandler(index, dlIcon);
+                    } catch (error) {
+                        
+                    }
                 } else {
                     const icon = dlIcon.cloneNode(true);
                     dlIcon.parentElement.appendChild(icon);
                     icon.href = record.urlOther[i]
-                    addOutboundLinkHandler(index, icon)
+                    try {
+                        addOutboundLinkHandler(index, icon);
+                    } catch (error) {
+                        
+                    }
                 }
             }
         } else {
