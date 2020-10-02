@@ -31,7 +31,7 @@
         <?php if (getenv('CI_ENVIRONMENT') !== 'production'): ?>
           <script src="//localhost:35729/livereload.js"></script>
         <?php endif; ?>
-        <script src="./scripts/analytics.js"></script>
+        <script src="./scripts/event-recording.js"></script>
 </head>
 
 <body class=" mx-auto bg-blue-900">

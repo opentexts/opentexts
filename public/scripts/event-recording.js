@@ -2,11 +2,15 @@ let analyticsDebug = {}
 const debug = false;
 
 function pushAnalytics(dataObject) {
-    if(debug) {
-        Object.assign(analyticsDebug, dataObject);
-        console.log(analyticsDebug)
-    } else {
-        dataLayer.push(dataObject);
+    try {
+        if(debug) {
+            Object.assign(analyticsDebug, dataObject);
+            console.log(analyticsDebug)
+        } else {
+            dataLayer.push(dataObject);
+        }
+    } catch (error) {
+        // Catch an error if GA has been blocked by an ad blocker
     }
 }
 
