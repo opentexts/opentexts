@@ -64,19 +64,11 @@ window.addEventListener('popstate', event => {
 const exportLink = document.querySelector("#export");
 exportLink.addEventListener('mouseup', (evt) => {
     if(evt.button < 2) {
-        try {
-            exportInteraction();
-        } catch (error) {
-            // Analytics not loaded
-        }
+        exportInteraction()
     }
 })
 exportLink.addEventListener('keydown', (evt) => {
     if(evt.keyCode === 13) {
-        try {
-            exportInteraction();
-        } catch (error) {
-            // Analytics not loaded
-        }
+        exportInteraction()
     }
 })

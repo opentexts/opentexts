@@ -30,14 +30,10 @@ export default class FilterViewController {
     }
 
     updateAnalytics() {
-        try {
-            var value = this._controller.getQuery()[this._key].join(",");
-            switch(this._key) {
-                case "language": setLanguageFilter(value); return;
-                case "organisation": setLibraryFilter(value); return;
-            }
-        } catch (error) {
-            // Analytics not loaded
+        var value = this._controller.getQuery()[this._key].join(",");
+        switch(this._key) {
+            case "language": setLanguageFilter(value); return;
+            case "organisation": setLibraryFilter(value); return;
         }
     }
 
@@ -75,7 +71,6 @@ export default class FilterViewController {
             this._root.classList.remove('filter-focus');
         }
     }
-    
     /**
      * Handles a click on a non-default element
      * @param {MouseEvent} event
@@ -90,13 +85,9 @@ export default class FilterViewController {
         if(query.filterContainsValue(this._key, value)) {
             query.removeFromFilter(this._key, value);
             this.setVisualActiveState(liElem, false);
-            try {    
             switch(this._key) {
-                    case "language": languageFilterRemovedInteraction(value);
-                    case "organisation": libraryFilterRemovedInteraction(value);
-                }
-            } catch (error) {
-                // Analytics not loaded
+                case "language": languageFilterRemovedInteraction(value);
+                case "organisation": libraryFilterRemovedInteraction(value);
             }
             if(query[this._key].length === 0) {
                 this.setVisualActiveState(this._defaultValueElement, true);
@@ -105,13 +96,9 @@ export default class FilterViewController {
             query.addToFilter(this._key, value);
             this.setVisualActiveState(liElem, true);
             this.setVisualActiveState(this._defaultValueElement, false);
-            try {
-                switch(this._key) {
-                    case "language": languageFilterAddedInteraction(value, counts[value]);
-                    case "organisation": libraryFilterAddedInteraction(value, counts[value]);
-                }
-            } catch (error) {
-                // Analytics not loaded
+            switch(this._key) {
+                case "language": languageFilterAddedInteraction(value, counts[value]);
+                case "organisation": libraryFilterAddedInteraction(value, counts[value]);
             }
         }
         this._controller.replaceQuery(query);
