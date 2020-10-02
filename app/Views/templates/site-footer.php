@@ -1,4 +1,4 @@
-        <footer role="footer" class="mx-auto max-w-3xl grid md:grid-cols-3 col-gap-24 row-gap-12 justify-center items-center p-6 md:p-12 text-white">
+        <footer role="contentinfo" class="mx-auto max-w-3xl grid md:grid-cols-3 col-gap-24 row-gap-12 justify-center items-center p-6 md:p-12 text-white">
             <?php
                 $uri = current_url(true);
                 $current_path = "/" . $uri->getSegment(1);
