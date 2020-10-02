@@ -1,4 +1,9 @@
 module.exports = {
+  plugins: [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
   theme: {
     screens: {
       xs: '380px', // This is mostly to support a smaller search header!

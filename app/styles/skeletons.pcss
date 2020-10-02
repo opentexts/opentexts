@@ -1,0 +1,51 @@
+/* Style skeleton loading animation */
+.skeleton {
+    background-repeat: no-repeat;
+    background-image:
+        /* Animated overlay */
+        linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .8) 50%, rgba(255, 255, 255, 0) 100%),
+        /* Heading */
+        linear-gradient(#ECF3F6 2rem, transparent 0),
+        /* Body */
+        linear-gradient(#ECF3F6 4rem, transparent 0);
+    background-size:
+        280px 7rem,
+        24rem 2rem,
+        36rem 4rem;
+    background-position:
+        -150% 0,
+        0 0rem,
+        0 2.5rem;
+    height: 7rem;
+    opacity: 1;
+    animation: loading 2s infinite ease-in-out;
+}
+
+.skeleton:nth-of-type(1) {
+    animation-delay: 250ms;
+}
+
+.skeleton:nth-of-type(3) {
+    animation-delay: 100ms;
+}
+
+.skeleton:nth-of-type(4) {
+    animation-delay: 200ms;
+}
+
+.skeleton:nth-of-type(5) {
+    animation-delay: 150ms;
+}
+
+.skeleton:nth-of-type(6) {
+    animation-delay: 300ms;
+}
+
+@keyframes loading {
+  to {
+    background-position:
+      250% 0,
+      0 0,
+      0 2.5rem;
+  }
+}

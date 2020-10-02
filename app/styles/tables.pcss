@@ -1,0 +1,45 @@
+/* Contribute table */
+.contribute-table__header {
+    @apply bg-gray-100 px-6 py-4 text-sm font-normal uppercase text-gray-700 tracking-wider text-left;
+}
+
+.contribute-table__cell {
+    @apply border-t px-6 py-4 text-sm text-left text-gray-900 font-normal;
+}
+
+.contribute-table__notes td {
+    @apply px-6 pb-6 text-gray-600 text-sm;
+}
+
+@media only screen and (max-width: 767px) {
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	.contribute-table__header { 
+		@apply sr-only;
+	}
+	
+	.contribute-table__cell { 
+        @apply pl-3 pt-4 pb-0 text-xs border-0 relative;
+		padding-left: 50%; 
+	}
+
+    .contribute-table__notes {
+        @apply border-b;
+    }
+
+    .contribute-table__notes td {
+        @apply px-3 pb-4 text-xs;
+    }
+	
+	.contribute-table__cell:before { 
+        @apply pl-3 pt-4 text-xs font-normal uppercase text-gray-700 tracking-wide whitespace-no-wrap absolute w-1/2 top-0 left-0;
+	}
+	
+	.contribute-table__cell:nth-of-type(1):before { content: "Heading"; }
+	.contribute-table__cell:nth-of-type(2):before { content: "Content"; }
+	.contribute-table__cell:nth-of-type(3):before { content: "Requirement"; }
+	.contribute-table__cell:nth-of-type(4):before { content: "Repeatable"; }
+}
