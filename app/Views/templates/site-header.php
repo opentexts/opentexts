@@ -21,7 +21,7 @@
         <!-- OG Tags -->
         <meta property="og:title" content="<?= esc($title); ?>" />
         <meta property="og:url" content="<?php echo current_url(true); ?>" />
-        <meta property="og:image" content="https://opentexts.world/public/og-image.png" />
+        <meta property="og:image" content="https://opentexts.world/og-image.png" />
         <meta property="og:type" content="website" />
         <meta property="og:description" content="A search engine for books. OpenTexts provides free access to digitised text collections from around the world." />
         <meta property="og:locale" content="en_GB" />
