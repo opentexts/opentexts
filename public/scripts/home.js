@@ -8,6 +8,13 @@ function startLoadingSpinner(){
     loadingSpinnerAnim(logoCtx, -1);
 }
 
+logo.addEventListener("mouseenter", (evt)=>{
+    performHomeAnim(logoCtx, false);
+})
+logo.addEventListener("mouseleave", (evt)=>{
+    performHomeAnim(logoCtx, true);
+})
+
 document.forms[0].addEventListener('submit', startLoadingSpinner)
 
 document.querySelectorAll("a.suggested-search").forEach(r => {
