@@ -28,7 +28,7 @@ function renderNavLink(string $path, string $name, string $current_path) {
 function renderSuggestedSearch(string $search_string, string $image, string $label) {
     printf(
     '<li>
-        <a href="https://opentexts.world/search?q=%1$s" class="suggested-search flex flex-col justify-start items-center text-white no-underline hover:text-blue-200 rounded-md p-2 h-full">
+        <a href="/search?q=%1$s" class="suggested-search flex flex-col justify-start items-center text-white no-underline hover:text-blue-200 rounded-md p-2 h-full">
           <img class="mb-0" src="/images/%2$s" alt="" />
           <span class="text-center leading-tight">%3$s</span>
         </a>

@@ -1,9 +1,10 @@
 <main role="main" class="container mx-auto flex flex-col justify-center items-center px-4">
 
-  <img src="/images/logo.svg" class="pt-24 pb-8" alt="Logo: a series of nodes connected by lines to form an open circle" />
+  <!--img src="/images/logo.svg" class="pt-24 pb-8" alt="Logo: a series of nodes connected by lines to form an open circle" /-->
+  <canvas class="pt-24 pb-8" height="94" width="94" id="logo" role="img" aria-label="Logo: a series of nodes connected by lines to form an open circle"></canvas>
   <h1 class="sr-only">Open Texts</h1>
   <img src="/images/logotype.svg" class="pb-24" alt="Opening up a world of digitised texts" />
-
+    <script type="module" src="./scripts/home.js"></script>
   <?php include('templates/search-form.php'); ?>
 
   <div class="container max-w-xl pt-12 pb-6">

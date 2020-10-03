@@ -1,6 +1,7 @@
 import ResultsController from "./SearchResults/results-controller.js";
 import Query from "./SearchResults/Models/query.js";
 import FilterViewController from "./SearchResults/ViewControllers/filter-view-controller.js";
+import {loadingSpinnerAnim, performHomeAnim, renderOpentextsLogo, setIsLoading} from "./animation/logo.js";
 
 /** @type {HTMLTemplateElement} */
 const template = document.querySelector("template#result");
@@ -8,7 +9,12 @@ const template = document.querySelector("template#result");
 const controller = new ResultsController(template);
 
 const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
+const logo = document.getElementById("logo");
+const logoCtx = logo.getContext("2d");
 
+/***
+ *** Focus handling
+ ***/
 function detectFocus(){
     filterViewControllers.forEach(fvc => fvc.onFocusChange());
     navHandleFocusChange();
@@ -24,8 +30,12 @@ window.addEventListener ? window.addEventListener('focus', detectFocus, true) : 
 
 window.addEventListener ? window.addEventListener('blur', detectBlur, true) : window.attachEvent('onblur', detectBlur);
 
+
+/***
+ *** Results hooks
+ ***/
 controller.onResultsAdded.addEventListener(function(){
-    isLoading = false;
+    setIsLoading(false);
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
     document.querySelector("#resultTotal").innerText = controller.getTotal();
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
@@ -41,8 +51,8 @@ controller.onResultsAdded.addEventListener(function(){
 });
 
 controller.onResultsRequested.addEventListener(function(){
-    isLoading = true;
-    loadingSpinnerAnim(-1);
+    setIsLoading(true);
+    loadingSpinnerAnim(logoCtx, -1);
     Array.prototype.forEach.call(document.getElementsByClassName("load-more-results"), function(element) {
         element.classList.remove("invisible");
         element.disabled = true;
@@ -51,17 +61,14 @@ controller.onResultsRequested.addEventListener(function(){
         element.classList.add("bg-opacity-50");
     });
 });
+
+
+/***
+ *** UI hooks
+ ***/
 const fetchMoreFunction = controller.fetchMoreResults.bind(controller)
 document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", () => fetchMoreFunction(false));
-})
-
-window.addEventListener('popstate', event => {
-    if(event.state){
-        /** @type Query */
-        const query = new Query(event.state);
-        controller.replaceQuery(query, false);
-    }
 })
 
 const exportLink = document.querySelector("#export");
@@ -73,5 +80,24 @@ exportLink.addEventListener('mouseup', (evt) => {
 exportLink.addEventListener('keydown', (evt) => {
     if(evt.keyCode === 13) {
         exportInteraction()
+    }
+})
+
+logo.addEventListener("mouseenter", (evt)=>{
+    performHomeAnim(logoCtx, false);
+})
+logo.addEventListener("mouseleave", (evt)=>{
+    performHomeAnim(logoCtx, true);
+})
+renderOpentextsLogo(logoCtx);
+
+/***
+ *** History hooks
+ ***/
+window.addEventListener('popstate', event => {
+    if(event.state){
+        /** @type Query */
+        const query = new Query(event.state);
+        controller.replaceQuery(query, false);
     }
 })

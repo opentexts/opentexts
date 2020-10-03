@@ -16,6 +16,6 @@
 <?php
 if(!isset($data['payload'])) {
     ?>
-    <script src="./scripts/static-page.js"></script>
+    <script src="./scripts/static-page.js" type="module"></script>
 <?php
 }
