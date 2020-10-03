@@ -17,7 +17,7 @@
 /** @var  string $exporturl */
 /** @var  array $payload */
 ?>
-<div class="container mx-auto max-w-xl mb-8">
+<div class="container mx-auto max-w-xl mb-12">
     <form class="flex">
         <input type="hidden" name="q" value="<?= esc($q) ?>"/>
         <?php
@@ -28,12 +28,12 @@
     </form>
 </div>
 <div id="result-skeletons" class="hidden">
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
-    <div class="container mx-auto p-4 mb-8 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
+    <div class="container mx-auto max-w-xl mb-6 skeleton"></div>
 </div>
 <div>
 
@@ -41,8 +41,15 @@
     <div class="container mx-auto max-w-xl mb-8">
 
         <!-- Title -->
-        <h2 class="text-darkCyan text-xl leading-tight mb-1">
-            <a class="text-blue-700 hover:text-blue-600" rel="bookmark"></a>
+        <h2 class="text-darkCyan text-xl leading-tight mb-2">
+            <a class="text-blue-700 hover:text-blue-600 inline-block" rel="bookmark"></a>
+            <?php
+            if($include_score) {
+                ?>
+                <span class="text-red-700"></span>
+            <?php
+            }
+            ?>
         </h2>
 
         <!-- Author -->
@@ -51,31 +58,34 @@
 
         <!-- Publication Information -->
         <span class="text-slate text-opacity-75">
-    <!-- Publisher -->
+            <!-- Publisher -->
             <!-- Place of publication -->
             <!-- Year of publication -->
-</span>
+        </span>
 
-        <!-- Icons for different formats -->
-        <div class="inline-flex space-x-1">
-            <a><img src="/images/pdf.png" height="16" width="16" /></a>
-            <a><img src="/images/logo-iiif-34x30.png" height="16" width="16" /></a>
-            <a><img src="/images/txt.png" height="16" width="16" /></a>
+        <!-- Source library -->
+        <div class="mt-2 text-gray-600 text-sm">
+            National Library of Scotland
         </div>
 
+        <!-- Different formats for download -->
+        <div class="flex flex-wrap items-baseline space-x-1 text-gray-600 text-sm">
+            <span>Download:</span>
+            <a class="text-gray-600">PDF</a>
+            <a class="text-gray-600">IIIF</a>
+            <a class="text-gray-600">Plain-text</a>
+            <a class="text-gray-600">ALTO XML</a>
+            <a class="text-gray-600">Other format</a>
+        </div>
     </div>
 
 </template>
     <script type="module" src="./scripts/search-results.js"></script>
     <script>
         document.querySelectorAll(".filter").forEach(function(filter){
-            filter.addEventListener('click', function()
-            {
-                if(!this.classList.contains('filter-focus')) {
-                    this.classList.add('filter-focus');
-                }
-            }, true);
-
+            filter.addEventListener('click', function(event){
+                this.classList.add('filter-focus');
+            })
             filter.addEventListener('keydown', function(event){
                 if(!this.classList.contains('filter-focus'))
                 {
@@ -109,21 +119,12 @@
                 }
 
             })
-
-            filter.addEventListener('blur',  function(){
-                setTimeout(function(){
-                    if(!this.contains(document.activeElement)) {
-                        this.classList.remove('filter-focus')
-                    }
-                }.bind(this),0)
-            }, true)
         })
 
     </script>
 </div>
+
 <?php
-
-
-// Show the search footer, which loads more results and allows users to export their results.
-include('search-footer.php');
+    // Show the search footer, which loads more results and allows users to export their results.
+    include('search-footer.php');
 ?>

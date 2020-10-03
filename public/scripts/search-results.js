@@ -8,6 +8,22 @@ const template = document.querySelector("template#result");
 const controller = new ResultsController(template);
 
 const filterViewControllers = Array.from(document.querySelectorAll(".filter")).map(el => new FilterViewController(el, controller));
+
+function detectFocus(){
+    filterViewControllers.forEach(fvc => fvc.onFocusChange());
+    navHandleFocusChange();
+}
+
+function detectBlur() {
+    setTimeout(function() {
+        filterViewControllers.forEach(fvc => fvc.onFocusChange());
+        navHandleFocusChange();
+    }, 0);
+}
+window.addEventListener ? window.addEventListener('focus', detectFocus, true) : window.attachEvent('onfocusout', detectFocus);
+
+window.addEventListener ? window.addEventListener('blur', detectBlur, true) : window.attachEvent('onblur', detectBlur);
+
 controller.onResultsAdded.addEventListener(function(){
     isLoading = false;
     document.querySelector("#resultCount").innerText = (controller.getStart()+1) + "-" + controller.getCount();
@@ -40,26 +56,22 @@ document.querySelectorAll(".load-more-results").forEach(function(elem){
     elem.addEventListener("click", () => fetchMoreFunction(false));
 })
 
-globalThis.toggleFilter = function(filter, value){
-    var query = controller.getQuery();
-    if(query.filterContainsValue(filter, value)) {
-        query.removeFromFilter(filter, value);
-    } else {
-        query.addToFilter(filter, value);
-    }
-    controller.replaceQuery(query);
-}
-
-globalThis.resetFilter = function(filter) {
-    var query = controller.getQuery()
-    query.resetFilter(filter);
-    controller.replaceQuery(query);
-}
-
 window.addEventListener('popstate', event => {
     if(event.state){
         /** @type Query */
         const query = new Query(event.state);
         controller.replaceQuery(query, false);
+    }
+})
+
+const exportLink = document.querySelector("#export");
+exportLink.addEventListener('mouseup', (evt) => {
+    if(evt.button < 2) {
+        exportInteraction()
+    }
+})
+exportLink.addEventListener('keydown', (evt) => {
+    if(evt.keyCode === 13) {
+        exportInteraction()
     }
 })

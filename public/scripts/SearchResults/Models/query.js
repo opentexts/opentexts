@@ -102,7 +102,19 @@ export default class Query {
      * @returns {string}
      */
     buildDirectUrl() {
-        return `/search?${this._getQueryString()}`;
+        var url = `/search?${this._getQueryString()}`;
+        if(window.location.href.indexOf("debug_score") >= 0) {
+            url += "&debug_score";
+        }
+        return url;
+    }
+
+    /**
+     * Creates a Url representing this query which will load the export CSV version
+     * @returns {string}
+     */
+    buildExportUrl() {
+        return `/search/export?${this._getQueryString()}`;
     }
 
     /**
@@ -110,7 +122,11 @@ export default class Query {
      * @returns {string}
      */
     buildDataUrl() {
-        return `/search/data?${this._getQueryString()}`;
+        var url = `/search/data?${this._getQueryString()}`;
+        if(window.location.href.indexOf("debug_score") >= 0) {
+            url += "&debug_score";
+        }
+        return url;
     }
 
     /**

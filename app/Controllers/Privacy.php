@@ -2,15 +2,15 @@
 
 use CodeIgniter\Controller;
 
-class About extends Controller
+class Privacy extends Controller
 {
     public function index()
     {
-        $data['title'] = "About";
+        $data['title'] = "Privacy";
         
         echo view('templates/site-header', $data); 
         echo view('templates/search-header', $data);
-        echo view('about');
+        echo view('privacy');
         echo view('templates/site-footer');
     }
 

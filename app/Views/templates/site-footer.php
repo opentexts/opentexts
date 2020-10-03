@@ -1,3 +1,40 @@
+        <footer role="contentinfo" class="mx-auto max-w-3xl grid md:grid-cols-3 col-gap-24 row-gap-12 justify-center items-center p-6 md:p-12 text-white">
+            <?php
+                $uri = current_url(true);
+                $current_path = "/" . $uri->getSegment(1);
+
+                if($current_path !== "/"):
+            ?>
+                <section class="md:col-span-2">
+                    <a href="/" class="rounded-sm p-2 flex mb-4">
+                        <img src="/images/logo.svg" class="w-12 sm:w-16 -ml-2 sm:-mr-1" alt="" />                    
+                        <img src="/images/open-texts.svg" class="w-full max-w-sm" alt="Open Texts" />
+                    </a>
+
+                    <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
+                </section>
+
+                <section>
+                    <ul class="navigation-footer text-lg opacity-75">
+                        <?php 
+                            $current_path = getCurrentPage();
+                            renderNavLink("/", "Home", $current_path);
+                            renderNavLink("/about", "About", $current_path);
+                            renderNavLink("/contribute", "Contribute", $current_path);
+                            renderNavLink("/help", "Help", $current_path);
+                        ?>
+                    </ul>
+                </section>
+                <?php endif; ?>
+            
+            <section class="md:col-span-3 opacity-75 text-xs text-center">
+                &copy; <?php echo date('Y'); ?> OpenTexts.world.
+                &middot; 
+                <a href="/accessibility" class="text-blue-100 hover:text-blue-400">Accessibility</a>
+                &middot;
+                <a href="/privacy" class="text-blue-100 hover:text-blue-400">Privacy</a>
+        </footer>
+
         <script type="text/javascript">
             window.doorbellOptions = {
                 "id": "11688",
@@ -10,6 +47,8 @@
                 if (d.readyState == 'complete') { l(); }
             }(window, document, 'script'));
         </script>
-
+        
+        <script src="/scripts/focus-visible.min.js"></script>
+        <script src="/scripts/navigation-modal.js"></script>
     </body>
 </html>

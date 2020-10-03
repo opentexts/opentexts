@@ -1,10 +1,10 @@
 <?php namespace App\Controllers;
 
+use App\Models\OTQuery;
 use CodeIgniter\Controller;
 use Solarium\Client;
+use Solarium\Core\Client\Adapter\Curl;
 use Solarium\QueryType\Select\Query\FilterQuery;
-
-helper('form');
 
 class Search extends Controller
 {
@@ -19,41 +19,35 @@ class Search extends Controller
     function getData()
     {
         $config = config('Solr');
+        $include_score = getenv('CI_ENVIRONMENT') !== 'production' && isset($_GET['debug_score']);
 
-        // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($q)) $q = "";
+        $q = new OTQuery($q);
 
-        // Quick fix for quotes around searches
-        $q = str_replace("&#34;", '"', $q);
-        $q = str_replace("&#39;", "'", $q);
-
-        // Quick fix if there is an odd number of double quotes
-        if (substr_count($q, '"') % 2 == 1) { $q .= '"'; }
-
-        // Store the query
-        $data['q'] = $q;
-
-        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
-        $q = str_replace(":", '\:', $q);
-        $q = str_replace("[", '\[', $q);
-        $q = str_replace("]", '\]', $q);
-        $q = str_replace("{", '\{', $q);
-        $q = str_replace("}", '\}', $q);
-        $q = str_replace("~", '\~', $q);
-
-        if ((empty($q)) || ($q == "")) {
-            $q = "*";
-        }
 
         // Create a client instance
         $client = new Client($config->solarium);
 
+        // Set the solarium timeout setting from the Solr.php config file
+        $adapter = new Curl();
+        $adapter->setTimeout($config->solariumTimeout);
+        $client->setAdapter($adapter);
+                
         // Get a select query instance
         $query = $client->createSelect();
-        $query->setQuery($q);
+        $q->applyQuery($query);
+        // Only bring back the fields required
+        $fl = array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year',
+            'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id');
+        if($include_score)
+        {
+            array_push($fl, "score");
+        }
+        $query->setFields($fl);
         
         // Generate the URL without pagination details
-        $url = '/search/?q=' . $q;
+        $url = '/search/?q=' . $q->sanitisedQuery;
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -87,6 +81,7 @@ class Search extends Controller
 
         $count = 10;
         $query->setRows($count);
+        $query->addSort("score", "desc");
         // Get the facetset component
         $facetSet = $query->getFacetSet();
 
@@ -96,17 +91,19 @@ class Search extends Controller
 
         $hl = $query->getHighlighting();
         $hl->setFields('title, creator, year, publisher, placeOfPublication');
-        $hl->setSimplePrefix('<em class="bg-gray-100 text-current not-italic">');
+        $hl->setSimplePrefix('<em class="text-current not-italic font-semibold">');
         $hl->setSimplePostfix('</em>');
 
         // Execute the query and returns the result
         $resultset = $client->select($query);
 
         // Send the parameters to the view
+        $data['q'] = $q->sanitisedQuery;
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
         $data['start'] = $start;
+        $data['include_score'] = $include_score;
         
         // If there were fewer results returned than the count, update the count
         if ($resultset->getNumFound() < $count) $count = $resultset->getNumFound();
@@ -122,6 +119,7 @@ class Search extends Controller
             $title = $document->title;
             $creators = $document->creator;
             $publishers = $document->publisher;
+            $resultOrganisation = $document->organisation;
             $placesOfPublication = $document->placeOfPublication;
             $highlightedDoc = $resultset->getHighlighting()->getResult($document->id);
 
@@ -146,6 +144,9 @@ class Search extends Controller
                             array_push($placesOfPublication, $each);
                         }
                     }
+                    if ($field == "organisation") {
+                        $resultOrganisation = $highlight[0];
+                    }
                 endforeach;
             endif;
 
@@ -154,15 +155,19 @@ class Search extends Controller
                 "creators" => $creators,
                 "publishers" => $publishers,
                 "placesOfPublication" => $placesOfPublication,
+                "organisation" => $resultOrganisation,
                 "urlMain" => $document->urlMain,
                 "urlPDF" => $document->urlPDF,
                 "urlIIIF" => $document->urlIIIF,
+                "urlPlainText" => $document->urlPlainText,
+                "urlALTOXML" => $document->urlALTOXML,
                 "urlOther" => $document->urlOther,
-                "year" => $document->year
+                "year" => $document->year,
+                "score" => $document->score
             ));
         endforeach;
         $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "query" => array("q" => $q->sanitisedQuery, "start" => $start, "language" => $language, "organisation" => $organisation),
                                  "filters" =>  array(
                                      "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
                                      "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
@@ -199,52 +204,61 @@ class Search extends Controller
     {
         $config = config('Solr');        
         
-        // TODO Make much more robust (if is_empty($q)) etc
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-        
-        // Quick fix for double quotes around searches
-        $q = str_replace("&#34;", '"', $q);
-        
-        // Fix special solr characters - only add fixes here for solr, not for HTML (see a few lines above)
-        $q = str_replace(":", '\:', $q);
-        $q = str_replace("[", '\[', $q);
-        $q = str_replace("]", '\]', $q);
-        $q = str_replace("{", '\{', $q);
-        $q = str_replace("}", '\}', $q);
-        $q = str_replace("~", '\~', $q);
+        if (empty($q)) $q = "";
+        $q = new OTQuery($q);
 
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . urlencode($q);
+               "/select?q=" . urlencode($q->getQuery());
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
         // Quick fix for organisations containing a 's (such as Queen's University Belfast)
         $organisation = str_replace("&#39;s", "'s", $organisation);
-        if (!empty($organisation)) {
-            $url = $url . '&fq=organisation_facet:"' . urlencode($organisation) . '"';
+        $organisations = explode("|", $organisation);
+        $organisationFQ = "";
+        foreach ($organisations as $value) {
+            if (!$value == "") {
+                $organisationFQ = $organisationFQ . '"' . $value . '" ';
+            }
+        }
+        if (!empty($organisationFQ)) {
+            $url = $url . '&fq=organisation:(' . urlencode($organisationFQ) . ')';
         }
         
         // Was a language facet selected?
         $language = filter_input(INPUT_GET, 'language', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($language)) {      
-            $url = $url . '&fq=language_facet:"' . urlencode($language) . '"';
+        $languages = explode("|", $language);
+        $languageFQ = "";
+        foreach ($languages as $value) {
+            if (!$value == "") {
+                $languageFQ = $languageFQ . '"' . $value . '" ';
+            }
+        }
+        if (!empty($languageFQ)) {      
+            $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
         // We want a CSV
         $url = $url . "&wt=csv";
         
         // Only export standard fields
-        $url = $url . "&fl=organisation,idLocal,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlOther,urlIIIF,placeOfPublication,licence,idOther,catLink,language";
+        $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
         // Limit to 5,000 rows for now
         $url = $url . "&rows=5000";
         
+        // Concoct the filename
+        $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
+        $exportFilename = str_replace(' ', '_', $exportFilename);
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
+        
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=data.csv');
+        header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);
     }
