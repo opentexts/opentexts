@@ -4,18 +4,27 @@
   <h1 class="sr-only">Open Texts</h1>
   <img src="/images/logotype.svg" class="pb-24" alt="Opening up a world of digitised texts" />
 
-  <?php include('templates/search-form.php'); ?>
+  <?php use App\Models\SuggestedSearch;
+
+  include('templates/search-form.php'); ?>
 
   <div class="container max-w-xl pt-12 pb-6">
     <h2 class="text-md text-gray-200 mb-4 text-center">Try these searches!</h2>
 
     <ul class="grid sm:grid-cols-3 gap-10">
       <?php
-        //renderSuggestedSearch('medical+report+london', 'medical-reports.svg', 'Medical reports from London');
-        renderSuggestedSearch('new+zealand+volcanoes', 'volcanoes.svg', 'Volcanoes in New Zealand');
-        renderSuggestedSearch('love+poems', 'love-poems.svg', 'Love poems');
-        renderSuggestedSearch('a+midsummer+night%27s+dream', 'midsummer-nights-dream.svg', 'A Midsummer Night’s Dream');
-        //renderSuggestedSearch('recipe+book', 'recipe-books.svg', 'Recipe books');
+      $suggestedSearches = array(
+          new SuggestedSearch('Medical reports from London', 'medical-reports.svg', 'medical report london'),
+          new SuggestedSearch('Volcanoes in New Zealand', 'volcanoes.svg', '"new zealand" volcanoes'),
+          new SuggestedSearch('Love poems', 'love-poems.svg', 'love poems'),
+          new SuggestedSearch('A Midsummer Night’s Dream', 'midsummer-nights-dream.svg', '"a midsummer night\'s dream"'),
+          new SuggestedSearch('Recipe books', 'recipe-books.svg', 'recipe book'),
+      );
+      for($i = 0; $i < 3; $i++) {
+          $index = rand(0, sizeof($suggestedSearches) - 1);
+          $search = array_splice($suggestedSearches, $index, 1)[0];
+          renderSuggestedSearch($search->searchUrl, $search->icon, $search->label);
+      }
       ?>
       <!--
       <li><a href="https://opentexts.world/search?q=joke+book">Joke books</a></li>
