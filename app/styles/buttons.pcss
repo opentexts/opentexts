@@ -1,0 +1,20 @@
+/* Buttons */
+
+.button-primary,
+body #doorbell-button,
+#doorbell .buttons button {
+    @apply py-3 px-10 rounded-md bg-blue-800 text-gray-100;
+    transition: all 200ms ease-in-out;
+}
+
+.button-primary:hover,
+body #doorbell-button:hover,
+#doorbell .buttons button:hover {
+    @apply bg-red-700;
+}
+
+.button-primary:focus,
+body #doorbell-button:focus,
+#doorbell .buttons button:focus {
+    @apply outline-none shadow-focus;
+}

@@ -1,0 +1,53 @@
+/* Main content container */
+.main-container {
+    @apply bg-white w-screen max-w-none py-16 px-4 overflow-x-hidden;
+}
+
+/* Global text styles. */
+a {
+    @apply text-blue-700 underline;
+    transition: all 200ms ease-in-out;
+}
+
+a:hover {
+    @apply text-red-700;
+}
+
+a:focus {
+    @apply no-underline outline-none shadow-focus;
+}
+
+h1 {
+    @apply text-gray-700 text-3xl leading-tight mb-6;
+}
+
+h2 {
+    @apply text-gray-700 text-2xl leading-tight mb-4 mt-12;
+}
+
+h3 {
+    @apply text-gray-700 text-lg leading-tight mb-2 mt-8;
+}
+
+p {
+    @apply mb-6;
+}
+
+.main-container article ul {
+    @apply list-disc list-outside mb-6;
+}
+
+.main-container article li {
+    @apply leading-snug mb-1;
+}
+
+/* Use for intro paragraphs of text. */
+.intro {
+    @apply text-lg text-gray-600 mb-6 mt-6;
+}
+
+/* Extra classes to apply consistent sizing to icons. */
+.icon-sm svg {
+    width: 16px;
+    height: 16px;
+}

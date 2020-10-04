@@ -1,0 +1,18 @@
+/* Show and hide filter popovers. */
+.filter-dropdown {
+    max-height: 280px;
+    visibility: collapse;
+}
+
+.filter-focus > .filter-dropdown {
+    visibility: visible;
+}
+
+/* 
+ * Brute-force a transparent border for non-keyboard users. 
+ * This should work via Tailwind classes but for some reason, just doesn't. 
+ * See https://tailwindcss.com/docs/pseudo-class-variants#focus-visible 
+ */
+.filter:focus:not(:focus-visible) {
+    border-color: transparent;
+}
