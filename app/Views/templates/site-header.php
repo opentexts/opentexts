@@ -32,7 +32,12 @@
           <script src="//localhost:35729/livereload.js"></script>
         <?php endif; ?>
         <script src="./scripts/event-recording.js"></script>
-</head>
+        
+        <?php if ($title == 'Search'): ?>
+            <link rel="preload" href="/scripts/SearchResults/Models/query.js" as="script">
+            <link rel="preload" href="/scripts/SearchResults/ViewControllers/filter-view-controller.js" as="script">
+        <?php endif; ?>
+    </head>
 
 <body class=" mx-auto bg-blue-900">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHHK56R"
