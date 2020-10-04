@@ -49,6 +49,5 @@
         </script>
         
         <script src="/scripts/focus-visible.min.js"></script>
-        <script src="/scripts/navigation-modal.js"></script>
     </body>
 </html>

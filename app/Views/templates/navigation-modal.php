@@ -17,5 +17,6 @@
 if(!isset($data['payload'])) {
     ?>
     <script src="./scripts/static-page.js"></script>
+    <script src="/scripts/navigation-modal.js"></script>
 <?php
 }
