@@ -1,7 +1,7 @@
 const devMode = process.env.NODE_ENV !== 'production';
 
 const path = require('path');
-const globImporter = require('node-sass-glob-importer');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const RemovePlugin = require('remove-files-webpack-plugin');
@@ -16,6 +16,9 @@ const webpackConfig = {
     path: path.join(__dirname),
     chunkFilename: '[name]-[chunkhash].js',
   },
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+  },
   module: {
     rules: [
       {
@@ -26,37 +29,13 @@ const webpackConfig = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.p?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.pcss$/,
-        use: [
-          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
         ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: { importer: globImporter() },
-            },
-          },
-        ],
-      },
+      }
     ],
   },
   plugins: [
