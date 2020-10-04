@@ -119,7 +119,7 @@
             <li>ask that the processing of your personal data is restricted in certain circumstances</li>
         </ul>
         <p>
-            If you have any of these requests, please <a href="mailto:info@opentexts.world">get in contact</a> with us.
+            If you have any of these requests, please <a href="mailto:privacy@nls.uk">get in contact</a> with us.
         </p>
         
         <h2>Links to other websites</h2>
@@ -134,7 +134,7 @@
         
         <h2>How to complain</h2>
         <p>
-            You can make a complaint by contacting us at <a href="mailto:info@opentexts.world">info@opentexts.world</a>.
+            You can make a complaint by contacting us at <a href="mailto:privacy@nls.uk">privacy@nls.uk</a>.
         </p>
         <p>
             You can also complain to the ICO if you are unhappy with how we have used your data.

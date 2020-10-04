@@ -16,8 +16,7 @@ class OTQuery
 
     function __construct(string $q) {
 
-        $q = html_entity_decode($q);
-
+        $q = html_entity_decode($q, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedQuery = $q;
 
         $q = urldecode($q);
