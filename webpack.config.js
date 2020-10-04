@@ -1,7 +1,7 @@
 const devMode = process.env.NODE_ENV !== 'production';
 
 const path = require('path');
-const globImporter = require('node-sass-glob-importer');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const RemovePlugin = require('remove-files-webpack-plugin');
@@ -15,6 +15,9 @@ const webpackConfig = {
     filename: '[name].js',
     path: path.join(__dirname),
     chunkFilename: '[name]-[chunkhash].js',
+  },
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
   },
   module: {
     rules: [
