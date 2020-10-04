@@ -26,37 +26,13 @@ const webpackConfig = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.p?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.pcss$/,
-        use: [
-          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
         ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: { importer: globImporter() },
-            },
-          },
-        ],
-      },
+      }
     ],
   },
   plugins: [

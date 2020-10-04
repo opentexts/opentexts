@@ -84,7 +84,11 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: [
+  purge: {
+    enabled: true,
+    content: [
     './app/**/*.php',
-  ],
+    './public/scripts/**/*.js'
+  ]
+  },
 }
