@@ -85,7 +85,6 @@ module.exports = {
     purgeLayersByDefault: true,
   },
   purge: {
-    enabled: true,
     content: [
     './app/**/*.php',
     './public/scripts/**/*.js'
