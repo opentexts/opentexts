@@ -26,6 +26,9 @@
         <meta property="og:description" content="A search engine for books. OpenTexts provides free access to digitised text collections from around the world." />
         <meta property="og:locale" content="en_GB" />
 
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@opentexts" />
+
         <link rel="icon" type="image/png" href="/favicon.png"  />
         <link rel="stylesheet" href="/css/app.css">
         <?php if (getenv('CI_ENVIRONMENT') !== 'production'): ?>
