@@ -28,6 +28,7 @@
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@opentexts" />
+        <meta property="twitter:image" content="https://opentexts.world/og-image.png" />
 
         <link rel="icon" type="image/png" href="/favicon.png"  />
         <link rel="stylesheet" href="/css/app.css">
