@@ -47,7 +47,7 @@
                 <td class="contribute-table__cell">Not repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
-                <td colspan="2" ></td>
+                <td colspan="1" ></td>
                 <td colspan="3">
                     So we know which organisation contributed the metadata and content. This info will be displayed in a facet and in the full record display. E.g.: <em>Wellcome Library</em>, <em>National Library of Scotland</em>, <em>HathiTrust</em>.
                 </td>
