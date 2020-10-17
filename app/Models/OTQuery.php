@@ -7,7 +7,7 @@ class EContext {
     const GLOBAL = 0;
     const QUOTES = 1;
 }
-const FUZZY_SEARCH_ENABLED = true;
+const FUZZY_SEARCH_ENABLED = false;
 class OTQuery
 {
     public $isValid = true;
