@@ -71,11 +71,11 @@
         <!-- Different formats for download -->
         <div class="flex flex-wrap items-baseline space-x-1 text-gray-600 text-sm">
             <span>Download:</span>
-            <a class="text-gray-600">PDF</a>
-            <a class="text-gray-600">IIIF</a>
-            <a class="text-gray-600">Plain-text</a>
-            <a class="text-gray-600">ALTO XML</a>
-            <a class="text-gray-600">Other format</a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>PDF<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>IIIF<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>Plain-text<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>ALTO XML<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>Other format<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
         </div>
     </div>
 
