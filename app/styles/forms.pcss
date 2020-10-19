@@ -1,0 +1,22 @@
+/* Text fields */
+.text-field, 
+#doorbell-feedback,
+#doorbell-email,
+body #doorbell form textarea, 
+body #doorbell .form-control textarea,
+body #doorbell form input[type="email"] {
+    @apply block bg-white rounded-md border-2 border-gray-300 p-2 mb-4 text-base text-gray-700 w-full appearance-none shadow-none;
+}
+
+.text-field:focus, 
+#doorbell-feedback:focus,
+#doorbell-email:focus,
+body #doorbell form textarea:focus, 
+body #doorbell form input[type="email"]:focus {
+    @apply outline-none border-blue-500 text-blue-700;
+}
+
+/* Labels */
+.label {
+    @apply block w-full text-blue-800 mb-1 text-sm;
+}
