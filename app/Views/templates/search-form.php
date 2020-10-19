@@ -9,4 +9,6 @@
             <span class="sr-only">Search</span>
         </button>
     </div>
+    
+    <a href="/advanced/" class="block w-full text-white mb-1 pl-4 text-center text-sm <?php echo('/' !== getCurrentPage()) ? "sr-only" : "" ?>">Advanced Search</a>
 </form>

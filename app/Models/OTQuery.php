@@ -148,6 +148,10 @@ class OTQuery
     }
 
     function getQuery() : String{
-        return $this->solrSafeQuery;
+        return "q=" . $this->solrSafeQuery;
+    }
+
+    function getPlainQuery() : String{
+        return $this->sanitisedQuery;
     }
 }

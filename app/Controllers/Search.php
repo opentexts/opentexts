@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\OTQuery;
+use App\Models\OTAdvancedQuery;
 use CodeIgniter\Controller;
 use Solarium\Client;
 use Solarium\Core\Client\Adapter\Curl;
@@ -23,8 +24,21 @@ class Search extends Controller
 
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($q)) $q = "";
-        $q = new OTQuery($q);
-
+        
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchtitle'] = $title;
+            $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchcreator'] = $creator;
+            $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchyearfrom'] = $yearfrom;
+            $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchyearto'] = $yearto;
+            $q = new OTAdvancedQuery($title, $creator, $yearfrom, $yearto);
+        } else {
+            $q = new OTQuery($q);
+        }
 
         // Create a client instance
         $client = new Client($config->solarium);
@@ -47,7 +61,7 @@ class Search extends Controller
         $query->setFields($fl);
         
         // Generate the URL without pagination details
-        $url = '/search/?q=' . $q->sanitisedQuery;
+        $url = '/search/?' . $q->getQuery();
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -98,7 +112,7 @@ class Search extends Controller
         $resultset = $client->select($query);
 
         // Send the parameters to the view
-        $data['q'] = $q->sanitisedQuery;
+        $data['q'] = $q->getPlainQuery();
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
@@ -167,12 +181,13 @@ class Search extends Controller
             ));
         endforeach;
         $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q->sanitisedQuery, "start" => $start, "language" => $language, "organisation" => $organisation),
+                                 "query" => array("q" => $q->getPlainQuery(), "start" => $start, "language" => $language, "organisation" => $organisation),
                                  "filters" =>  array(
                                      "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
                                      "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
                                  ),
-                                 "total" => $resultset->getNumFound());
+                                 "total" => $resultset->getNumFound(),
+                                 "advanced" => $advanced);
 
         return $data;
     }
@@ -181,10 +196,19 @@ class Search extends Controller
     {
         $data = $this->getData();
         $data['title'] = "Search";
+        $data['advanced'] = False;
 
         echo view('templates/site-header', $data);
-        echo view('templates/search-header', $data);
 
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $data['title'] = "Advanced Search";
+            echo view('templates/plain-header', $data);
+            $data['advanced'] = True;
+        } else {
+            echo view('templates/search-header', $data);
+        }
+        
         echo view('search', $data);
         echo view('templates/site-footer');
     }
@@ -213,7 +237,7 @@ class Search extends Controller
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . urlencode($q->getQuery());
+               "/select?" . urlencode($q->getQuery());
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -249,8 +273,13 @@ class Search extends Controller
         // Only export standard fields
         $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
-        // Limit to 5,000 rows for now
-        $url = $url . "&rows=5000";
+        $rows = filter_input(INPUT_GET, 'rows', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($rows)) && (is_numeric($rows)) && ($rows <= 5000) && ($rows >= 1)) {
+            // We have a good number for $rows
+        } else {
+            $rows = 5000;
+        }
+        $url = $url . "&rows=" . $rows;
         
         // Concoct the filename
         $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
