@@ -10,5 +10,7 @@
         </button>
     </div>
     
-    <a href="/advanced/" class="block w-full text-white mb-1 pl-4 text-center text-sm <?php echo('/' !== getCurrentPage()) ? "sr-only" : "" ?>">Advanced Search</a>
+    <?php if('/' === getCurrentPage()): ?>
+        <a href="/advanced/" class="block w-full text-white text-opacity-75 my-1 pl-4 text-left text-xs hover:text-opacity-100 hover:text-white">Advanced Search</a>
+    <?php endif; ?>
 </form>
