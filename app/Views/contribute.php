@@ -47,7 +47,7 @@
                 <td class="contribute-table__cell">Not repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
-                <td colspan="2" ></td>
+                <td colspan="1" ></td>
                 <td colspan="3">
                     So we know which organisation contributed the metadata and content. This info will be displayed in a facet and in the full record display. E.g.: <em>Wellcome Library</em>, <em>National Library of Scotland</em>, <em>HathiTrust</em>.
                 </td>
@@ -94,7 +94,7 @@
             <tr>
                 <td class="contribute-table__cell">year</td>
                 <td class="contribute-table__cell">Year of publication</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Not repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
@@ -106,7 +106,7 @@
             <tr>
                 <td class="contribute-table__cell">date</td>
                 <td class="contribute-table__cell">Date of publication</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Not repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
@@ -119,7 +119,7 @@
             <tr>
                 <td class="contribute-table__cell">publisher</td>
                 <td class="contribute-table__cell">Publisher</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
@@ -131,7 +131,7 @@
             <tr>
                 <td class="contribute-table__cell">creator</td>
                 <td class="contribute-table__cell">Creator</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
@@ -143,7 +143,7 @@
             <tr>
                 <td class="contribute-table__cell">topic</td>
                 <td class="contribute-table__cell">Subject or topic</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Repeatable</td>
             </tr>
             <tr class="contribute-table__notes">
@@ -155,7 +155,7 @@
             <tr>
                 <td class="contribute-table__cell">description</td>
                 <td class="contribute-table__cell">Description</td>
-                <td class="contribute-table__cell">Desireable</td>
+                <td class="contribute-table__cell">Desirable</td>
                 <td class="contribute-table__cell">Repeatable</td>
             </tr>
             <tr class="contribute-table__notes">

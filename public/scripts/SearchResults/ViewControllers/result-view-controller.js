@@ -53,9 +53,15 @@ export default class ResultViewController {
             iconStrip.parentNode.removeChild(iconStrip);
             return inflatedRecord;
         }
+        const basicTitle = (new DOMParser().parseFromString(record.title, 'text/html')).body.textContent || "";
+        const srText = ` of ${basicTitle}.`;
         for(let i = 0; i < urls.length; i++) {
             if (urls[i]) {
                 dlIcon.href = urls[i];
+                var srTextSpan = dlIcon.firstElementChild;
+                srTextSpan.innerText = "Download ";
+                srTextSpan = srTextSpan.nextElementSibling;
+                srTextSpan.innerText = srText;
                 addOutboundLinkHandler(index, dlIcon)
                 dlIcon.addEventListener('click', handleOutboundLink.bind(null, index))
                 dlIcon = dlIcon.nextElementSibling;
@@ -70,11 +76,13 @@ export default class ResultViewController {
 
                 if(i === 0) {
                     dlIcon.href = record.urlOther[i]
+                    dlIcon.firstElementChild.innerText = srText;
                     addOutboundLinkHandler(index, dlIcon)
                 } else {
                     const icon = dlIcon.cloneNode(true);
                     dlIcon.parentElement.appendChild(icon);
                     icon.href = record.urlOther[i]
+                    icon.firstElementChild.innerText = srText;
                     addOutboundLinkHandler(index, icon)
                 }
             }

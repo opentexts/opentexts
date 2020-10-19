@@ -1,4 +1,4 @@
-        <footer role="footer" class="mx-auto max-w-3xl grid md:grid-cols-3 gap-x-24 gap-y-12 justify-center items-center p-6 md:p-12 text-white">
+        <footer role="contentinfo" class="mx-auto max-w-3xl grid md:grid-cols-3 gap-x-24 gap-y-12 justify-center items-center p-6 md:p-12 text-white">
             <?php
                 $uri = current_url(true);
                 $current_path = "/" . $uri->getSegment(1);
@@ -12,6 +12,12 @@
                     </a>
 
                     <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
+                    <a href="https://twitter.com/opentexts/" class="text-blue-100 hover:text-white flex items-center no-underline max-w-xs social">
+                        <span class="p-2 rounded-full bg-blue-600 mr-2 icon">
+                            <?php echo file_get_contents('svg/twitter.svg'); ?>
+                        </span>
+                        <span class="opacity-75">Twitter</span>
+                    </a>
                 </section>
 
                 <section>
@@ -49,6 +55,5 @@
         </script>
         
         <script src="/scripts/focus-visible.min.js"></script>
-        <script src="/scripts/navigation-modal.js"></script>
     </body>
 </html>
