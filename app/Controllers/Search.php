@@ -250,7 +250,13 @@ class Search extends Controller
         $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
         // Limit to 5,000 rows for now
-        $url = $url . "&rows=5000";
+        $rows = filter_input(INPUT_GET, 'rows', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($rows)) && (is_numeric($rows)) && ($rows <= 5000) && ($rows >= 1)) {
+            // We have a good number for $rows
+        } else {
+            $rows = 5000;
+        }
+        $url = $url . "&rows=" . $rows;
         
         // Concoct the filename
         $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
