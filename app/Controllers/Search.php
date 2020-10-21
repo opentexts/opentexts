@@ -203,7 +203,7 @@ class Search extends Controller
         $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($advanced)) && ($advanced == 'true')) {
             $data['title'] = "Advanced Search";
-            echo view('templates/plain-header', $data);
+            echo view('templates/navigation-primary', $data);
             $data['advanced'] = True;
         } else {
             echo view('templates/search-header', $data);
