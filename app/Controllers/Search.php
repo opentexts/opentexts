@@ -281,13 +281,16 @@ class Search extends Controller
         $format = filter_input(INPUT_GET, 'format', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($format)) && ($format == "xml")) {
             $url = $url . "&wt=xml";
-            $extensoion = ".xml";
+            $extension = ".xml";
+            $mime = "application/xml";
         } else if ((!empty($format)) && ($format == "json")) {
             $url = $url . "&wt=json";
             $extension = ".json";
+            $mime = "application/json";
         } else {
             $url = $url . "&wt=csv";
             $extension = ".csv";
+            $mime = "text/csv";
         }
         
         // Only export standard fields
@@ -300,14 +303,13 @@ class Search extends Controller
             $rows = 5000;
         }
         $url = $url . "&rows=" . $rows;
-
         
         // Concoct the filename
         $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
         $exportFilename = str_replace(' ', '_', $exportFilename);
         $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . $extension;
         
-        $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
+        $this->response->setContentType('Content-Type: " . $mime . "; charset=utf-8');
         header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);
