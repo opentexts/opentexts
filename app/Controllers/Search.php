@@ -228,17 +228,26 @@ class Search extends Controller
     public function export() 
     {
         $config = config('Solr');        
+         
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
+            $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
+            $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $q = new OTAdvancedQuery($title, $creator, $yearfrom, $yearto);
+        } else {
+            $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($q)) $q = "";
+            $q = new OTQuery($q);
+        }
         
-        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (empty($q)) $q = "";
-        $q = new OTQuery($q);
-
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?" . urlencode($q->getQuery());
+               "/select?" . $q->getSolrQuery();
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -268,8 +277,18 @@ class Search extends Controller
             $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
-        // We want a CSV
-        $url = $url . "&wt=csv";
+        // What format do we want?
+        $format = filter_input(INPUT_GET, 'format', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($format)) && ($format == "xml")) {
+            $url = $url . "&wt=xml";
+            $extensoion = ".xml";
+        } else if ((!empty($format)) && ($format == "json")) {
+            $url = $url . "&wt=json";
+            $extension = ".json";
+        } else {
+            $url = $url . "&wt=csv";
+            $extension = ".csv";
+        }
         
         // Only export standard fields
         $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
@@ -281,11 +300,12 @@ class Search extends Controller
             $rows = 5000;
         }
         $url = $url . "&rows=" . $rows;
+
         
         // Concoct the filename
         $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
         $exportFilename = str_replace(' ', '_', $exportFilename);
-        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . $extension;
         
         $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=' . $exportFilename);

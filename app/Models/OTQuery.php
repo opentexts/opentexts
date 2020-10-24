@@ -147,6 +147,10 @@ class OTQuery
         $query->setQuery($this->solrSafeQuery);
     }
 
+    function getSolrQuery() : String{
+        return "q=" . urlencode($this->solrSafeQuery);
+    }
+
     function getQuery() : String{
         return "q=" . $this->solrSafeQuery;
     }

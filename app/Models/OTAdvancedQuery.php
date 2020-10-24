@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Solarium\Client;
 use Solarium\QueryType\Select\Query\Query;
 
 class OTAdvancedQuery
@@ -9,6 +10,8 @@ class OTAdvancedQuery
     public $sanitisedCreator = "";
     public $sanitisedYearFrom = "";
     public $sanitisedYearTo = "";
+    
+    public $santisedQuery = "";
     
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
@@ -23,6 +26,7 @@ class OTAdvancedQuery
         if ($title !== "") {
             array_push($solrSafeQueryFieldsArray, "title: %Px%");
             array_push($this->solrSafeQueryValuesArray, $title);
+            $this->sanitisedQuery = $title;
         }
         
         $creator = html_entity_decode($creator, ENT_QUOTES | ENT_HTML5);
@@ -30,6 +34,7 @@ class OTAdvancedQuery
         if ($creator !== "") {
             array_push($solrSafeQueryFieldsArray, "creator: %Px%");
             array_push($this->solrSafeQueryValuesArray, $creator);
+            $this->sanitisedQuery .= "-" . $creator;
         }
         
         $yearFrom = html_entity_decode($yearFrom, ENT_QUOTES | ENT_HTML5);
@@ -72,15 +77,24 @@ class OTAdvancedQuery
     function applyQuery(Query &$query) {
         $query->setQuery($this->solrSafeQuery, $this->solrSafeQueryValuesArray);
     }
-
+    
+    function getSolrQuery() : String{
+        $client = new Client();
+        $query = $client->createSelect();
+        $query->setQuery($this->solrSafeQuery, $this->solrSafeQueryValuesArray);
+        
+        return "q=" . urlencode($query->getQuery());
+    }
+    
     function getQuery() : String{
-        return "title=" . $this->sanitisedTitle . 
-               "&creator=" . $this->sanitisedCreator . 
-               "&yearfrom=" . $this->sanitisedYearFrom .
-               "&yearto=" . $this->sanitisedYearTo;
+        return $this->getPlainQuery();
     }
 
     function getPlainQuery() : String{
-        return "";
+        return "advanced=true" .
+               "&title=" . $this->sanitisedTitle . 
+               "&creator=" . $this->sanitisedCreator . 
+               "&yearfrom=" . $this->sanitisedYearFrom .
+               "&yearto=" . $this->sanitisedYearTo;;
     }
 }

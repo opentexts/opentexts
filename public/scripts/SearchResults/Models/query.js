@@ -15,6 +15,7 @@ export default class Query {
     constructor(rawQuery){
 
         Object.assign(this, rawQuery);
+        console.log("Parsing query string of %o", rawQuery);
         for(let i = 0; i < filters.length; i++)
         {
             if(!Array.isArray(this[filters[i]])) {
@@ -114,7 +115,11 @@ export default class Query {
      * @returns {string}
      */
     buildExportUrl() {
-        return `/search/export?${this._getQueryString()}`;
+        if (this._getQueryString().indexOf("advanced=true") >= 0) {
+            return `/search/export?advanced=true&${this._getQueryString()}`;
+        } else {
+            return `/search/export?${this._getQueryString()}`;
+        }
     }
 
     /**
