@@ -4,5 +4,5 @@
 
     <p class="text-gray-600"><span id="resultCount" class="font-semibold"><?= $start+1 ?>-<?= $count ?></span> of <span id="resultTotal" class="font-semibold"><?= number_format($resultcount); ?></span> results.</p>
 
-    <a class="link" id="export" href="<?= esc($exporturl) ?>" rel=“nofollow”>Download full results.</a>
+    <p id="export" class="link">Download full results as: <a href="<?= esc($exporturl) ?>" rel="nofollow">CSV</a>, <a href="<?= esc($exporturl) . "&format=xml" ?>" rel="nofollow">XML</a>, <a href="<?= esc($exporturl) . "&format=json" ?>" rel="nofollow">JSON</a></p>
 </footer>

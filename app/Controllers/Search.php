@@ -117,7 +117,7 @@ class Search extends Controller
         
         $data['url'] = $url;
 
-        $data['exporturl'] = "/search/export/" . substr($url, 8);
+        $data['exporturl'] = "/search/export/" . trim(substr($url, 8));
 
         $resultList = array();
         foreach ($resultset as $document) :
