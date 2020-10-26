@@ -27,21 +27,9 @@ class Search extends Controller
         
         $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($advanced)) && ($advanced == 'true')) {
-            $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($title)) $title = "";
-            $data['searchtitle'] = $title;
-            $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($creator)) $creator = "";
-            $data['searchcreator'] = $creator;
-            $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($yearfrom)) $yearfrom = "";
-            $data['searchyearfrom'] = $yearfrom;
-            $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($yearto)) $yearto = "";
-            $data['searchyearto'] = $yearto;
-            $q = new OTAdvancedQuery($title, $creator, $yearfrom, $yearto);
+            $q = new OTAdvancedQuery();
         } else {
-            $q = new OTQuery($q);
+            $q = new OTQuery();
         }
 
         // Create a client instance
@@ -248,15 +236,9 @@ class Search extends Controller
          
         $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($advanced)) && ($advanced == 'true')) {
-            $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-            $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
-            $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
-            $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
-            $q = new OTAdvancedQuery($title, $creator, $yearfrom, $yearto);
+            $q = new OTAdvancedQuery();
         } else {
-            $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($q)) $q = "";
-            $q = new OTQuery($q);
+            $q = new OTQuery();
         }
         
         // Generate the solr search URL

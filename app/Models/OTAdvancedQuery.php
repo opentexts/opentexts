@@ -16,8 +16,16 @@ class OTAdvancedQuery
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
 
-    function __construct(string $title = "", string $creator = "", string $yearFrom = "", string $yearTo = "") {
-
+    function __construct() {
+        $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($title)) $title = "";
+        $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($creator)) $creator = "";
+        $yearFrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($yearFrom)) $yearFrom = "";
+        $yearTo = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($yearTo)) $yearTo = "";
+        
         $solrSafeQueryFieldsArray = array();
         $this->solrSafeQueryValuesArray = array();
         
