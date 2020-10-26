@@ -28,12 +28,16 @@ class Search extends Controller
         $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($advanced)) && ($advanced == 'true')) {
             $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($title)) $title = "";
             $data['searchtitle'] = $title;
             $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($creator)) $creator = "";
             $data['searchcreator'] = $creator;
             $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($yearfrom)) $yearfrom = "";
             $data['searchyearfrom'] = $yearfrom;
             $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($yearto)) $yearto = "";
             $data['searchyearto'] = $yearto;
             $q = new OTAdvancedQuery($title, $creator, $yearfrom, $yearto);
         } else {
@@ -180,15 +184,28 @@ class Search extends Controller
                 "score" => $document->score
             ));
         endforeach;
-        $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q->getPlainQuery(), "start" => $start, "language" => $language, "organisation" => $organisation),
-                                 "filters" =>  array(
-                                     "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
-                                     "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
-                                 ),
-                                 "total" => $resultset->getNumFound(),
-                                 "advanced" => $advanced);
-
+        
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $data['payload'] = array("results" => $resultList, 
+                                     "query" => array("advanced" => "true",
+                                                      "title" => $q->sanitisedTitle, 
+                                                      "creator" => $q->sanitisedCreator, 
+                                                      "yearfrom" => $q->sanitisedYearFrom, 
+                                                      "yearto" => $q->sanitisedYearTo,
+                                                      "start" => $start),
+                                     "total" => $resultset->getNumFound(),
+                                     "advanced" => $advanced);
+        } else {
+            $data['payload'] = array("results" => $resultList, 
+                                     "query" => array("q" => $q->getPlainQuery(), "start" => $start, "language" => $language, "organisation" => $organisation),
+                                     "filters" =>  array(
+                                         "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
+                                         "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
+                                     ),
+                                     "total" => $resultset->getNumFound(),
+                                     "advanced" => $advanced);
+        }
+        
         return $data;
     }
 

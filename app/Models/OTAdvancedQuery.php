@@ -16,7 +16,7 @@ class OTAdvancedQuery
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
 
-    function __construct(string $title, string $creator, string $yearFrom, string $yearTo) {
+    function __construct(string $title = "", string $creator = "", string $yearFrom = "", string $yearTo = "") {
 
         $solrSafeQueryFieldsArray = array();
         $this->solrSafeQueryValuesArray = array();
