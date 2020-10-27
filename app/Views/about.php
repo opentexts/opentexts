@@ -3,7 +3,7 @@
         
         <h1>About</h1>
         <p class="intro">
-            OpenTexts.World is an experimental service that provides free access to digitised text collections from around the world. Think of it as a search engine for books.
+            OpenTexts.World is an experimental service that helps you discover free digitised text collections from around the world. Think of it as a search engine for books.
         </p>
 
         <p>

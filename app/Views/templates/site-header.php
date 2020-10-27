@@ -23,7 +23,7 @@
         <meta property="og:url" content="<?php echo current_url(true); ?>" />
         <meta property="og:image" content="https://opentexts.world/og-image.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:description" content="A search engine for books. OpenTexts provides free access to digitised text collections from around the world." />
+        <meta property="og:description" content="A search engine for books. OpenTexts helps you discover free digitised text collections from around the world." />
         <meta property="og:locale" content="en_GB" />
 
         <meta property="twitter:card" content="summary_large_image" />
