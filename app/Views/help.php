@@ -52,11 +52,14 @@
         <h2>Exporting results</h2>
         <p>
             You can export your search results in bulk by using the <a href="/search/export/?q=cheesecake">download full results</a>
-            link at the bottom of each page. This will download the results in a <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV format</a> which can be opened by any spreadsheet application.
+            link at the bottom of each page. You can choose between <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV format</a> which can be opened by any spreadsheet application,
+            <a href="https://en.wikipedia.org/wiki/XML">XML</a> or 
+            <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>.
         </p>
         <p>
-            At present, only the first 5,000 results will be saved.  If you require more, please get
-            in touch using the feedback tab below.
+            At present, only the first 5,000 results will be saved.  
+            You can limit the number of rows by adding a parameter to the URL, for example: '&rows=50'.
+            If you require more, please get in touch using the feedback tab below.
         </p>
         
         <h2>This didn’t answer my question!</h2>

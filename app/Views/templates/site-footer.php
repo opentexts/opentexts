@@ -11,7 +11,7 @@
                         <img src="/images/open-texts.svg" class="w-full max-w-sm" alt="Open Texts" />
                     </a>
 
-                    <p class="text-xl">OpenTexts.world provides free access to millions of digitised texts from libraries around the world. Currently in beta.</p>
+                    <p class="text-xl">OpenTexts.world helps you discover millions of free digitised texts from libraries around the world. Currently in beta.</p>
                     <a href="https://twitter.com/opentexts/" class="text-blue-100 hover:text-white flex items-center no-underline max-w-xs social">
                         <span class="p-2 rounded-full bg-blue-600 mr-2 icon">
                             <?php echo file_get_contents('svg/twitter.svg'); ?>
