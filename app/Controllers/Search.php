@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\OTQuery;
+use App\Models\OTAdvancedQuery;
 use CodeIgniter\Controller;
 use Solarium\Client;
 use Solarium\Core\Client\Adapter\Curl;
@@ -23,8 +24,13 @@ class Search extends Controller
 
         $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($q)) $q = "";
-        $q = new OTQuery($q);
-
+        
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $q = new OTAdvancedQuery();
+        } else {
+            $q = new OTQuery();
+        }
 
         // Create a client instance
         $client = new Client($config->solarium);
@@ -47,7 +53,7 @@ class Search extends Controller
         $query->setFields($fl);
         
         // Generate the URL without pagination details
-        $url = '/search/?q=' . $q->sanitisedQuery;
+        $url = '/search/?' . $q->getQuery();
 
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -98,7 +104,7 @@ class Search extends Controller
         $resultset = $client->select($query);
 
         // Send the parameters to the view
-        $data['q'] = $q->sanitisedQuery;
+        $data['q'] = $q->getPlainQuery();
         $data['resultcount'] = $resultset->getNumFound();
         $data['organisationfacet'] = $resultset->getFacetSet()->getFacet('orgf');
         $data['languagefacet'] = $resultset->getFacetSet()->getFacet('langf');
@@ -111,7 +117,7 @@ class Search extends Controller
         
         $data['url'] = $url;
 
-        $data['exporturl'] = "/search/export/" . substr($url, 8);
+        $data['exporturl'] = "/search/export/" . trim(substr($url, 8));
 
         $resultList = array();
         foreach ($resultset as $document) :
@@ -166,14 +172,28 @@ class Search extends Controller
                 "score" => $document->score
             ));
         endforeach;
-        $data['payload'] = array("results" => $resultList, 
-                                 "query" => array("q" => $q->sanitisedQuery, "start" => $start, "language" => $language, "organisation" => $organisation),
-                                 "filters" =>  array(
-                                     "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
-                                     "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
-                                 ),
-                                 "total" => $resultset->getNumFound());
-
+        
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $data['payload'] = array("results" => $resultList, 
+                                     "query" => array("advanced" => "true",
+                                                      "title" => $q->sanitisedTitle, 
+                                                      "creator" => $q->sanitisedCreator, 
+                                                      "yearfrom" => $q->sanitisedYearFrom, 
+                                                      "yearto" => $q->sanitisedYearTo,
+                                                      "start" => $start),
+                                     "total" => $resultset->getNumFound(),
+                                     "advanced" => $advanced);
+        } else {
+            $data['payload'] = array("results" => $resultList, 
+                                     "query" => array("q" => $q->getPlainQuery(), "start" => $start, "language" => $language, "organisation" => $organisation),
+                                     "filters" =>  array(
+                                         "organisation" => $resultset->getFacetSet()->getFacet('orgf')->getValues(),
+                                         "language" => $resultset->getFacetSet()->getFacet('langf')->getValues()
+                                     ),
+                                     "total" => $resultset->getNumFound(),
+                                     "advanced" => $advanced);
+        }
+        
         return $data;
     }
 
@@ -181,10 +201,20 @@ class Search extends Controller
     {
         $data = $this->getData();
         $data['title'] = "Search";
+        $data['advanced'] = False;
 
         echo view('templates/site-header', $data);
-        echo view('templates/search-header', $data);
 
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $data['title'] = "Advanced Search";
+            $data['showlogo'] = True;
+            echo view('templates/non-search-header', $data);
+            $data['advanced'] = True;
+        } else {
+            echo view('templates/search-header', $data);
+        }
+        
         echo view('search', $data);
         echo view('templates/site-footer');
     }
@@ -203,17 +233,20 @@ class Search extends Controller
     public function export() 
     {
         $config = config('Solr');        
+         
+        $advanced = filter_input(INPUT_GET, 'advanced', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($advanced)) && ($advanced == 'true')) {
+            $q = new OTAdvancedQuery();
+        } else {
+            $q = new OTQuery();
+        }
         
-        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (empty($q)) $q = "";
-        $q = new OTQuery($q);
-
         // Generate the solr search URL
         $url = "http://" . $config->solarium['endpoint']['localhost']['host'] .
                ":" . $config->solarium['endpoint']['localhost']['port'] .
                $config->solarium['endpoint']['localhost']['path'] .
                "solr/" . $config->solarium['endpoint']['localhost']['core'] .
-               "/select?q=" . urlencode($q->getQuery());
+               "/select?" . $q->getSolrQuery();
         
         // Was an organisation facet selected?
         $organisation = filter_input(INPUT_GET, 'organisation', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -243,13 +276,25 @@ class Search extends Controller
             $url = $url . '&fq=language:(' . urlencode($languageFQ) . ')';
         }
         
-        // We want a CSV
-        $url = $url . "&wt=csv";
+        // What format do we want?
+        $format = filter_input(INPUT_GET, 'format', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ((!empty($format)) && ($format == "xml")) {
+            $url = $url . "&wt=xml";
+            $extension = ".xml";
+            $mime = "application/xml";
+        } else if ((!empty($format)) && ($format == "json")) {
+            $url = $url . "&wt=json";
+            $extension = ".json";
+            $mime = "application/json";
+        } else {
+            $url = $url . "&wt=csv";
+            $extension = ".csv";
+            $mime = "text/csv";
+        }
         
         // Only export standard fields
         $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
-        // Limit to 5,000 rows for now
         $rows = filter_input(INPUT_GET, 'rows', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($rows)) && (is_numeric($rows)) && ($rows <= 5000) && ($rows >= 1)) {
             // We have a good number for $rows
@@ -261,9 +306,9 @@ class Search extends Controller
         // Concoct the filename
         $exportFilename = 'export-' . $q->sanitisedQuery . '-'. date("Ymd");
         $exportFilename = str_replace(' ', '_', $exportFilename);
-        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . '.csv';
+        $exportFilename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $exportFilename) . $extension;
         
-        $this->response->setContentType('Content-Type: text/csv; charset=utf-8');
+        $this->response->setContentType('Content-Type: " . $mime . "; charset=utf-8');
         header('Content-Disposition: attachment; filename=' . $exportFilename);
         $fp = fopen($url, 'rb');
         fpassthru($fp);

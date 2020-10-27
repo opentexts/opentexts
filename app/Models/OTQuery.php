@@ -14,8 +14,10 @@ class OTQuery
     public $sanitisedQuery = "";
     private $solrSafeQuery = "";
 
-    function __construct(string $q) {
-
+    function __construct() {
+        $q = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($q)) $q = "";
+        
         $q = html_entity_decode($q, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedQuery = $q;
 
@@ -147,7 +149,15 @@ class OTQuery
         $query->setQuery($this->solrSafeQuery);
     }
 
+    function getSolrQuery() : String{
+        return "q=" . urlencode($this->solrSafeQuery);
+    }
+
     function getQuery() : String{
-        return $this->solrSafeQuery;
+        return "q=" . $this->solrSafeQuery;
+    }
+
+    function getPlainQuery() : String{
+        return $this->sanitisedQuery;
     }
 }

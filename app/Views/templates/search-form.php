@@ -9,4 +9,8 @@
             <span class="sr-only">Search</span>
         </button>
     </div>
+    
+    <?php if('/' === getCurrentPage()): ?>
+        <a href="/advanced/" class="block w-full text-white text-opacity-75 my-1 pl-4 text-left text-xs hover:text-opacity-100 hover:text-white">Advanced Search</a>
+    <?php endif; ?>
 </form>

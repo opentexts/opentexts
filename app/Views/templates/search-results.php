@@ -18,14 +18,19 @@
 /** @var  array $payload */
 ?>
 <div class="container mx-auto max-w-xl mb-12">
-    <form class="flex">
-        <input type="hidden" name="q" value="<?= esc($q) ?>"/>
-        <?php
-        include('filter-generic.php');
-        render_facetset("organisation", $organisation, "libraries", $organisationfacet);
-        render_facetset("language", $language, "languages", $languagefacet);
-        ?>
-    </form>
+    <?php if ($advanced != True) { ?>
+        <form class="flex">
+            <input type="hidden" name="q" value="<?= esc($q) ?>"/>
+            <?php
+            include('filter-generic.php');
+            render_facetset("organisation", $organisation, "libraries", $organisationfacet);
+            render_facetset("language", $language, "languages", $languagefacet);
+            ?>
+        </form>
+    <?php } else { ?>
+        <h1>Advanced Search</h1>      
+        <p><a href="/advanced?<?= substr($url, 9) ?>">Edit search</a></p>
+    <?php } ?>
 </div>
 <div id="result-skeletons" class="hidden">
     <div class="container mx-auto max-w-xl mb-6 skeleton"></div>

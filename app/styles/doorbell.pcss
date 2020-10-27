@@ -1,12 +1,16 @@
-/* Style the Doorbell button + form */
+/* Doorbell.io styling */
+
+/* Feedback tab */
 body #doorbell-button {
     @apply rounded-b-none;
 }
 
+/* Background shim */
 body #doorbell-background {
     @apply bg-gray-900;
 }
 
+/* Modal */
 @media screen and (max-width: 640px) {
     body #doorbell {
         @apply left-0 ml-2;
@@ -31,6 +35,7 @@ body #doorbell form {
     }
 }
 
+/* Close icon */
 body #doorbell-container .close {
     @apply right-0 top-0 mt-3 mr-2 text-2xl text-gray-500 opacity-100 font-medium border-solid rounded-full py-1 px-2 leading-4;
     padding-left: 0.4rem;
@@ -50,42 +55,41 @@ body #doorbell-container .close:focus {
     @apply outline-none text-blue-700 shadow-focus;
 }
 
+/* Hide legend */
 body #doorbell form legend {
     @apply hidden;
 }
 
-#doorbell-feedback-label,
-#doorbell-email-label {
-    @apply block w-full max-w-2xl mb-1 text-sm text-gray-800 font-normal;
-}
-
-body #doorbell label {
-    @apply font-normal;
-}
-
+/* Unset height on input elements */
 #doorbell-feedback,
 #doorbell-email,
 body #doorbell form textarea, 
+body #doorbell .form-control textarea, 
 body #doorbell form input[type="email"] {
-    @apply block bg-white rounded-md border-2 border-gray-300 p-3 mb-6 text-base text-gray-700 box-border w-full appearance-none shadow-none;
+    @apply h-auto box-border;
 }
 
+/* Hide placeholder text */
 body #doorbell form textarea::placeholder, 
 body #doorbell form input[type="email"]::placeholder {
     color: transparent;
 }
 
+/* Set a taller height on our textarea */
 body #doorbell form textarea {
     @apply h-40;
 }
 
-#doorbell-feedback:focus,
-#doorbell-email:focus,
-body #doorbell form textarea:focus, 
-body #doorbell form input[type="email"]:focus {
-    @apply outline-none text-blue-700 shadow-focus;
+/* Centre-align search button */
+#doorbell .buttons {
+    text-align: center;
 }
 
+#doorbell #doorbell-form .buttons button {
+    @apply w-auto mx-auto;
+}
+
+/* Credits */
 body #doorbell #doorbell-powered-by {
     @apply block text-xs text-gray-600 text-center mt-8;
 }
