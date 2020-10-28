@@ -3,6 +3,9 @@
         <p>
             No results found for <em class="font-semibold not-italic"><?= esc($q); ?></em>.
         </p>
+        <?php if ($advanced === True) { ?>
+            <p><a href="/advanced?<?= esc(substr($url, 9)) ?>">Edit search</a></p>
+        <?php } ?>
         <p>
             Suggestions:
         </p>

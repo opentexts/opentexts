@@ -11,8 +11,6 @@ class OTAdvancedQuery
     public $sanitisedYearFrom = "";
     public $sanitisedYearTo = "";
     
-    public $santisedQuery = "";
-    
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
 
@@ -32,17 +30,15 @@ class OTAdvancedQuery
         $title = html_entity_decode($title, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedTitle = $title;
         if ($title !== "") {
-            array_push($solrSafeQueryFieldsArray, "title: %Lx%");
+            array_push($solrSafeQueryFieldsArray, "(title: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, $title);
-            $this->sanitisedQuery = $title;
         }
         
         $creator = html_entity_decode($creator, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedCreator = $creator;
         if ($creator !== "") {
-            array_push($solrSafeQueryFieldsArray, "creator: %Lx%");
+            array_push($solrSafeQueryFieldsArray, "(creator: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, $creator);
-            $this->sanitisedQuery .= "-" . $creator;
         }
         
         $yearFrom = html_entity_decode($yearFrom, ENT_QUOTES | ENT_HTML5);
@@ -62,13 +58,13 @@ class OTAdvancedQuery
         $this->sanitisedYearTo = $yearTo;
          
         if (($yearFrom !== "") & ($yearTo !== "")) {
-            array_push($solrSafeQueryFieldsArray, "year: %Lx%");
+            array_push($solrSafeQueryFieldsArray, "(year: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, "[" . $yearFrom . " TO " . $yearTo . "]");
         } else if ($yearFrom !== "") {    
-            array_push($solrSafeQueryFieldsArray, "year: %Lx%");
+            array_push($solrSafeQueryFieldsArray, "(year: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, "[" . $yearFrom . " TO *]");
         } else if ($yearTo !== "") {
-            array_push($solrSafeQueryFieldsArray, "year: %Lx%");
+            array_push($solrSafeQueryFieldsArray, "(year: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, "[* TO " . $yearTo . "]");
         }
         
