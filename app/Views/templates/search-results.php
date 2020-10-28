@@ -29,7 +29,7 @@
         </form>
     <?php } else { ?>
         <h1>Advanced Search</h1>      
-        <p><a href="/advanced?<?= substr($url, 9) ?>">Edit search</a></p>
+        <p><a href="/advanced?<?= esc(substr($url, 9)) ?>">Edit search</a></p>
     <?php } ?>
 </div>
 <div id="result-skeletons" class="hidden">

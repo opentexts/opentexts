@@ -103,6 +103,6 @@ class OTAdvancedQuery
                "&title=" . $this->sanitisedTitle . 
                "&creator=" . $this->sanitisedCreator . 
                "&yearfrom=" . $this->sanitisedYearFrom .
-               "&yearto=" . $this->sanitisedYearTo;;
+               "&yearto=" . $this->sanitisedYearTo;
     }
 }
