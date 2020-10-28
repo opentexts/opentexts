@@ -32,7 +32,7 @@ class OTAdvancedQuery
         $title = html_entity_decode($title, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedTitle = $title;
         if ($title !== "") {
-            array_push($solrSafeQueryFieldsArray, "title: %Px%");
+            array_push($solrSafeQueryFieldsArray, "title: %Lx%");
             array_push($this->solrSafeQueryValuesArray, $title);
             $this->sanitisedQuery = $title;
         }
@@ -40,7 +40,7 @@ class OTAdvancedQuery
         $creator = html_entity_decode($creator, ENT_QUOTES | ENT_HTML5);
         $this->sanitisedCreator = $creator;
         if ($creator !== "") {
-            array_push($solrSafeQueryFieldsArray, "creator: %Px%");
+            array_push($solrSafeQueryFieldsArray, "creator: %Lx%");
             array_push($this->solrSafeQueryValuesArray, $creator);
             $this->sanitisedQuery .= "-" . $creator;
         }
