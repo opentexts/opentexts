@@ -11,7 +11,6 @@
                 <input name="title" type="text" id="searchtitle" class="text-field" value="<?php echo isset($searchtitle) ? $searchtitle : "" ?>" />
 
                 <label class="label" for="searchcreator">Creator</label>
-                
                 <input name="creator" type="text" id="searchcreator" class="text-field" value="<?php echo isset($searchcreator) ? $searchcreator : "" ?>" />
 
                 <div class="flex w-full">
@@ -26,10 +25,16 @@
                     </div>
                 </div>
 
+                <label class="label" for="searchpublisher">Publisher</label>
+                <input name="publisher" type="text" id="searchpublisher" class="text-field" value="<?php echo isset($searchpublisher) ? $searchpublisher : "" ?>" />
+
+                <label class="label" for="searchplaceofpublication">Place of publication</label>
+                <input name="placeofpublication" type="text" id="searchplaceofpublication" class="text-field" value="<?php echo isset($searchplaceofpublication) ? $searchplaceofpublication : "" ?>" />
+
                 <div class="flex justify-center mt-2">
                     <input class="button-primary px-6" type="submit" value="Search" />
                 </div>
-
+                
             </form>
         </div>
 
