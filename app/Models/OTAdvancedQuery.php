@@ -82,7 +82,7 @@ class OTAdvancedQuery
         }
         
         $placeOfPublication = html_entity_decode($placeOfPublication, ENT_QUOTES | ENT_HTML5);
-        $this->sanitsedPlaceOfPublication = $placeOfPublication;
+        $this->sanitisedPlaceOfPublication = $placeOfPublication;
         if ($placeOfPublication !== "") {
             array_push($solrSafeQueryFieldsArray, "(placeOfPublication: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, $placeOfPublication);
