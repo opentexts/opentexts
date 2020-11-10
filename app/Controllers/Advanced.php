@@ -14,6 +14,10 @@ class Advanced extends BaseController
             $data['searchyearfrom'] = $yearfrom;
             $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
             $data['searchyearto'] = $yearto;
+            $publisher = filter_input(INPUT_GET, 'publisher', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchpublisher'] = $publisher;
+            $placeofpublication = filter_input(INPUT_GET, 'placeofpublication', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchplaceofpublication'] = $placeofpublication;
             
             echo view('templates/site-header', $data); 
             echo view('templates/non-search-header', $data);

@@ -180,6 +180,8 @@ class Search extends Controller
                                                       "creator" => $q->sanitisedCreator, 
                                                       "yearfrom" => $q->sanitisedYearFrom, 
                                                       "yearto" => $q->sanitisedYearTo,
+                                                      "publisher" => $q->sanitisedPublisher, 
+                                                      "placeofpublication" => $q->sanitisedPlaceOfPublication,
                                                       "start" => $start),
                                      "total" => $resultset->getNumFound(),
                                      "advanced" => $advanced);

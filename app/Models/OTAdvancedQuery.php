@@ -10,6 +10,8 @@ class OTAdvancedQuery
     public $sanitisedCreator = "";
     public $sanitisedYearFrom = "";
     public $sanitisedYearTo = "";
+    public $sanitisedPublisher = "";
+    public $sanitisedPlaceOfPublication = "";
     
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
@@ -23,6 +25,10 @@ class OTAdvancedQuery
         if (empty($yearFrom)) $yearFrom = "";
         $yearTo = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($yearTo)) $yearTo = "";
+        $publisher = filter_input(INPUT_GET, 'publisher', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($publisher)) $publisher = "";
+        $placeOfPublication = filter_input(INPUT_GET, 'placeofpublication', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($placeOfPublication)) $placeOfPublication = "";
         
         $solrSafeQueryFieldsArray = array();
         $this->solrSafeQueryValuesArray = array();
@@ -56,7 +62,7 @@ class OTAdvancedQuery
             $yearTo = "";
         }
         $this->sanitisedYearTo = $yearTo;
-         
+             
         if (($yearFrom !== "") & ($yearTo !== "")) {
             array_push($solrSafeQueryFieldsArray, "(year: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, "[" . $yearFrom . " TO " . $yearTo . "]");
@@ -66,6 +72,20 @@ class OTAdvancedQuery
         } else if ($yearTo !== "") {
             array_push($solrSafeQueryFieldsArray, "(year: %Lx%)");
             array_push($this->solrSafeQueryValuesArray, "[* TO " . $yearTo . "]");
+        }
+        
+        $publisher = html_entity_decode($publisher, ENT_QUOTES | ENT_HTML5);
+        $this->sanitisedPublisher = $publisher;
+        if ($publisher !== "") {
+            array_push($solrSafeQueryFieldsArray, "(publisher: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, $publisher);
+        }
+        
+        $placeOfPublication = html_entity_decode($placeOfPublication, ENT_QUOTES | ENT_HTML5);
+        $this->sanitsedPlaceOfPublication = $placeOfPublication;
+        if ($placeOfPublication !== "") {
+            array_push($solrSafeQueryFieldsArray, "(placeOfPublication: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, $placeOfPublication);
         }
         
         $querystring = "";
@@ -99,6 +119,8 @@ class OTAdvancedQuery
                "&title=" . $this->sanitisedTitle . 
                "&creator=" . $this->sanitisedCreator . 
                "&yearfrom=" . $this->sanitisedYearFrom .
-               "&yearto=" . $this->sanitisedYearTo;
+               "&yearto=" . $this->sanitisedYearTo .
+               "&publisher=" . $this->sanitisedPublisher .
+               "&placeofpublication=" . $this->sanitsedPlaceOfPublication;
     }
 }
