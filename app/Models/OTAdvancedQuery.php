@@ -121,6 +121,6 @@ class OTAdvancedQuery
                "&yearfrom=" . $this->sanitisedYearFrom .
                "&yearto=" . $this->sanitisedYearTo .
                "&publisher=" . $this->sanitisedPublisher .
-               "&placeofpublication=" . $this->sanitsedPlaceOfPublication;
+               "&placeofpublication=" . $this->sanitisedPlaceOfPublication;
     }
 }
