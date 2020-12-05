@@ -47,7 +47,7 @@
 
         <!-- Title -->
         <h2 class="text-darkCyan text-xl leading-tight mb-2">
-            <a class="text-blue-700 hover:text-blue-600 inline-block" rel="bookmark"></a>
+            <a class="text-blue-700 hover:text-blue-600 visited:text-blue-800 inline-block" rel="bookmark"></a>
             <?php
             if($include_score) {
                 ?>
