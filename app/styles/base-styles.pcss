@@ -46,6 +46,11 @@ p {
     @apply text-lg text-gray-600 mb-6 mt-6;
 }
 
+/* Brute-force visited links, since Tailwind isn't working properly. */
+.visited:visited {
+    @apply text-blue-800;
+}
+
 /* Extra classes to apply consistent sizing to icons. */
 .icon-sm svg {
     width: 16px;

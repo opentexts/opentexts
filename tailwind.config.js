@@ -90,4 +90,9 @@ module.exports = {
     './public/scripts/**/*.js'
   ]
   },
+  variants: {
+    extend: {
+      textColor: ['visited'],
+    }
+  },
 }
