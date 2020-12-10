@@ -96,7 +96,7 @@ class Search extends Controller
         $facetSet->createFacetField('langf')->setField('language_facet')->addExclude("filter-lang");
 
         $hl = $query->getHighlighting();
-        $hl->setFields('title, creator, year, publisher, placeOfPublication');
+        $hl->setFields('title, creator, date, publisher, placeOfPublication');
         $hl->setSimplePrefix('<em class="not-italic font-semibold">');
         $hl->setSimplePostfix('</em>');
 
@@ -116,7 +116,7 @@ class Search extends Controller
         $data['count'] = $count;
         
         $data['url'] = $url;
-
+        
         $data['exporturl'] = "/search/export" . trim(substr($url, 8));
 
         $resultList = array();
