@@ -150,7 +150,10 @@ class OTQuery
     }
 
     function getSolrQuery() : String{
-        return "q=" . urlencode($this->solrSafeQuery);
+        if (strcmp($this->solrSafeQuery, '*')) {
+            return 'q=*';
+        }
+        return 'q=' . $this->solrSafeQuery;
     }
 
     function getQuery() : String{

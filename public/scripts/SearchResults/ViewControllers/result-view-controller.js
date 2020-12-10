@@ -29,7 +29,7 @@ export default class ResultViewController {
         const publisherDetails = author.nextElementSibling;
         let publisherDetailsString = record.publishers ? record.publishers.join(" ") + " " : "";
         publisherDetailsString += record.placesOfPublication ? record.placesOfPublication.join(" ") + " " : "";
-        publisherDetailsString += record.year || ""
+        publisherDetailsString += record.date || ""
         this.SetInnerHTML(publisherDetails, publisherDetailsString);
 
         const libraryDetails = publisherDetails.nextElementSibling;
