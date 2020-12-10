@@ -177,7 +177,13 @@ export default class ResultsController {
     }
     
     _updateExportUrl() {
-        var exportUrlLink = document.getElementById("export");
-        exportUrlLink.href = this._query.buildExportUrl();
+        var exportCSVUrlLink = document.getElementById("exportcsv");
+        exportCSVUrlLink.href = this._query.buildExportUrl();
+        
+        var exportXMLUrlLink = document.getElementById("exportxml");
+        exportXMLUrlLink.href = this._query.buildExportUrl() + "&format=xml";
+        
+        var exportJSONUrlLink = document.getElementById("exportjson");
+        exportJSONUrlLink.href = this._query.buildExportUrl() + "&format=json";
     }
 }
