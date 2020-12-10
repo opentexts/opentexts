@@ -44,8 +44,8 @@ class Search extends Controller
         $query = $client->createSelect();
         $q->applyQuery($query);
         // Only bring back the fields required
-        $fl = array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'year',
-            'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id');
+        $fl = array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'date',
+                    'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id');
         if($include_score)
         {
             array_push($fl, "score");
@@ -168,7 +168,7 @@ class Search extends Controller
                 "urlPlainText" => $document->urlPlainText,
                 "urlALTOXML" => $document->urlALTOXML,
                 "urlOther" => $document->urlOther,
-                "year" => $document->year,
+                "date" => $document->date,
                 "score" => $document->score
             ));
         endforeach;
@@ -295,7 +295,7 @@ class Search extends Controller
         }
         
         // Only export standard fields
-        $url = $url . "&fl=organisation,title,urlMain,year,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
+        $url = $url . "&fl=organisation,title,urlMain,year,date,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
         $rows = filter_input(INPUT_GET, 'rows', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($rows)) && (is_numeric($rows)) && ($rows <= 5000) && ($rows >= 1)) {
