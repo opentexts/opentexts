@@ -36,7 +36,7 @@ export default class ResultViewController {
         this.SetInnerHTML(libraryDetails, record.organisation);
 
         let dlIcon = libraryDetails.nextElementSibling.querySelector("a");
-        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML];
+        const urls = [record.urlPDF, record.urlIIIF, record.urlPlainText, record.urlALTOXML, record.urlTEI];
         let anyUrls = false;
         for(let i = 0; i < urls.length; i++){
             if(urls[i]) {

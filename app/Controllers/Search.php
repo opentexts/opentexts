@@ -45,9 +45,8 @@ class Search extends Controller
         $q->applyQuery($query);
         // Only bring back the fields required
         $fl = array('organisation', 'title', 'urlMain', 'creator', 'publisher', 'placeOfPublication', 'date',
-                    'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlOther', 'id');
-        if($include_score)
-        {
+                    'urlPDF', 'urlIIIF', 'urlPlainText', 'urlALTOXML', 'urlTEI', 'urlOther', 'id');
+        if($include_score) {
             array_push($fl, "score");
         }
         $query->setFields($fl);
@@ -102,7 +101,7 @@ class Search extends Controller
 
         // Execute the query and returns the result
         $resultset = $client->select($query);
-
+        
         // Send the parameters to the view
         $data['q'] = $q->getPlainQuery();
         $data['resultcount'] = $resultset->getNumFound();
@@ -167,6 +166,7 @@ class Search extends Controller
                 "urlIIIF" => $document->urlIIIF,
                 "urlPlainText" => $document->urlPlainText,
                 "urlALTOXML" => $document->urlALTOXML,
+                "urlTEI" => $document->urlTEI,
                 "urlOther" => $document->urlOther,
                 "date" => $document->date,
                 "score" => $document->score
@@ -295,7 +295,7 @@ class Search extends Controller
         }
         
         // Only export standard fields
-        $url = $url . "&fl=organisation,title,urlMain,year,date,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
+        $url = $url . "&fl=organisation,title,urlMain,year,date,publisher,creator,topic,description,urlPDF,urlIIIF,urlPlainText,urlALTOXML,urlTEI,urlOther,placeOfPublication,licence,idOther,catLink,language,idLocal";
         
         $rows = filter_input(INPUT_GET, 'rows', FILTER_SANITIZE_SPECIAL_CHARS);
         if ((!empty($rows)) && (is_numeric($rows)) && ($rows <= 5000) && ($rows >= 1)) {

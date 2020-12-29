@@ -80,6 +80,7 @@
             <a class="text-gray-600"><span class="sr-only">Download </span>IIIF<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
             <a class="text-gray-600"><span class="sr-only">Download </span>Plain-text<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
             <a class="text-gray-600"><span class="sr-only">Download </span>ALTO XML<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
+            <a class="text-gray-600"><span class="sr-only">Download </span>TEI<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
             <a class="text-gray-600"><span class="sr-only">Download </span>Other format<span class="sr-only"> of {ARTICLE_TITLE}.</span></a>
         </div>
     </div>
