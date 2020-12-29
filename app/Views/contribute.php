@@ -181,10 +181,16 @@
                 <td class="contribute-table__cell">URL to a plain text file</td>
                 <td class="contribute-table__cell">Optional</td>
                 <td class="contribute-table__cell">Not repeatable</td>
-                </tr>
+            </tr>
             <tr>
                 <td class="contribute-table__cell">urlALTOXML</td>
                 <td class="contribute-table__cell">URL to an <a href="https://en.wikipedia.org/wiki/ALTO_(XML)">ALTO XML</a> file</td>
+                <td class="contribute-table__cell">Optional</td>
+                <td class="contribute-table__cell">Not repeatable</td>
+            </tr>
+            <tr>
+                <td class="contribute-table__cell">urlTEI</td>
+                <td class="contribute-table__cell">URL to a <a href="https://en.wikipedia.org/wiki/Text_Encoding_Initiative">TEI</a> file</td>
                 <td class="contribute-table__cell">Optional</td>
                 <td class="contribute-table__cell">Not repeatable</td>
             </tr>
