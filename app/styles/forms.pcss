@@ -22,3 +22,15 @@ body #doorbell form input[type="email"]:focus {
 #doorbell-email-label {
     @apply block w-full max-w-2xl mb-1 text-sm text-gray-800;
 }
+
+.check-box {
+    @apply block h-6 w-6 p-2 mb-2 bg-white rounded-md border-2 border-gray-300 text-base text-gray-700 appearance-none shadow-none;
+}
+
+.check-box:checked {
+    @apply bg-blue-600 border-transparent;
+}
+
+.check-box:focus {
+    @apply outline-none border-blue-500 text-blue-700;
+}

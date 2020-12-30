@@ -13,6 +13,17 @@ class OTAdvancedQuery
     public $sanitisedPublisher = "";
     public $sanitisedPlaceOfPublication = "";
     
+    public $plaintext = false;
+    public $sanitisedPlainText = "";
+    public $iiif = false;
+    public $sanitisedIIIF = "";
+    public $altoxml = false;
+    public $sanitisedAltoXML = "";
+    public $pdf = false;
+    public $sanitisedPDF = "";
+    public $tei = false;
+    public $sanitisedTEI = "";
+    
     private $solrSafeQuery;
     private $solrSafeQueryValuesArray;
 
@@ -29,6 +40,27 @@ class OTAdvancedQuery
         if (empty($publisher)) $publisher = "";
         $placeOfPublication = filter_input(INPUT_GET, 'placeofpublication', FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($placeOfPublication)) $placeOfPublication = "";
+        
+        if ((!empty($_GET['plaintext'])) && ($_GET['plaintext'] == 'on')) {
+            $this->plaintext = true;
+            $this->sanitisedPlainText = "on";
+        }
+        if ((!empty($_GET['iiif'])) && ($_GET['iiif'] == 'on')) {
+            $this->iiif = true;
+            $this->sanitisedIIIF = "on";
+        }
+        if ((!empty($_GET['altoxml'])) && ($_GET['altoxml'] == 'on')) {
+            $this->altoxml = true;
+            $this->sanitisedAltoXML = "on";
+        }
+        if ((!empty($_GET['pdf'])) && ($_GET['pdf'] == 'on')) {
+            $this->pdf = true;
+            $this->sanitisedPDF= "on";
+        }
+        if ((!empty($_GET['tei'])) && ($_GET['tei'] == 'on')) {
+            $this->tei = true;
+            $this->sanitisedTEI = "on";
+        }
         
         $solrSafeQueryFieldsArray = array();
         $this->solrSafeQueryValuesArray = array();
@@ -88,6 +120,27 @@ class OTAdvancedQuery
             array_push($this->solrSafeQueryValuesArray, $placeOfPublication);
         }
         
+        if ($this->plaintext) {
+            array_push($solrSafeQueryFieldsArray, "(urlPlainText: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, "[* TO *]");
+        }
+        if ($this->iiif) {
+            array_push($solrSafeQueryFieldsArray, "(urlIIIF: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, "[* TO *]");
+        }
+        if ($this->altoxml) {
+            array_push($solrSafeQueryFieldsArray, "(urlALTOXML: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, "[* TO *]");
+        }
+        if ($this->pdf) {
+            array_push($solrSafeQueryFieldsArray, "(urlPDF: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, "[* TO *]");
+        }
+        if ($this->tei) {
+            array_push($solrSafeQueryFieldsArray, "(urlTEI: %Lx%)");
+            array_push($this->solrSafeQueryValuesArray, "[* TO *]");
+        }
+        
         $querystring = "";
         for ($i = 0; $i < count($solrSafeQueryFieldsArray); $i++) {
             if ($i > 0) {
@@ -121,6 +174,11 @@ class OTAdvancedQuery
                "&yearfrom=" . $this->sanitisedYearFrom .
                "&yearto=" . $this->sanitisedYearTo .
                "&publisher=" . $this->sanitisedPublisher .
-               "&placeofpublication=" . $this->sanitisedPlaceOfPublication;
+               "&placeofpublication=" . $this->sanitisedPlaceOfPublication .
+               "&plaintext=" . $this->sanitisedPlainText .
+               "&iiif=" . $this->sanitisedIIIF . 
+               "&altoxml=" . $this->sanitisedAltoXML . 
+               "&pdf=" . $this->sanitisedPDF . 
+               "&tei=" . $this->sanitisedTEI;
     }
 }

@@ -6,18 +6,18 @@ class Advanced extends BaseController
 	{
             $data['title'] = "Advanced Search";
             
-            $title = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchtitle'] = $title;
-            $creator = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchcreator'] = $creator;
-            $yearfrom = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchyearfrom'] = $yearfrom;
-            $yearto = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchyearto'] = $yearto;
-            $publisher = filter_input(INPUT_GET, 'publisher', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchpublisher'] = $publisher;
-            $placeofpublication = filter_input(INPUT_GET, 'placeofpublication', FILTER_SANITIZE_SPECIAL_CHARS);
-            $data['searchplaceofpublication'] = $placeofpublication;
+            $data['searchtitle'] = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchcreator'] = filter_input(INPUT_GET, 'creator', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchyearfrom'] = filter_input(INPUT_GET, 'yearfrom', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchyearto'] = filter_input(INPUT_GET, 'yearto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchpublisher'] = filter_input(INPUT_GET, 'publisher', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchplaceofpublication'] = filter_input(INPUT_GET, 'placeofpublication', FILTER_SANITIZE_SPECIAL_CHARS);
+            
+            $data['searchplaintext'] = filter_input(INPUT_GET, 'plaintext', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchiiif'] = filter_input(INPUT_GET, 'iiif', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchaltoxml'] = filter_input(INPUT_GET, 'altoxml', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchpdf'] = filter_input(INPUT_GET, 'pdf', FILTER_SANITIZE_SPECIAL_CHARS);
+            $data['searchtei'] = filter_input(INPUT_GET, 'tei', FILTER_SANITIZE_SPECIAL_CHARS);
             
             echo view('templates/site-header', $data); 
             echo view('templates/non-search-header', $data);

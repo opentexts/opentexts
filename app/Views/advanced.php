@@ -31,6 +31,33 @@
                 <label class="label" for="searchplaceofpublication">Place of publication</label>
                 <input name="placeofpublication" type="text" id="searchplaceofpublication" class="text-field" value="<?php echo isset($searchplaceofpublication) ? $searchplaceofpublication : "" ?>" />
 
+                <label class="label" for="searchformats">Required formats</label>
+                
+                <div class="flex w-full space-x-3">
+                    <input type="checkbox" name="plaintext" class="check-box tick" <?php echo ($searchplaintext == "on") ? "checked" : "" ?>>
+                    <span class="label">Plain Text</span>
+                </div>
+                
+                <div class="flex w-full space-x-3">
+                    <input type="checkbox" name="iiif" class="check-box tick" <?php echo ($searchiiif == "on") ? "checked" : "" ?>>
+                    <span class="label">IIIF</span>
+                </div>
+                
+                <div class="flex w-full space-x-3">
+                    <input type="checkbox" name="altoxml" class="check-box tick" <?php echo ($searchaltoxml == "on") ? "checked" : "" ?>>
+                    <span class="label">ALTO-XML</span>  
+                </div>
+                
+                <div class="flex w-full space-x-3">
+                    <input type="checkbox" name="pdf" class="check-box tick" <?php echo ($searchpdf == "on") ? "checked" : "" ?>>
+                    <span class="label">PDF</span>
+                </div>
+                
+                <div class="flex w-full space-x-3">     
+                    <input type="checkbox" name="tei" class="check-box tick" <?php echo ($searchtei == "on") ? "checked" : "" ?>>
+                    <span class="label">TEI</span>
+                </div>
+              
                 <div class="flex justify-center mt-2">
                     <input class="button-primary px-6" type="submit" value="Search" />
                 </div>
