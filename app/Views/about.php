@@ -24,14 +24,15 @@
         <h2>Where our records come from</h2>
         <p>OpenTexts.World currently searches digitized content from the following libraries:</p>
         <ul>
-            <li><a href="https://www.hathitrust.org/">HathiTrust</a> (<a href="/search?organisation=HathiTrust">4,425,106 items</a>)</li>
-            <li><a href="https://archive.org/details/americana">Internet Archive American Libraries Collection</a> (<a href="/search?organisation=Internet%20Archive%20Books">2,956,349 items</a>)</li>
-            <li><a href="https://digitalnz.org/">DigitalNZ</a> (<a href="/search?organisation=DigitalNZ">244,376 items</a>)</li>
+            <li><a href="https://www.hathitrust.org/">HathiTrust</a> (<a href="/search?organisation=HathiTrust">4,481,536 items</a>)</li>
+            <li><a href="https://archive.org/details/americana">Internet Archive American Libraries Collection</a> (<a href="/search?organisation=Internet%20Archive%20Books">2,956,347 items</a>)</li>
+            <li><a href="https://digitalnz.org/">DigitalNZ</a> (<a href="/search?organisation=DigitalNZ">244,392 items</a>)</li>
             <li><a href="https://www.bodleian.ox.ac.uk/">Bodleian Libraries, University of Oxford</a> (<a href="/search?organisation=Bodleian%20Libraries">231,102 items</a>)</li>
             <li><a href="https://wellcomecollection.org/">The Wellcome Collection</a> (<a href="/search?organisation=Wellcome%20Collection">210,529 items</a>)</li>
             <li><a href="https://www.nls.uk/">National Library of Scotland</a> (<a href="/search?organisation=National%20Library%20of%20Scotland">26,971 items</a>)</li>
             <li><a href="https://www.lib.cam.ac.uk/">Cambridge University Library</a> (<a href="/search?organisation=Cambridge%20University%20Library">8,822 items</a>)</li>
             <li><a href="https://library.wales/">National Library of Wales</a> (<a href="/search?organisation=National%20Library%20of%20Wales">2,801 items</a>)</li>
+            <li><a href="https://www.cardiff.ac.uk/special-collections">Cardiff University</a> (<a href="/search?organisation=Cardiff%20University">1,767 items</a>)</li>
             <li><a href="https://www.openbookpublishers.com/">Open Book Publishers</a> (<a href="/search?organisation=Open%20Book%20Publishers">196 items</a>)</li>
             <li><a href="https://www.qub.ac.uk/directorates/InformationServices/TheLibrary/SpecialCollections/">Queen's University Belfast</a> (<a href="/search?organisation=Queen%27s%20University%20Belfast">186 items</a>)</li>
         </ul>
