@@ -33,7 +33,8 @@
             <li><a href="https://www.lib.cam.ac.uk/">Cambridge University Library</a> (<a href="/search?organisation=Cambridge%20University%20Library">8,822 items</a>)</li>
             <li><a href="https://library.wales/">National Library of Wales</a> (<a href="/search?organisation=National%20Library%20of%20Wales">2,801 items</a>)</li>
             <li><a href="https://www.cardiff.ac.uk/special-collections">Cardiff University</a> (<a href="/search?organisation=Cardiff%20University">1,767 items</a>)</li>
-            <li><a href="https://www.openbookpublishers.com/">Open Book Publishers</a> (<a href="/search?organisation=Open%20Book%20Publishers">196 items</a>)</li>
+            <li><a href="https://digitalcollections.universiteitleiden.nl/">Leiden University Libraries</a> (<a href="/search?organisation=Leiden%20University%20Libraries">449 items</a>)</li>
+            <li><a href="https://www.openbookpublishers.com/">Open Book Publishers</a> (<a href="/search?organisation=Open%20Book%20Publishers">217 items</a>)</li>
             <li><a href="https://www.qub.ac.uk/directorates/InformationServices/TheLibrary/SpecialCollections/">Queen's University Belfast</a> (<a href="/search?organisation=Queen%27s%20University%20Belfast">186 items</a>)</li>
         </ul>
 
