@@ -61,7 +61,7 @@ export default class FilterViewController {
             // Count value, format to include commas
             let value = parseInt(counts[k]);
             value = value.toLocaleString('us')
-            spans[2].innerHTML = `&nbsp;(` + value + `)`;
+            spans[2].innerHTML = `&nbsp;` + value + `)`;
             
             this.setVisualActiveState(elem, query.filterContainsValue(this._key, k));
             parent.appendChild(elem);
