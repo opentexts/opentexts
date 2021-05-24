@@ -54,8 +54,15 @@ export default class FilterViewController {
             elem.removeEventListener('click', null);
             elem.addEventListener('click',  this._toggleFilter.bind(this))
             const spans = elem.querySelectorAll("span");
+            
+            // Label (e.g. Library name, or language)
             spans[1].innerText = k;
-            spans[2].innerHTML = `&nbsp;(${counts[k]})`
+            
+            // Count value, format to include commas
+            let value = parseInt(counts[k]);
+            value = value.toLocaleString('us')
+            spans[2].innerHTML = `&nbsp;` + value;
+            
             this.setVisualActiveState(elem, query.filterContainsValue(this._key, k));
             parent.appendChild(elem);
             this._valueElements.push(elem);
